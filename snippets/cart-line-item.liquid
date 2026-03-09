@@ -1,0 +1,101 @@
+{%- liquid
+  if linklists['gift-wrapping'].links != blank and linklists['gift-wrapping'].links.first.type == 'product_link'
+    assign gift_wrapping = linklists['gift-wrapping'].links.first
+
+    assign gift_wrap_id = gift_wrapping.object.variants.first.id
+    assign gift_wraps_in_cart = 0
+    for item in cart.items
+      if item.id == gift_wrap_id
+        assign gift_wraps_in_cart = item.quantity
+        break
+      endif
+    endfor
+    assign items_in_cart = cart.item_count | minus: gift_wrapping_in_cart
+  endif
+-%}
+
+<div
+  class="m-cart-item m:flex"
+  data-index="{{ forloop.index }}"
+  data-product-id="{{- item.product_id -}}"
+  data-cart-item
+  id="MinimogCart-Item-{{ item.index | plus: 1 }}"
+>
+  <div class="m-cart__column m-cart__column--product">
+    <div class="m-cart-item__product">
+      <div class="m-cart-item__image m:blocks-radius-md">
+        {%- if item.image -%}
+          {% render 'responsive-image', image: item.image, wrapper_class: 'm-cart-item__image' %}
+        {%- else -%}
+          {{- 'image' | placeholder_svg_tag: 'm-placeholder-svg' -}}
+        {%- endif -%}
+      </div>
+
+      <div class="m-cart-item__info">
+        <a class="m-cart-item__title" href="{{ item.url }}" data-role="product-title">
+          {{ item.product.title }}
+        </a>
+        {%- liquid
+          assign variant_options = 'template ' | split: ' '
+          if item.product.has_only_default_variant != true
+            assign variant_options = item.options_with_values
+          endif
+          assign property_size = item.properties | size
+
+          assign line_item_detail_class = ''
+          if item.product.has_only_default_variant and property_size == 0 and item.selling_plan_allocation == null
+            assign line_item_detail_class = 'm:hidden'
+          endif
+        -%}
+        <ul
+          class="m:text-color-subtext{{ line_item_detail_class | prepend: ' ' }}"
+          data-cart-item-details
+          aria-label="{{ 'cart.label.product_details' | t }}"
+        >
+          {%- for option in variant_options -%}
+            <li
+              class="m-cart-item__option m:text-sm{% if item.product.has_only_default_variant %} m:hidden{% endif %}"
+              data-cart-item-option
+            >
+              <span class="m:font-medium">{{ option.name }}</span>: {{ option.value }}
+            </li>
+          {%- endfor -%}
+
+          <li
+            class="m-cart-item__selling-plan m:text-sm{% if item.selling_plan_allocation == empty %} m:hidden {% endif %}"
+            data-cart-item-selling-plan-name
+          >
+            {{ item.selling_plan_allocation.selling_plan.name }}
+          </li>
+        </ul>
+
+        {%- comment -%}
+          Gift recipient info block (only show if present)
+        {%- endcomment -%}
+        {% assign gift_props = item.properties | where_exp: "p", "p.first == 'Recipient Name' or p.first == 'Recipient Email' or p.first == 'Gift Message'" %}
+        {% if gift_props.size > 0 %}
+          <div style="margin-top: 0.4rem; font-size: 0.9em; color: #555;">
+            {% for prop in gift_props %}
+              <div><strong>{{ prop.first }}:</strong> {{ prop.last }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {%- if item.properties._parentKey == blank -%}
+          <m-cart-remove-button
+            id="MinimogCart-Remove-{{ item.index | plus: 1 }}"
+            data-index="{{ item.index | plus: 1 }}"
+          >
+            <span class="m-cart-item__remove m-button--link{% unless gift_wrap_id == nil or item.id != gift_wrap_id %} m:hidden{% endunless %}">
+              {{ 'cart.general.remove' | t }}
+            </span>
+          </m-cart-remove-button>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <!-- The rest of your price, quantity, subtotal, etc. columns unchanged -->
+  <!-- ... -->
+
+</div>

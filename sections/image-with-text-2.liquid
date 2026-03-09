@@ -1,0 +1,59 @@
+<div class="custom-hero-section">
+  <picture>
+    <!-- Optional: Add a smaller version for mobile if you want -->
+    <!-- <source media="(max-width: 749px)" srcset="MOBILE_IMAGE_URL_HERE"> -->
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0700/2764/0984/files/For_Shopify.png?v=1762993444" 
+      alt="W Bakehouse Holiday Banner"
+      class="hero-image"
+      loading="lazy"
+    >
+  </picture>
+</div>
+
+<style>
+  .custom-hero-section {
+    background-color: #891D1D;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: block;
+  }
+
+  /* Image behavior */
+  .custom-hero-section .hero-image {
+    width: 100%;
+    height: auto;
+    max-width: 1600px; /* Prevents it from getting too large on wide monitors */
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Mobile optimization */
+  @media screen and (max-width: 749px) {
+    .custom-hero-section {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      background-color: #891D1D;
+    }
+
+    .custom-hero-section .hero-image {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  /* Optional: make it truly full-width even in boxed themes */
+  .custom-hero-section {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+  }
+</style>

@@ -1,0 +1,143 @@
+{%- form 'product',
+  product,
+  id: product_form_id,
+  data-product-id: product.id,
+  class: product_form_class,
+  novalidate: 'novalidate',
+  data-type: 'add-to-cart-form',
+  data-product-id: product.id,
+  data-product-handle: product.handle,
+  data-dynamic-checkout: enable_dynamic_checkout
+-%}
+
+  <input
+    type="hidden"
+    name="id"
+    value="{{ product.selected_or_first_available_variant.id }}"
+    disabled
+  >
+
+  <div class="m-product-form--wrapper m:display-flex m:flex-wrap m:items-end">
+
+    {% if show_quantity_selector == true %}
+      <div class="m-product-form--input">
+        <label class="m-product-option--label">
+          {{ 'products.product.quantity' | t }}
+        </label>
+        {% render 'product-qty-input', product_form_id: product_form_id, product: product %}
+      </div>
+    {% endif %}
+
+    <!-- Gift message form embedded inside main form -->
+    <div id="gift-message-form" style="display:none; margin-top: 1rem; width: 100%;">
+      <div class="m-recipient-form__fields">
+        <div class="m-recipient-field" style="margin-bottom: 1rem;">
+          <input
+            id="recipient-email-field"
+            class="form-field form-field--input"
+            type="email"
+            name="properties[Recipient Email]"
+            placeholder="Recipient email"
+          />
+        </div>
+        <div class="m-recipient-field" style="margin-bottom: 1rem;">
+          <input
+            id="recipient-name-field"
+            class="form-field form-field--input"
+            autocomplete="name"
+            type="text"
+            name="properties[Recipient Name]"
+            placeholder="Recipient name (optional)"
+          />
+        </div>
+        <div class="m-recipient-field" style="margin-bottom: 1rem;">
+          <textarea
+            id="recipient-message-field"
+            class="form-field form-field--input"
+            name="properties[Gift Message]"
+            placeholder="Message (optional)"
+            rows="3"
+            maxlength="200"
+            style="min-height: 120px;"
+          ></textarea>
+          <label class="form-field--label m:text-sm m:text-color-subtext">
+            200 characters max
+          </label>
+        </div>
+      </div>
+    </div>
+
+    {% liquid
+      assign btn_class = 'm-button--primary'
+      if enable_dynamic_checkout
+        assign btn_class = 'm-button--secondary'
+      endif
+    %}
+    <button
+      type="submit"
+      name="add"
+      class="m-add-to-cart m-spinner-button m-button {{ btn_class }}{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}"
+      data-atc-text="{{ 'products.product.add_to_cart' | t }}"
+    >
+      <span class="m-spinner-icon">
+        <svg
+          class="animate-spin m-svg-icon--medium"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </span>
+      <span class="m-add-to-cart--text">
+        {% if product.selected_or_first_available_variant.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </span>
+    </button>
+
+    <!-- Add other buttons/terms here if needed -->
+
+  </div>
+
+{%- endform -%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const giftFormContainer = document.getElementById('gift-message-form');
+
+    function getSelectedVariantText() {
+      const selectEl = document.querySelector('select[name="id"]');
+      if (selectEl && selectEl.selectedIndex >= 0) {
+        return selectEl.options[selectEl.selectedIndex].text.trim().toLowerCase();
+      }
+      const checkedRadio = document.querySelector('input[name="id"][type="radio"]:checked');
+      if (checkedRadio && checkedRadio.nextElementSibling) {
+        return checkedRadio.nextElementSibling.innerText.trim().toLowerCase();
+      }
+      return '';
+    }
+
+    function toggleGiftForm() {
+      const selectedText = getSelectedVariantText();
+      if (selectedText.includes('gift wrap with message')) {
+        giftFormContainer.style.display = 'block';
+      } else {
+        giftFormContainer.style.display = 'none';
+      }
+    }
+
+    const variantSelect = document.querySelector('select[name="id"]');
+    if (variantSelect) {
+      variantSelect.addEventListener('change', toggleGiftForm);
+    }
+    document.querySelectorAll('input[name="id"][type="radio"]').forEach(radio => {
+      radio.addEventListener('change', toggleGiftForm);
+    });
+
+    toggleGiftForm();
+  });
+</script>

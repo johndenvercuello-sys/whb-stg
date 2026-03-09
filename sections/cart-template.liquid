@@ -1,0 +1,130 @@
+{%- comment -%}
+  If either voucher is in the cart, set a JS flag to hide Flare.
+{%- endcomment -%}
+{% assign hide_flare = false %}
+{% for item in cart.items %}
+  {% if item.product.handle == 'its-a-bake-day-gift-voucher' 
+     or item.product.handle == 'its-a-bake-day-gift-voucher-2' %}
+    {% assign hide_flare = true %}
+  {% endif %}
+{% endfor %}
+
+<script>
+  window.hideFlarePicker = {{ hide_flare | json }};
+</script>
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  if linklists['gift-wrapping'].links != blank and linklists['gift-wrapping'].links.first.type == 'product_link'
+    assign gift_wrapping = linklists['gift-wrapping'].links.first
+
+    assign gift_wrap_id = gift_wrapping.object.variants.first.id
+    assign gift_wrapping_in_cart = 0
+    for item in cart.items
+      if item.id == gift_wrap_id
+        assign gift_wrapping_in_cart = item.quantity
+        break
+      endif
+    endfor
+    assign items_in_cart = cart.item_count | minus: gift_wrapping_in_cart
+  endif
+-%}
+
+{%- capture page_title -%}
+  {{ 'cart.general.title' | t }}
+{%- endcapture -%}
+{% render 'page-title', title: page_title, container: 'container' %}
+
+<div class="container">
+  <m-cart class="m-cart{% if cart == empty %} m-cart--empty{% endif %}" id="MinimogCart">
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <div class="m-cart__wrapper m:w-full">
+        <div class="m-cart__header m:flex">
+          <div class="m-cart__column m-cart__column--product">{{ 'cart.label.product' | t }}</div>
+          <div class="m-cart__column m-cart__column--price">{{ 'cart.label.price' | t }}</div>
+          <div class="m-cart__column m-cart__column--quantity m:hidden md:m:block">{{ 'cart.label.quantity' | t }}</div>
+          <div class="m-cart__column m-cart__column--subtotal m:text-right m:hidden md:m:block">
+            {{ 'cart.label.total' | t }}
+          </div>
+        </div>
+{% if item.properties != blank %}
+  <ul class="cart__properties" style="margin-top: 0.5rem; margin-left: 1rem; font-size: 0.9rem; color: #555;">
+    {% for p in item.properties %}
+      {% if p.first != '_shopify_send_gift_card_to_recipient' %}
+        <li><strong>{{ p.first }}:</strong> {{ p.last }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
+        <div class="m-cart__body" data-minimog-cart-items>
+          {%- if cart.item_count > 0 -%}
+            <div class="m-cart__items">
+              {% for item in cart.items %}
+                {%- comment -%}
+                  We render each line item (via cart-line-item.liquid). That snippet already
+                  outputs any line-item properties under the product title, so we do NOT output
+                  properties again here.
+                {%- endcomment -%}
+                {% render 'cart-line-item', item: item %}
+              {% endfor %}
+            </div>
+          {%- else -%}
+            <div class="m-cart__empty">
+              <h3 class="m:text-center m:text-xl">
+                {{ 'cart.general.empty' | t }}
+                <a href="{{ routes.all_products_collection_url }}" class="m-text-link">
+                  {{ 'layout.back_to_shopping' | t }}
+                </a>
+              </h3>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {% if cart.item_count > 0 %}
+        <div style="display: flex; gap: 1rem; margin: 2rem 0; justify-content: center;">
+
+          <!-- Add Products Button -->
+          <a 
+            href="/collections/all" 
+            class="m-button m-button--secondary" 
+            style="width: 50%; text-align: center;"
+          >
+            <span>Add Products</span>
+          </a>
+
+          <!-- Clear Cart Button using JS -->
+          <button 
+            type="button" 
+            onclick="window.location.href='/cart/clear.js'; setTimeout(() => location.reload(), 500);" 
+            class="m-button m-button--secondary" 
+            style="width: 50%;"
+          >
+            <span>Clear Cart</span>
+          </button>
+
+        </div>
+      {% endif %}
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          if (!window.hideFlarePicker) return;
+
+          function removeFlareNodes() {
+            document.querySelectorAll('.flare-calendar-wrapper, .flare-cart-date-picker, .flare-date-picker, [data-flare-calendar], [data-flare-cart-date-picker]').forEach(el => el.remove());
+            document.querySelectorAll('[class*="flare"]').forEach(el => el.remove());
+          }
+
+          // Initial removal
+          removeFlareNodes();
+
+          // Watch for late injections
+          const observer = new MutationObserver(removeFlareNodes);
+          observer.observe(document.body, { childList: true, subtree: true });
+          setTimeout(() => observer.disconnect(), 5000);
+        });
+      </script>
+    </form>
+  </m-cart>
+</div>
