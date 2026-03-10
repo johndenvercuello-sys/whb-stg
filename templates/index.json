@@ -15,7 +15,7 @@
         "1620813069167db316-0": {
           "type": "slider_item",
           "settings": {
-            "background": "shopify://shop_images/Dark-Brookie_b3dfe8d3-c110-44ce-88be-fa7cf73bd1e9.jpg",
+            "background": "shopify://shop_images/R6DG1942_copy.webp",
             "content_in_container": false,
             "content_position": "left middle",
             "text_alignment": "left",
@@ -78,8 +78,8 @@
         "container": "container",
         "color_scheme": "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a",
         "content_alignment": "center",
-        "padding_top": 52,
-        "padding_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 40,
         "custom_class": "",
         "animations": "inherit"
       }
@@ -236,8 +236,45 @@
       "type": "custom-liquid",
       "name": "Custom liquid",
       "settings": {
-        "custom_liquid": "<!-- W Bakehouse Events Section -->\n\n<style>\n/* ===============================\n   W Bakehouse Events Section\n================================ */\n\n.wb-events {\n  background: #f7ecde;\n  padding: 90px 10px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n.wb-container {\n  max-width: 1300px;\n  margin: auto;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 50px;\n  align-items: center;\n}\n\n/* Left Content */\n\n.wb-caption {\n  color: #c96b2c;\n  letter-spacing: 3px;\n  font-size: 13px;\n  font-weight: 600;\n  margin-bottom: 15px;\n}\n\n.wb-title {\n  font-size: 42px;\n  font-weight: 700;\n  line-height: 1.3;\n  color: #1e1e1e;\n  margin-bottom: 25px;\n}\n\n.wb-body {\n  font-size: 16px;\n  line-height: 1.8;\n  color: #222;\n  margin-bottom: 35px;\n  max-width: 500px;\n}\n\n.wb-btn {\n  display: inline-block;\n  padding: 14px 34px;\n  background: #1e1e1e;\n  color: #fff;\n  text-decoration: none;\n  font-size: 14px;\n  letter-spacing: 1px;\n  border-radius: 4px;\n  transition: 0.3s ease;\n}\n\n.wb-btn:hover {\n  background: #c96b2c;\n}\n\n/* Right Image */\n\n.wb-image img {\n  width: 130%;\n  border-radius: 6px;\n  box-shadow: 0 10px 25px rgba(0,0,0,0.15);\n}\n\n/* Mobile */\n\n@media (max-width: 768px) {\n\n  .wb-container {\n    grid-template-columns: 1fr;\n    text-align: center;\n  }\n\n  .wb-body {\n    margin: auto;\n  }\n\n  .wb-title {\n    font-size: 30px;\n  }\n}\n</style>\n\n\n<section class=\"wb-events\">\n\n  <div class=\"wb-container\">\n\n    <!-- Left Content -->\n    <div class=\"wb-content\">\n\n      <p class=\"wb-caption\">\n        BANQUETS & EVENTS\n      </p>\n\n      <h1 class=\"wb-title\">\n        CATERED ARTISANAL<br>\n        SOURDOUGH DELI<br>\n        & PASTRIES\n      </h1>\n\n      <p class=\"wb-body\">\n        Bring the W Bakehouse experience to your private gatherings,\n        celebrations or corporate events. Package options are available,\n        ranging from catered sandwiches and pastries set-up, to a full\n        deli with coffee bar set-up, depending on your event-dining\n        requirements.\n      </p>\n\n      <a href=\"/pages/events-banquets\" class=\"wb-btn\">\n        Contact Us\n      </a>\n\n    </div>\n\n    <!-- Right Image -->\n    <div class=\"wb-image\">\n      <img\n        src=\"https://cdn.shopify.com/s/files/1/0700/2764/0984/files/20260119_161030.jpg?v=1770305865\"\n        alt=\"W Bakehouse Catering\"\n      >\n    </div>\n\n  </div>\n\n</section>",
+        "custom_liquid": "<!-- W Bakehouse Events Section -->\n\n<style>\n/* ===============================\n   W Bakehouse Events Section\n================================ */\n\n.wb-events {\n  background: #f7ecde;\n  padding: 90px 10px;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n.wb-container {\n  max-width: 1300px;\n  margin: auto;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 50px;\n  align-items: center;\n}\n\n/* Left Content */\n\n.wb-caption {\n  color: #c96b2c;\n  letter-spacing: 3px;\n  font-size: 13px;\n  font-weight: 600;\n  margin-bottom: 15px;\n}\n\n.wb-title {\n  font-size: 42px;\n  font-weight: 300;\n  line-height: 1.3;\n  color: #1e1e1e;\n  margin-bottom: 25px;\n}\n\n.wb-body {\n  font-size: 16px;\n  line-height: 1.8;\n  color: #222;\n  margin-bottom: 35px;\n  max-width: 500px;\n}\n\n.wb-btn {\n  display: inline-block;\n  padding: 14px 34px;\n  background: #1e1e1e;\n  color: #fff;\n  text-decoration: none;\n  font-size: 14px;\n  letter-spacing: 1px;\n  border-radius: 4px;\n  transition: 0.3s ease;\n}\n\n.wb-btn:hover {\n  background: #c96b2c;\n}\n\n/* Right Image */\n\n.wb-image img {\n  width: 130%;\n  border-radius: 6px;\n  box-shadow: 0 10px 25px rgba(0,0,0,0.15);\n}\n\n/* Mobile */\n\n@media (max-width: 768px) {\n\n  .wb-container {\n    grid-template-columns: 1fr;\n    text-align: center;\n  }\n\n  .wb-body {\n    margin: auto;\n  }\n\n  .wb-title {\n    font-size: 30px;\n  }\n}\n</style>\n\n\n<section class=\"wb-events\">\n\n  <div class=\"wb-container\">\n\n    <!-- Left Content -->\n    <div class=\"wb-content\">\n\n      <p class=\"wb-caption\">\n        BANQUETS & EVENTS\n      </p>\n\n      <h1 class=\"wb-title\">\n        CATERED ARTISANAL<br>\n        SOURDOUGH DELI<br>\n        & PASTRIES\n      </h1>\n\n      <p class=\"wb-body\">\n        Bring the W Bakehouse experience to your private gatherings,\n        celebrations or corporate events. Package options are available,\n        ranging from catered sandwiches and pastries set-up, to a full\n        deli with coffee bar set-up, depending on your event-dining\n        requirements.\n      </p>\n\n      <a href=\"/pages/events-banquets\" class=\"wb-btn\">\n        Contact Us\n      </a>\n\n    </div>\n\n    <!-- Right Image -->\n    <div class=\"wb-image\">\n      <img\n        src=\"https://cdn.shopify.com/s/files/1/0700/2764/0984/files/20260119_161030.jpg?v=1770305865\"\n        alt=\"W Bakehouse Catering\"\n      >\n    </div>\n\n  </div>\n\n</section>",
         "custom_class": ""
+      }
+    },
+    "image_with_text_rkaFDm": {
+      "type": "image-with-text",
+      "custom_css": [],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "w-full",
+        "color_scheme": "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a",
+        "item_gap": 104,
+        "item_gap_mobile": 30,
+        "layout": "right",
+        "image_column_size": "6",
+        "image_overlap": true,
+        "show_image_reverse": false,
+        "hover_effect": true,
+        "image_animation": "parallax",
+        "image": "shopify://shop_images/20260119_161030.jpg",
+        "link": "",
+        "image_2": "shopify://shop_images/IMG-20260203-WA0012.jpg",
+        "link_2": "",
+        "second_image_offset_top": 0,
+        "title": "CATERED ARTISANAL\nSOURDOUGH DELI\n& PASTRIES",
+        "sub_title": "BANQUETS & EVENTS",
+        "text": "<p>Bring the W Bakehouse experience to your private gatherings, celebrations or corporate events. Package options are available, ranging from catered sandwiches and pastries set-up, to a full deli with coffee bar set-up, depending on your event-dining requirements.<br/><br/></p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "Contact Us",
+        "button_link": "shopify://pages/contact",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "padding_top": 100,
+        "padding_bottom": 98,
+        "custom_class": "",
+        "animations": "fade-in-up"
       }
     },
     "16212276967bd2e716": {
@@ -253,10 +290,11 @@
         "item_gap_mobile": 30,
         "layout": "left",
         "image_column_size": "7",
-        "image_overlap": false,
+        "image_overlap": true,
         "show_image_reverse": false,
         "hover_effect": true,
         "image_animation": "parallax",
+        "image": "shopify://shop_images/R6DG2067.webp",
         "link": "",
         "link_2": "",
         "second_image_offset_top": 0,
@@ -294,7 +332,7 @@
         "color_scheme": "badge-hot",
         "content_alignment": "center",
         "padding_top": 52,
-        "padding_bottom": 0,
+        "padding_bottom": 32,
         "custom_class": "",
         "animations": "inherit"
       }
@@ -305,6 +343,7 @@
         "image_mAMixQ": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/7_1d09c02f-7659-4f0e-82f6-f4d34ab6c0fd.png",
             "image_height": 120,
             "image_link": ""
           }
@@ -312,6 +351,7 @@
         "image_ft9cRn": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/26.png",
             "image_height": 120,
             "image_link": ""
           }
@@ -319,6 +359,7 @@
         "image_6gEhAC": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/samsara.webp",
             "image_height": 100,
             "image_link": ""
           }
@@ -326,6 +367,7 @@
         "image_N889QP": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/18.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -333,6 +375,7 @@
         "image_GpDK7G": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/4.webp",
             "image_height": 100,
             "image_link": ""
           }
@@ -340,6 +383,7 @@
         "image_anQjbj": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/10.webp",
             "image_height": 150,
             "image_link": ""
           }
@@ -347,6 +391,7 @@
         "image_3QFKC9": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/8.webp",
             "image_height": 130,
             "image_link": ""
           }
@@ -354,6 +399,7 @@
         "image_TNLLrq": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/14.webp",
             "image_height": 140,
             "image_link": ""
           }
@@ -361,6 +407,7 @@
         "image_MRVrg7": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/14.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -368,6 +415,7 @@
         "image_NWTqDY": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/13.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -375,6 +423,7 @@
         "image_ibAUx7": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/16.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -382,132 +431,7 @@
         "image_KVzakV": {
           "type": "image",
           "settings": {
-            "image_height": 120,
-            "image_link": ""
-          }
-        },
-        "image_6QTmkk": {
-          "type": "image",
-          "settings": {
-            "image_height": 200,
-            "image_link": ""
-          }
-        },
-        "image_xLGtL7": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_rf7BN9": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_xWwRMK": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_dYpJ43": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_TEG6aV": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_xUVW8N": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_inLWEw": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_3RAhFN": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_qhMfH9": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_n9zqE6": {
-          "type": "image",
-          "settings": {
-            "image_height": 100,
-            "image_link": ""
-          }
-        },
-        "image_eWUi3z": {
-          "type": "image",
-          "settings": {
-            "image_height": 200,
-            "image_link": ""
-          }
-        },
-        "image_6KYwfX": {
-          "type": "image",
-          "settings": {
-            "image_height": 120,
-            "image_link": ""
-          }
-        },
-        "image_gU4tkN": {
-          "type": "image",
-          "settings": {
-            "image_height": 150,
-            "image_link": ""
-          }
-        },
-        "image_YhUerA": {
-          "type": "image",
-          "settings": {
-            "image_height": 150,
-            "image_link": ""
-          }
-        },
-        "image_bnC3gp": {
-          "type": "image",
-          "settings": {
-            "image_height": 120,
-            "image_link": ""
-          }
-        },
-        "image_GBR7UY": {
-          "type": "image",
-          "settings": {
-            "image_height": 200,
-            "image_link": ""
-          }
-        },
-        "image_p7LMVq": {
-          "type": "image",
-          "settings": {
+            "image": "shopify://shop_images/1.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -525,25 +449,7 @@
         "image_MRVrg7",
         "image_NWTqDY",
         "image_ibAUx7",
-        "image_KVzakV",
-        "image_6QTmkk",
-        "image_xLGtL7",
-        "image_rf7BN9",
-        "image_xWwRMK",
-        "image_dYpJ43",
-        "image_TEG6aV",
-        "image_xUVW8N",
-        "image_inLWEw",
-        "image_3RAhFN",
-        "image_qhMfH9",
-        "image_n9zqE6",
-        "image_eWUi3z",
-        "image_6KYwfX",
-        "image_gU4tkN",
-        "image_YhUerA",
-        "image_bnC3gp",
-        "image_GBR7UY",
-        "image_p7LMVq"
+        "image_KVzakV"
       ],
       "name": "Scrolling promotion",
       "settings": {
@@ -600,14 +506,6 @@
             "title": "Special Breads",
             "item_image": "shopify://shop_images/Rosemary-Focaccia.jpg"
           }
-        },
-        "collection_block_9c4DMi": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "2025-holiday-menu",
-            "title": "Holiday 2025 Menu",
-            "item_image": "shopify://shop_images/20251112_144425_1.jpg"
-          }
         }
       },
       "block_order": [
@@ -615,8 +513,7 @@
         "1621150687357d32f2-1",
         "1621150687357d32f2-2",
         "f1613aaa-d3e1-4305-8fee-049a5bfefabb",
-        "6afe9930-2ff8-4bd2-8cf3-36c13393b68d",
-        "collection_block_9c4DMi"
+        "6afe9930-2ff8-4bd2-8cf3-36c13393b68d"
       ],
       "settings": {
         "heading": "DISCOVER WHAT'S BAKING",
@@ -703,6 +600,7 @@
     "rich_text_Y777hA",
     "16273957791fc3859b",
     "custom_liquid_QjjEqz",
+    "image_with_text_rkaFDm",
     "16212276967bd2e716",
     "rich_text_A667h4",
     "scrolling_promotion_zpFaNL",
