@@ -286,7 +286,7 @@
         "heading_size": "h3",
         "subheading": "",
         "container": "w-full",
-        "color_scheme": "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a",
+        "color_scheme": "default",
         "item_gap": 104,
         "item_gap_mobile": 30,
         "layout": "left",
