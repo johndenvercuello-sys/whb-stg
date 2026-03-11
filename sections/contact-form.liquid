@@ -16,6 +16,7 @@
   endif
 -%}
 <section data-section-type="contact-page" data-section-id={{ section.id }} class="m-section m-contact-form">
+
   <div class="{{ container }}">
     <div class="m-row{% if animated %} m-scroll-trigger animate--{{ animation_effect }}{% endif %}">
       <div class="m-contact-form__main{% if section.blocks.size > 0 %} xl:m:w-8/12 m:w-full{% else %} m-contact-form__main--full xl:m:w-6/12 m:w-full{% endif %}">
@@ -93,7 +94,7 @@
   </div>
 <div class="m-contact-form__reason m:column m:w-full md:m:w-1/2">
   <label for="contact_reason" class="form-field__label">How can we help you?</label>
-  <select name="contact[reason]" id="contact_reason" class="form-field form-field--input" required>
+  <select name="contact[reason]" id="contact_reason" onchange="showDiv('hidden_div', this)" class="form-field form-field--input" required>
     <option value="" disabled selected>Select an option</option>
     <option value="Order Inquiry">Order Inquiry</option>
     <option value="Product Question">Product Question</option>
@@ -102,6 +103,28 @@
     <option value="Other">Other</option>
   </select>
 </div>
+ <!-- Other Help-->
+<style>
+#hidden_div {
+    display: none;
+}
+ 
+    </style>
+<script>
+function showDiv(divId, element)
+{
+    document.getElementById(divId).style.display = element.value == "Other" ? 'block' : 'none';
+}
+</script>
+ <div id="hidden_div" class="m-contact-form__other-help m:column m:w-full md:m:w-1/2">
+    <label for="other_help" class="form-field__label">Other</label>
+      <input type="text"
+             class="form-field form-field--input"
+             name="contact[other_help]"
+             value="{{ form.other_help | default: customer.other_help }}"
+             id="inputOtherHelp"
+             placeholder="Type Other Help You Need">
+    </div>
 
 <div class="m-contact-form__file m:column m:w-full">
   <label for="contact_file" class="form-field__label">Upload a file (optional)</label>
@@ -165,7 +188,7 @@
 </section>
 {% schema %}
 {
-  "name": "Contact form",
+  "name": "Contact form STG",
   "settings": [
     {
       "type": "header",
