@@ -1,1 +1,87 @@
-{"sections":{"main":{"type":"collection-list-template","blocks":{"collection_item_6MEcAz":{"type":"collection_item","settings":{"collection":"pastries","image":"shopify:\/\/shop_images\/Brioche-Loaf.jpg"}},"collection_item_a9PWbX":{"type":"collection_item","settings":{"collection":"cookies","image":"shopify:\/\/shop_images\/Dark-Brookie.jpg"}},"collection_item_73jxWW":{"type":"collection_item","settings":{"collection":"pastries-1","image":"shopify:\/\/shop_images\/Butter-Scones.jpg"}},"collection_item_PFy3rJ":{"type":"collection_item","settings":{"collection":"frontpage","image":"shopify:\/\/shop_images\/Whole-Wheat-Sourdough.jpg"}},"collection_item_xrYgnq":{"type":"collection_item","settings":{"collection":"breads","image":"shopify:\/\/shop_images\/Rosemary-Focaccia.jpg"}},"collection_item_6hgzG3":{"type":"collection_item","settings":{"collection":"2025-holiday-menu","image":"shopify:\/\/shop_images\/20251106_095244.jpg"}}},"block_order":["collection_item_6MEcAz","collection_item_a9PWbX","collection_item_73jxWW","collection_item_PFy3rJ","collection_item_xrYgnq","collection_item_6hgzG3"],"settings":{"container":"container-fluid","display_type":"selected","title":"Freshly Baked Goodness, Every Time","description":"<p>Explore our handcrafted selection of <strong>brioche<\/strong>, <strong>pastries<\/strong>, <strong>special breads<\/strong>, <strong>sourdough<\/strong>, and <strong>cookies<\/strong>—each made with premium ingredients and a whole lot of love. From buttery classics to artisanal favorites, there’s a treat here for every craving.<\/p>","header_alignment":"center","items_per_row":3,"item_gap":30,"mobile_columns":"2","mobile_gap":16,"card_style":"inside-2","text_alignment":"center","hover_effect":"scaling-up","show_product_count":true,"count_inline_title":true,"image_rounded":false}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "collection-list-template",
+      "blocks": {
+        "collection_item_6MEcAz": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "automated-collection",
+            "image": "shopify://shop_images/Brioche-Loaf.jpg"
+          }
+        },
+        "collection_item_a9PWbX": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "cookies",
+            "image": "shopify://shop_images/Dark-Brookie.jpg"
+          }
+        },
+        "collection_item_73jxWW": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "pastries-1",
+            "image": "shopify://shop_images/Butter-Scones.jpg"
+          }
+        },
+        "collection_item_PFy3rJ": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/Whole-Wheat-Sourdough.jpg"
+          }
+        },
+        "collection_item_xrYgnq": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "breads",
+            "image": "shopify://shop_images/Rosemary-Focaccia.jpg"
+          }
+        },
+        "collection_item_6hgzG3": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "2025-holiday-menu"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_6MEcAz",
+        "collection_item_a9PWbX",
+        "collection_item_73jxWW",
+        "collection_item_PFy3rJ",
+        "collection_item_xrYgnq",
+        "collection_item_6hgzG3"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "display_type": "selected",
+        "title": "Freshly Baked Goodness, Every Time",
+        "description": "<p>Explore our handcrafted selection of <strong>brioche</strong>, <strong>pastries</strong>, <strong>special breads</strong>, <strong>sourdough</strong>, and <strong>cookies</strong>—each made with premium ingredients and a whole lot of love. From buttery classics to artisanal favorites, there’s a treat here for every craving.</p>",
+        "header_alignment": "center",
+        "items_per_row": 3,
+        "item_gap": 30,
+        "mobile_columns": "2",
+        "mobile_gap": 16,
+        "card_style": "inside-2",
+        "text_alignment": "center",
+        "hover_effect": "scaling-up",
+        "show_product_count": true,
+        "count_inline_title": true,
+        "image_rounded": false
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
