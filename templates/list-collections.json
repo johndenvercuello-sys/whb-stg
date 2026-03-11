@@ -15,7 +15,7 @@
         "collection_item_6MEcAz": {
           "type": "collection_item",
           "settings": {
-            "collection": "automated-collection",
+            "collection": "brioche",
             "image": "shopify://shop_images/Brioche-Loaf.jpg"
           }
         },
@@ -26,41 +26,34 @@
             "image": "shopify://shop_images/Dark-Brookie.jpg"
           }
         },
-        "collection_item_73jxWW": {
+        "collection_item_mz98tW": {
           "type": "collection_item",
           "settings": {
-            "collection": "pastries-1",
-            "image": "shopify://shop_images/Butter-Scones.jpg"
+            "collection": "pastries",
+            "image": "shopify://shop_images/Butter-Scones.webp"
           }
         },
         "collection_item_PFy3rJ": {
           "type": "collection_item",
           "settings": {
-            "collection": "frontpage",
+            "collection": "sourdough-breads",
             "image": "shopify://shop_images/Whole-Wheat-Sourdough.jpg"
           }
         },
         "collection_item_xrYgnq": {
           "type": "collection_item",
           "settings": {
-            "collection": "breads",
+            "collection": "special-breads",
             "image": "shopify://shop_images/Rosemary-Focaccia.jpg"
-          }
-        },
-        "collection_item_6hgzG3": {
-          "type": "collection_item",
-          "settings": {
-            "collection": "2025-holiday-menu"
           }
         }
       },
       "block_order": [
         "collection_item_6MEcAz",
         "collection_item_a9PWbX",
-        "collection_item_73jxWW",
+        "collection_item_mz98tW",
         "collection_item_PFy3rJ",
-        "collection_item_xrYgnq",
-        "collection_item_6hgzG3"
+        "collection_item_xrYgnq"
       ],
       "settings": {
         "container": "container-fluid",
