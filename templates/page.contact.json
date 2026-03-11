@@ -1,1 +1,110 @@
-{"sections":{"main":{"type":"page-contact","disabled":true,"settings":{"container":"container"}},"custom_content_XMjQhb":{"type":"custom-content","blocks":{"image_k8XYJK":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/contact.jpg","link":"","width":"100%","alignment":"center","block_custom_class":"","animations":"inherit"}}},"block_order":["image_k8XYJK"],"name":"Custom content","settings":{"heading":"CONTACT","heading_size":"h3","subheading":"","description":"","header_alignment":"center","container":"container-fluid","color_scheme":"","content_color_scheme":"","enable_parallax":false,"parallax_direction":"vertical","gap":30,"gap_mobile":16,"use_scroll_mobile":false,"padding_top":0,"padding_bottom":50,"custom_class":""}},"contact-form":{"type":"contact-form","blocks":{"text-block-1":{"type":"textblock","settings":{"title":"Address","content":"<p>779 San Rafael St., \u2028<br\/>Plainview, Mandaluyong, 1550<br\/>Manila, Philippines<\/p>"}},"text-block-2":{"type":"textblock","settings":{"title":"Information","content":"<p>+63270010122<br\/>wbakehouseph@gmail.com<\/p>"}},"text-block-3":{"type":"socialmedia","settings":{"title":"Social Media"}},"text-block-4":{"type":"textblock","settings":{"title":"We're Open","content":"<p>We’re open Tuesday to Saturday for deliveries.\u2028All baked goods are for pre-order, baked the same day as your delivery date.\u2028Please double check your chosen bake day before proceeding with your order. All orders once paid are final, and cannot be cancelled.<\/p>"}}},"block_order":["text-block-1","text-block-2","text-block-3","text-block-4"],"settings":{"container":"container","title":"We would love to hear from you.","description":"<p>For partnerships and collaborations, please send us an email at wbakehouseph@gmail.com.\u2028If you need to reach us for further assistance, please fill out below form:\u2028\u2028<\/p>","show_name":true,"show_phone":true,"show_signup_email":true,"animations":"inherit"}}},"order":["main","custom_content_XMjQhb","contact-form"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-contact",
+      "disabled": true,
+      "settings": {
+        "container": "container"
+      }
+    },
+    "custom_content_XMjQhb": {
+      "type": "custom-content",
+      "blocks": {
+        "image_k8XYJK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/contact.webp",
+            "link": "",
+            "width": "100%",
+            "alignment": "center",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "image_k8XYJK"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "heading": "CONTACT",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "content_color_scheme": "",
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "gap": 30,
+        "gap_mobile": 16,
+        "use_scroll_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "blocks": {
+        "text-block-1": {
+          "type": "textblock",
+          "settings": {
+            "title": "Address",
+            "content": "<p>779 San Rafael St.,  <br/>Plainview, Mandaluyong, 1550<br/>Manila, Philippines</p>"
+          }
+        },
+        "text-block-2": {
+          "type": "textblock",
+          "settings": {
+            "title": "Information",
+            "content": "<p>+63270010122<br/>wbakehouseph@gmail.com</p>"
+          }
+        },
+        "text-block-3": {
+          "type": "socialmedia",
+          "settings": {
+            "title": "Social Media"
+          }
+        },
+        "text-block-4": {
+          "type": "textblock",
+          "settings": {
+            "title": "We're Open",
+            "content": "<p>We’re open Tuesday to Saturday for deliveries. All baked goods are for pre-order, baked the same day as your delivery date. Please double check your chosen bake day before proceeding with your order. All orders once paid are final, and cannot be cancelled.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text-block-1",
+        "text-block-2",
+        "text-block-3",
+        "text-block-4"
+      ],
+      "settings": {
+        "container": "container",
+        "title": "We would love to hear from you.",
+        "description": "<p>For partnerships and collaborations, please send us an email at wbakehouseph@gmail.com. If you need to reach us for further assistance, please fill out below form:  </p>",
+        "show_name": true,
+        "show_phone": true,
+        "show_signup_email": true,
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_content_XMjQhb",
+    "contact-form"
+  ]
+}
