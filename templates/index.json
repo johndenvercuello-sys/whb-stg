@@ -341,6 +341,38 @@
     "scrolling_promotion_zpFaNL": {
       "type": "scrolling-promotion",
       "blocks": {
+        "image_tBGfAt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/K_by_Cunanan.png",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_gcm8xC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Fortbox.jpg",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_PJdjQJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/supernormal.png",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_hUBnzG": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/loop1.png",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
         "image_mAMixQ": {
           "type": "image",
           "settings": {
@@ -439,6 +471,10 @@
         }
       },
       "block_order": [
+        "image_tBGfAt",
+        "image_gcm8xC",
+        "image_PJdjQJ",
+        "image_hUBnzG",
         "image_mAMixQ",
         "image_ft9cRn",
         "image_6gEhAC",
