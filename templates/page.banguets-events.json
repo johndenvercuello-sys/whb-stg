@@ -20,7 +20,7 @@
         "heading": "",
         "heading_size": "h3",
         "subheading": "",
-        "container": "w-full",
+        "container": "container",
         "color_scheme": "badge-hot",
         "item_gap": 100,
         "item_gap_mobile": 30,
@@ -50,14 +50,53 @@
         "animations": "inherit"
       }
     },
-    "1770308682b3896be0": {
+    "collection_list_cMgNUA": {
+      "type": "collection-list",
+      "name": "Collection list",
+      "settings": {
+        "heading": "Event Inquiry Form",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "Fill out form below we'll get back to you soon",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--primary",
+        "header_alignment": "center",
+        "color_scheme": "",
+        "container": "container-fluid",
+        "layout": "grid",
+        "expanded": true,
+        "card_style": "standard",
+        "text_alignment": "left",
+        "hover_effect": "scaling-down",
+        "show_product_count": true,
+        "count_inline_title": true,
+        "image_rounded": false,
+        "items_per_row": 4,
+        "item_gap": 30,
+        "enable_slider": false,
+        "show_pagination": false,
+        "show_navigation": false,
+        "autorotate": false,
+        "autorotate_speed": 5,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "mobile_gap": 10,
+        "hidden_slide_control_mobile": false,
+        "padding_top": 50,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "blocks_wLKqbC": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_f131755_jR3CkY": {
+        "ai_gen_block_f131755_c434dC": {
           "type": "ai_gen_block_f131755",
           "settings": {
-            "heading": "Event Inquiry Form",
-            "subheading": "Fill out the form below and we'll get back to you soon",
+            "heading": "",
+            "subheading": "",
             "success_message": "Thank you for your inquiry! We'll contact you shortly to discuss your event.",
             "desktop_width_percent": 80,
             "text_alignment": "center",
@@ -89,7 +128,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_f131755_jR3CkY"
+        "ai_gen_block_f131755_c434dC"
       ],
       "settings": {}
     }
@@ -97,6 +136,7 @@
   "order": [
     "main",
     "image_with_text_67Hh6X",
-    "1770308682b3896be0"
+    "collection_list_cMgNUA",
+    "blocks_wLKqbC"
   ]
 }
