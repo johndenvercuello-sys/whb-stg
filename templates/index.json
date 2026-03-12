@@ -208,7 +208,8 @@
             "image": "shopify://shop_images/IMG_0126.heic",
             "heading": "Spread Box 1 - ₱375.00",
             "heading_size": "h4",
-            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>"
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>",
+            "icon": "shopify://shop_images/NewWBHLogoTransparentBlack.webp"
           }
         },
         "collection_dNWDFt": {
@@ -218,7 +219,8 @@
             "image": "shopify://shop_images/IMG_0142.heic",
             "heading": "Spread Box 2 - ₱575.00",
             "heading_size": "h4",
-            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>"
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>",
+            "icon": "shopify://shop_images/NewWBHLogoTransparentBlack_1.webp"
           }
         },
         "collection_bGYnGK": {
@@ -228,7 +230,8 @@
             "image": "shopify://shop_images/IMG_0167.heic",
             "heading": "Spread Box 3 - ₱975.00",
             "heading_size": "h4",
-            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich,Italian Sandwich, Reuben Sandwich, Liege Waffles, Honey Butter Toasties, Sesame Chewies, Mixed Classic Nibblers. Good for 15 to 20 Pax.</p>"
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich,Italian Sandwich, Reuben Sandwich, Liege Waffles, Honey Butter Toasties, Sesame Chewies, Mixed Classic Nibblers. Good for 15 to 20 Pax.</p>",
+            "icon": "shopify://shop_images/NewWBHLogoTransparentBlack_1.webp"
           }
         }
       },
@@ -237,9 +240,7 @@
         "collection_dNWDFt",
         "collection_bGYnGK"
       ],
-      "custom_css": [
-        ".spreadbox-section .collapsible__button-icon {display: none;}"
-      ],
+      "custom_css": [],
       "name": "Collection tabs",
       "settings": {
         "container": "container",
