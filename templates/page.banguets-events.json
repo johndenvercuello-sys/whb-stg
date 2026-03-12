@@ -157,7 +157,8 @@
         "ai_gen_block_042438b_z9KHMK"
       ],
       "custom_css": [
-        "{width: 70%; margin: 0 auto;}"
+        "{width: 70%; margin: 0 auto;}",
+        ".ai-contact-form__button-abexonfpatzcxnup4daigenblock042438bz9khmk {width: 200px; margin: 0 auto;}"
       ],
       "settings": {}
     }
