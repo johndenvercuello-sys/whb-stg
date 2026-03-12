@@ -241,8 +241,8 @@
         "collection_bGYnGK"
       ],
       "custom_css": [
-        ".spreadbox-section span.collapsible__button-icon {display: none;}",
-        ".spreadbox-section .collapsible__content-inner {padding-left:15px;}"
+        ".spreadbox-section .collapsible__button-icon {display: none;}",
+        ".spreadbox-section .collapsible__content-inner {padding-left: 15px;}"
       ],
       "name": "Collection tabs",
       "settings": {
