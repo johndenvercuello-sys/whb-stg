@@ -215,7 +215,7 @@
         "collection_dNWDFt": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "spread-boxes",
             "image": "shopify://shop_images/IMG_0142.heic",
             "heading": "Spread Box 2 - ₱575.00",
             "heading_size": "h4",
@@ -226,7 +226,7 @@
         "collection_bGYnGK": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "spread-boxes",
             "image": "shopify://shop_images/IMG_0167.heic",
             "heading": "Spread Box 3 - ₱975.00",
             "heading_size": "h4",
