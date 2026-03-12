@@ -237,6 +237,9 @@
         "collection_dNWDFt",
         "collection_bGYnGK"
       ],
+      "custom_css": [
+        ".spreadbox-section .collapsible__button-icon {display: none;}"
+      ],
       "name": "Collection tabs",
       "settings": {
         "container": "container",
@@ -254,7 +257,7 @@
         "autoplay_duration": 5,
         "padding_top": 100,
         "padding_bottom": 100,
-        "custom_class": "",
+        "custom_class": "spreadbox-section",
         "animations": "inherit"
       }
     },
