@@ -131,12 +131,186 @@
         "ai_gen_block_f131755_c434dC"
       ],
       "settings": {}
+    },
+    "blocks_GLiKWA": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f131755_MDRxdX": {
+          "type": "ai_gen_block_f131755",
+          "settings": {
+            "heading": "Event Inquiry Form",
+            "subheading": "Fill out the form below and we'll get back to you soon",
+            "success_message": "Thank you for your inquiry! We'll contact you shortly to discuss your event.",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "padding": 40,
+            "border_radius": 0,
+            "background_color": "#ffffff",
+            "heading_color": "#222222",
+            "subheading_color": "#666666",
+            "label_color": "#222222",
+            "heading_size": 40,
+            "subheading_size": 16,
+            "input_background": "#f2f2f2",
+            "input_text_color": "#000000",
+            "input_border_color": "#eeeeee",
+            "input_focus_border_color": "#000000",
+            "input_border_width": 1,
+            "input_border_radius": 5,
+            "button_text": "Submit Inquiry",
+            "button_full_width": false,
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_background": "#222222",
+            "button_hover_text_color": "#ffffff",
+            "button_font_size": 16,
+            "button_border_width": 1,
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f131755_MDRxdX"
+      ],
+      "name": "Contact form",
+      "settings": {}
+    },
+    "177329147696a3f153": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_20d34ef_yiCzBx": {
+          "type": "ai_gen_block_20d34ef",
+          "settings": {
+            "heading": "Get in touch",
+            "subheading": "<p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>",
+            "success_message": "Thank you for contacting us. We'll get back to you as soon as possible.",
+            "name_label": "Name",
+            "name_placeholder": "Your name",
+            "name_required": true,
+            "email_label": "Email",
+            "email_placeholder": "your@email.com",
+            "show_phone": true,
+            "phone_label": "Phone",
+            "phone_placeholder": "Your phone number",
+            "phone_required": false,
+            "message_label": "Message",
+            "message_placeholder": "Write your message here...",
+            "button_text": "Send message",
+            "button_full_width": false,
+            "button_alignment": "flex-start",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "padding": 40,
+            "border_radius": 0,
+            "heading_size": 36,
+            "heading_spacing": 16,
+            "subheading_size": 16,
+            "form_spacing": 24,
+            "field_spacing": 16,
+            "label_size": 14,
+            "background_color": "#ffffff",
+            "heading_color": "#222222",
+            "subheading_color": "#666666",
+            "label_color": "#222222",
+            "input_background": "#f2f2f2",
+            "input_text_color": "#222222",
+            "input_border_color": "#eeeeee",
+            "input_focus_border_color": "#000000",
+            "placeholder_color": "#999999",
+            "input_border_width": 1,
+            "input_border_radius": 5,
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_background": "#222222",
+            "button_font_size": 16,
+            "button_border_radius": 4,
+            "success_background": "#d4edda",
+            "success_text_color": "#155724",
+            "error_background": "#f8d7da",
+            "error_text_color": "#721c24"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_20d34ef_yiCzBx"
+      ],
+      "settings": {}
+    },
+    "1773291654c82dea9d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_487a835_tgqfEk": {
+          "type": "ai_gen_block_487a835",
+          "settings": {
+            "heading": "Event Inquiry Form",
+            "description": "<p>Fill out the form below and we'll get back to you shortly.</p>",
+            "success_message": "Thank you! We'll contact you soon.",
+            "full_name_label": "Full Name",
+            "full_name_placeholder": "Enter your full name",
+            "contact_no_label": "Contact Number",
+            "contact_no_placeholder": "Enter your contact number",
+            "email_label": "Email Address",
+            "email_placeholder": "Enter your email address",
+            "event_type_label": "Type of Event",
+            "event_type_placeholder": "Select event type",
+            "other_event_label": "Please specify",
+            "other_event_placeholder": "Enter event type",
+            "no_pax_label": "Number of Pax",
+            "no_pax_placeholder": "Enter number of guests",
+            "venue_label": "Venue",
+            "venue_placeholder": "Enter venue location",
+            "notes_label": "Additional Notes",
+            "notes_placeholder": "Any special requests or additional information",
+            "button_text": "Submit Inquiry",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "form_padding": 40,
+            "border_radius": 8,
+            "heading_spacing": 16,
+            "form_spacing": 24,
+            "field_spacing": 16,
+            "heading_size": 28,
+            "description_size": 16,
+            "label_size": 14,
+            "input_text_size": 14,
+            "button_text_size": 16,
+            "background_color": "#ffffff",
+            "heading_color": "#222222",
+            "text_color": "#666666",
+            "label_color": "#222222",
+            "input_background": "#f5f5f5",
+            "input_text_color": "#222222",
+            "input_border_color": "#dddddd",
+            "input_focus_border": "#000000",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_background": "#333333",
+            "success_color": "#008060",
+            "error_color": "#D82C0D",
+            "input_padding": 12,
+            "input_border_width": 1,
+            "input_border_radius": 4,
+            "button_padding": 14,
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_487a835_tgqfEk"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "main",
     "image_with_text_67Hh6X",
     "collection_list_cMgNUA",
-    "blocks_wLKqbC"
+    "blocks_wLKqbC",
+    "blocks_GLiKWA",
+    "177329147696a3f153",
+    "1773291654c82dea9d"
   ]
 }
