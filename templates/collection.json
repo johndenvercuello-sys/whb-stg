@@ -62,7 +62,7 @@
         "heading": "",
         "heading_size": "h3",
         "subheading": "",
-        "container": "w-full",
+        "container": "container",
         "color_scheme": "badge-hot",
         "item_gap": 72,
         "item_gap_mobile": 30,
