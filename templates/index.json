@@ -254,7 +254,7 @@
         "heading_size": "h3",
         "subheading": "",
         "container": "container",
-        "color_scheme": "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a",
+        "color_scheme": "badge-hot",
         "item_gap": 104,
         "item_gap_mobile": 30,
         "layout": "right",
@@ -346,6 +346,118 @@
     "scrolling_promotion_zpFaNL": {
       "type": "scrolling-promotion",
       "blocks": {
+        "image_wcKLnH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/12_1b443e9b-d8c5-4822-a545-4afe5ddd0e1f.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_BVRLQf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/logo.avif",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_YjEHat": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_VtXrph": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/24.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_KUFY9X": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/11_39334af7-6c57-4447-8601-9904477d1aaf.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_ecBQH3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/22.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_eexwFt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_tpGaf4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_c5b0ece4-b558-43de-a43a-799fef62fe8c.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_zkt8rT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/15.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_fAiadR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/23.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_feyhxg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_tNmHfe": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/9.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_DeX9mc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Maria_Luisa.jpg",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
+        "image_TCydFq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2.webp",
+            "image_height": 120,
+            "image_link": ""
+          }
+        },
         "image_tBGfAt": {
           "type": "image",
           "settings": {
@@ -365,7 +477,7 @@
         "image_PJdjQJ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/supernormal.png",
+            "image": "shopify://shop_images/supern-logo.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -373,7 +485,7 @@
         "image_hUBnzG": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/loop1.png",
+            "image": "shopify://shop_images/loop-logo.webp",
             "image_height": 120,
             "image_link": ""
           }
@@ -468,6 +580,20 @@
         }
       },
       "block_order": [
+        "image_wcKLnH",
+        "image_BVRLQf",
+        "image_YjEHat",
+        "image_VtXrph",
+        "image_KUFY9X",
+        "image_ecBQH3",
+        "image_eexwFt",
+        "image_tpGaf4",
+        "image_zkt8rT",
+        "image_fAiadR",
+        "image_feyhxg",
+        "image_tNmHfe",
+        "image_DeX9mc",
+        "image_TCydFq",
         "image_tBGfAt",
         "image_gcm8xC",
         "image_PJdjQJ",
