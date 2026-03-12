@@ -89,49 +89,6 @@
         "animations": "inherit"
       }
     },
-    "blocks_wLKqbC": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_f131755_c434dC": {
-          "type": "ai_gen_block_f131755",
-          "settings": {
-            "heading": "",
-            "subheading": "",
-            "success_message": "Thank you for your inquiry! We'll contact you shortly to discuss your event.",
-            "desktop_width_percent": 80,
-            "text_alignment": "center",
-            "padding": 40,
-            "border_radius": 0,
-            "background_color": "#ffffff",
-            "heading_color": "#222222",
-            "subheading_color": "#666666",
-            "label_color": "#222222",
-            "heading_size": 40,
-            "subheading_size": 16,
-            "input_background": "#f2f2f2",
-            "input_text_color": "#000000",
-            "input_border_color": "#eeeeee",
-            "input_focus_border_color": "#000000",
-            "input_border_width": 1,
-            "input_border_radius": 5,
-            "button_text": "Submit Inquiry",
-            "button_full_width": false,
-            "button_background": "#000000",
-            "button_text_color": "#ffffff",
-            "button_hover_background": "#222222",
-            "button_hover_text_color": "#ffffff",
-            "button_font_size": 16,
-            "button_border_width": 1,
-            "button_border_radius": 4
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_f131755_c434dC"
-      ],
-      "settings": {}
-    },
     "177329257730d7afbe": {
       "type": "_blocks",
       "blocks": {
@@ -140,7 +97,7 @@
           "settings": {
             "heading": "",
             "subtext": "",
-            "desktop_width_percent": 80,
+            "desktop_width_percent": 100,
             "full_name_label": "Full Name (Last Name, First Name) ",
             "full_name_placeholder": "Dela Cruz, Juan",
             "contact_no_label": "Contact no. ",
@@ -199,6 +156,9 @@
       "block_order": [
         "ai_gen_block_042438b_z9KHMK"
       ],
+      "custom_css": [
+        "{width:75%;}"
+      ],
       "settings": {}
     }
   },
@@ -206,7 +166,6 @@
     "main",
     "image_with_text_67Hh6X",
     "collection_list_cMgNUA",
-    "blocks_wLKqbC",
     "177329257730d7afbe"
   ]
 }
