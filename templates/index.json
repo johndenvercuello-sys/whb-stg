@@ -90,7 +90,7 @@
         "item_per_row": 3,
         "item_gap": 30,
         "item_gap_mobile": 10,
-        "card_style": "vertical",
+        "card_style": "horizontal",
         "image_max_width": "70px",
         "content_alignment": "center",
         "hover_effect": "scaling-up",
@@ -194,6 +194,64 @@
         "content_alignment": "center",
         "padding_top": 20,
         "padding_bottom": 52,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "collection_tabs_ikKn3f": {
+      "type": "collection-tabs",
+      "blocks": {
+        "collection_Y8b98W": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/IMG_0126.heic",
+            "heading": "Spread Box 1",
+            "heading_size": "h4",
+            "text": ""
+          }
+        },
+        "collection_UJ4aUw": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "heading": "Spread Box 2",
+            "heading_size": "h4",
+            "text": ""
+          }
+        },
+        "collection_8Yg9gx": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "heading": "Spread Box 3",
+            "heading_size": "h4",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_Y8b98W",
+        "collection_UJ4aUw",
+        "collection_8Yg9gx"
+      ],
+      "name": "Collection tabs",
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "header_alignment": "center",
+        "heading": "Collection tabs",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "image_position": "left",
+        "image_ratio": "1/1",
+        "prefix_header": "ordinal_number",
+        "trigger_behavior": "hover",
+        "autoplay": false,
+        "autoplay_duration": 5,
+        "padding_top": 50,
+        "padding_bottom": 50,
         "custom_class": "",
         "animations": "inherit"
       }
@@ -623,10 +681,10 @@
         "custom_class": ""
       }
     },
-    "1621150687357d32f2": {
+    "collection_list_kYgLJ7": {
       "type": "collection-list",
       "blocks": {
-        "1621150687357d32f2-0": {
+        "collection_block_Pm9CC8": {
           "type": "collection_block",
           "settings": {
             "collection": "pastries",
@@ -634,7 +692,7 @@
             "item_image": "shopify://shop_images/Potato-Brioche-Buns.jpg"
           }
         },
-        "1621150687357d32f2-1": {
+        "collection_block_zbRJC7": {
           "type": "collection_block",
           "settings": {
             "collection": "cookies",
@@ -642,7 +700,7 @@
             "item_image": "shopify://shop_images/Dark-Brookie.jpg"
           }
         },
-        "1621150687357d32f2-2": {
+        "collection_block_JgdkEB": {
           "type": "collection_block",
           "settings": {
             "collection": "pastries-1",
@@ -650,7 +708,7 @@
             "item_image": "shopify://shop_images/Butter-Scones.jpg"
           }
         },
-        "f1613aaa-d3e1-4305-8fee-049a5bfefabb": {
+        "collection_block_aNmDTq": {
           "type": "collection_block",
           "settings": {
             "collection": "frontpage",
@@ -658,7 +716,7 @@
             "item_image": "shopify://shop_images/Whole-Wheat-Sourdough.jpg"
           }
         },
-        "6afe9930-2ff8-4bd2-8cf3-36c13393b68d": {
+        "collection_block_fr4W6h": {
           "type": "collection_block",
           "settings": {
             "collection": "breads",
@@ -668,11 +726,11 @@
         }
       },
       "block_order": [
-        "1621150687357d32f2-0",
-        "1621150687357d32f2-1",
-        "1621150687357d32f2-2",
-        "f1613aaa-d3e1-4305-8fee-049a5bfefabb",
-        "6afe9930-2ff8-4bd2-8cf3-36c13393b68d"
+        "collection_block_Pm9CC8",
+        "collection_block_zbRJC7",
+        "collection_block_JgdkEB",
+        "collection_block_aNmDTq",
+        "collection_block_fr4W6h"
       ],
       "settings": {
         "heading": "DISCOVER WHAT'S BAKING",
@@ -757,13 +815,14 @@
     "icon_box_4eEUxj",
     "featured_product_slider_dBVD3k",
     "rich_text_Y777hA",
+    "collection_tabs_ikKn3f",
     "16273957791fc3859b",
     "custom_liquid_QjjEqz",
     "image_with_text_rkaFDm",
     "16212276967bd2e716",
     "rich_text_A667h4",
     "scrolling_promotion_zpFaNL",
-    "1621150687357d32f2",
+    "collection_list_kYgLJ7",
     "1621151746c9bda56d",
     "1748312195ce06a1aa"
   ]
