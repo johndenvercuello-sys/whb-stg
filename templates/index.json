@@ -81,7 +81,7 @@
       "name": "Featured promotion",
       "settings": {
         "container": "container-fluid",
-        "color_scheme": "footer",
+        "color_scheme": "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a",
         "heading": "What's New",
         "heading_size": "h3",
         "subheading": "",
@@ -156,7 +156,7 @@
         "description": "",
         "header_alignment": "center",
         "container": "container",
-        "color_scheme": "footer",
+        "color_scheme": "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a",
         "image_placement": "right",
         "slide_autoplay": true,
         "show_navigation": false,
@@ -206,52 +206,54 @@
           "settings": {
             "collection": "",
             "image": "shopify://shop_images/IMG_0126.heic",
-            "heading": "Spread Box 1",
+            "heading": "Spread Box 1 - ₱375.00",
             "heading_size": "h4",
-            "text": ""
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>"
           }
         },
-        "collection_UJ4aUw": {
+        "collection_dNWDFt": {
           "type": "collection",
           "settings": {
             "collection": "",
-            "heading": "Spread Box 2",
+            "image": "shopify://shop_images/IMG_0142.heic",
+            "heading": "Spread Box 2 - ₱575.00",
             "heading_size": "h4",
-            "text": ""
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>"
           }
         },
-        "collection_8Yg9gx": {
+        "collection_bGYnGK": {
           "type": "collection",
           "settings": {
             "collection": "",
-            "heading": "Spread Box 3",
+            "image": "shopify://shop_images/IMG_0167.heic",
+            "heading": "Spread Box 3 - ₱975.00",
             "heading_size": "h4",
-            "text": ""
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich,Italian Sandwich, Reuben Sandwich, Liege Waffles, Honey Butter Toasties, Sesame Chewies, Mixed Classic Nibblers. Good for 15 to 20 Pax.</p>"
           }
         }
       },
       "block_order": [
         "collection_Y8b98W",
-        "collection_UJ4aUw",
-        "collection_8Yg9gx"
+        "collection_dNWDFt",
+        "collection_bGYnGK"
       ],
       "name": "Collection tabs",
       "settings": {
-        "container": "container-fluid",
-        "color_scheme": "",
-        "header_alignment": "center",
-        "heading": "Collection tabs",
-        "heading_size": "h3",
-        "subheading": "",
+        "container": "container",
+        "color_scheme": "badge-hot",
+        "header_alignment": "left",
+        "heading": "Feature Spread Boxes",
+        "heading_size": "h2",
+        "subheading": "What's New",
         "description": "",
         "image_position": "left",
         "image_ratio": "1/1",
-        "prefix_header": "ordinal_number",
+        "prefix_header": "icon",
         "trigger_behavior": "hover",
         "autoplay": false,
         "autoplay_duration": 5,
-        "padding_top": 50,
-        "padding_bottom": 50,
+        "padding_top": 100,
+        "padding_bottom": 100,
         "custom_class": "",
         "animations": "inherit"
       }
