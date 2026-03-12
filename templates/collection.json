@@ -1,1 +1,129 @@
-{"sections":{"collection-header":{"type":"collection-page-header","disabled":true,"settings":{"color_scheme":"default","container":"container-fluid","layout":"without_breadcrumb","image_position":"background","enable_parallax":false,"parallax_direction":"vertical","text_alignment":"center","text_color":"inherit","upper_title":false,"show_desc":true,"collection_all_desc":"","padding_top":0,"padding_bottom":0,"enable_bg_zoom_effect":true}},"custom_liquid_qrLtVm":{"type":"custom-liquid","disabled":true,"name":"Custom liquid","settings":{"custom_liquid":"<div class=\"custom-hero-section\">\n  <img \n    src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0700\/2764\/0984\/files\/For_Shopify_1.png?v=1762994994\" \n    alt=\"W Bakehouse Holiday Banner\" \n    class=\"hero-image\"\n    loading=\"lazy\"\n  >\n<\/div>\n\n<style>\n  .custom-hero-section {\n    background-color: #891D1D;\n    background-size: cover;\n    background-position: center;\n    text-align: center;\n    padding: 0;\n    margin: 0;\n  }\n\n  .custom-hero-section .hero-image {\n    display: block;\n    width: 100%;\n    height: auto;\n    margin: 0 auto;\n  }\n\n  \/* ✅ Remove gap above\/below this section on mobile *\/\n  @media screen and (max-width: 749px) {\n    .custom-hero-section {\n      margin-top: 0 !important;\n      margin-bottom: 0 !important;\n      padding-top: 0 !important;\n      padding-bottom: 0 !important;\n    }\n  }\n<\/style>","custom_class":""}},"main":{"type":"main-collection-product-grid","custom_css":[".m-banner-promotion {order: 3 !important; margin-top: 30px; margin-bottom: 0;}",".m-collection-filters-form {margin-bottom: 0;}"],"settings":{"container":"container-fluid","grid_layout":"grid","grid_columns":"4","show_columns_switcher":true,"pagination_limit":12,"paginate_type":"paginate","show_sorting":true,"show_filter":false}},"image_with_text_697Wre":{"type":"image-with-text","name":"Image with text","settings":{"heading":"","heading_size":"h3","subheading":"","container":"w-full","color_scheme":"badge-hot","item_gap":72,"item_gap_mobile":30,"layout":"left","image_column_size":"7","image_overlap":false,"show_image_reverse":false,"hover_effect":false,"image_animation":"none","image":"shopify:\/\/shop_images\/promo.jpg","link":"","link_2":"","second_image_offset_top":0,"title":"NEW CUSTOMERS, GET 10% OFF ON ALL PRODUCTS","sub_title":"PROMOS","text":"<p>If you are trying our products for the first time, here is a welcome gift for you! Use the code 10NEW when you checkout to get a 10% discount.<\/p>","text_size":"medium","content_alignment":"left","button_label":"Shop Now","button_link":"","button_style":"m-button--primary","button_size":"","padding_top":22,"padding_bottom":16,"custom_class":"","animations":"inherit"}},"recent-viewed":{"type":"recent-viewed-products","settings":{"container":"container-fluid","color_scheme":"","heading":"Recently Viewed Products","heading_size":"h3","text_align":"left","limit":8,"columns":5,"column_gap":30,"pcard_layout":"","pcard_image_ratio":"","show_vendor":false,"hide_title":false,"enable_slider":true,"show_pagination":false,"show_navigation":false,"mobile_disable_slider":false,"use_scroll_mobile":true,"item_gap_mobile":16,"padding_top":40,"padding_bottom":100,"custom_class":"","animations":"inherit"}}},"order":["collection-header","custom_liquid_qrLtVm","main","image_with_text_697Wre","recent-viewed"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection-header": {
+      "type": "collection-page-header",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "default",
+        "container": "container-fluid",
+        "layout": "without_breadcrumb",
+        "image_position": "background",
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "text_alignment": "center",
+        "text_color": "inherit",
+        "upper_title": false,
+        "show_desc": true,
+        "collection_all_desc": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "enable_bg_zoom_effect": true
+      }
+    },
+    "custom_liquid_qrLtVm": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"custom-hero-section\">\n  <img \n    src=\"https://cdn.shopify.com/s/files/1/0700/2764/0984/files/For_Shopify_1.png?v=1762994994\" \n    alt=\"W Bakehouse Holiday Banner\" \n    class=\"hero-image\"\n    loading=\"lazy\"\n  >\n</div>\n\n<style>\n  .custom-hero-section {\n    background-color: #891D1D;\n    background-size: cover;\n    background-position: center;\n    text-align: center;\n    padding: 0;\n    margin: 0;\n  }\n\n  .custom-hero-section .hero-image {\n    display: block;\n    width: 100%;\n    height: auto;\n    margin: 0 auto;\n  }\n\n  /* ✅ Remove gap above/below this section on mobile */\n  @media screen and (max-width: 749px) {\n    .custom-hero-section {\n      margin-top: 0 !important;\n      margin-bottom: 0 !important;\n      padding-top: 0 !important;\n      padding-bottom: 0 !important;\n    }\n  }\n</style>",
+        "custom_class": ""
+      }
+    },
+    "main": {
+      "type": "main-collection-product-grid",
+      "custom_css": [
+        ".m-banner-promotion {order: 3 !important; margin-top: 30px; margin-bottom: 0;}",
+        ".m-collection-filters-form {margin-bottom: 0;}"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "grid_layout": "grid",
+        "grid_columns": "4",
+        "show_columns_switcher": true,
+        "pagination_limit": 12,
+        "paginate_type": "paginate",
+        "show_sorting": true,
+        "show_filter": false
+      }
+    },
+    "image_with_text_697Wre": {
+      "type": "image-with-text",
+      "name": "Image with text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "w-full",
+        "color_scheme": "badge-hot",
+        "item_gap": 72,
+        "item_gap_mobile": 30,
+        "layout": "left",
+        "image_column_size": "7",
+        "image_overlap": false,
+        "show_image_reverse": false,
+        "hover_effect": false,
+        "image_animation": "none",
+        "image": "shopify://shop_images/Whole-Wheat-Sourdough.webp",
+        "link": "",
+        "link_2": "",
+        "second_image_offset_top": 0,
+        "title": "NEW CUSTOMERS, GET 10% OFF ON ALL PRODUCTS",
+        "sub_title": "PROMOS",
+        "text": "<p>If you are trying our products for the first time, here is a welcome gift for you! Use the code 10NEW when you checkout to get a 10% discount.</p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "padding_top": 22,
+        "padding_bottom": 16,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "recent-viewed": {
+      "type": "recent-viewed-products",
+      "settings": {
+        "container": "container-fluid",
+        "color_scheme": "",
+        "heading": "Recently Viewed Products",
+        "heading_size": "h3",
+        "text_align": "left",
+        "limit": 8,
+        "columns": 5,
+        "column_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": false,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "item_gap_mobile": 16,
+        "padding_top": 40,
+        "padding_bottom": 100,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "collection-header",
+    "custom_liquid_qrLtVm",
+    "main",
+    "image_with_text_697Wre",
+    "recent-viewed"
+  ]
+}
