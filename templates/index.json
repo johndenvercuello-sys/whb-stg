@@ -274,7 +274,7 @@
         "text_size": "medium",
         "content_alignment": "left",
         "button_label": "Contact Us",
-        "button_link": "shopify://pages/contact",
+        "button_link": "shopify://pages/events-banquets",
         "button_style": "m-button--primary",
         "button_size": "",
         "padding_top": 100,
