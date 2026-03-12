@@ -206,7 +206,7 @@
           "settings": {
             "collection": "spread-boxes",
             "image": "shopify://shop_images/IMG_0126.heic",
-            "heading": "Spread Box 1 - ₱375.00",
+            "heading": "Spread Box 1 - ₱3,500.00",
             "heading_size": "h4",
             "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>",
             "icon": "shopify://shop_images/NewWBHLogoTransparentBlack.webp"
@@ -217,7 +217,7 @@
           "settings": {
             "collection": "spread-boxes",
             "image": "shopify://shop_images/IMG_0142.heic",
-            "heading": "Spread Box 2 - ₱575.00",
+            "heading": "Spread Box 2 - ₱8,000.900",
             "heading_size": "h4",
             "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>",
             "icon": "shopify://shop_images/NewWBHLogoTransparentBlack_1.webp"
@@ -228,7 +228,7 @@
           "settings": {
             "collection": "spread-boxes",
             "image": "shopify://shop_images/IMG_0167.heic",
-            "heading": "Spread Box 3 - ₱975.00",
+            "heading": "Spread Box 3 - ₱12,000.00",
             "heading_size": "h4",
             "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich,Italian Sandwich, Reuben Sandwich, Liege Waffles, Honey Butter Toasties, Sesame Chewies, Mixed Classic Nibblers. Good for 15 to 20 Pax.</p>",
             "icon": "shopify://shop_images/NewWBHLogoTransparentBlack_1.webp"
@@ -240,7 +240,10 @@
         "collection_dNWDFt",
         "collection_bGYnGK"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".spreadbox-section span.collapsible__button-icon {display: none;}",
+        ".spreadbox-section .collapsible__content-inner {padding-left:15px;}"
+      ],
       "name": "Collection tabs",
       "settings": {
         "container": "container",
