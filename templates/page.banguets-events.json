@@ -157,7 +157,7 @@
         "ai_gen_block_042438b_z9KHMK"
       ],
       "custom_css": [
-        "{width:75%;}"
+        "{width: 70%; margin: 0 auto;}"
       ],
       "settings": {}
     }
