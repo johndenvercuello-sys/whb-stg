@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "page",
+      "custom_css": [
+        "h1.m-page-header__title {text-transform: uppercase;}"
+      ],
       "settings": {}
     },
     "image_with_text_67Hh6X": {
