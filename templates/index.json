@@ -217,7 +217,7 @@
           "settings": {
             "collection": "spread-boxes",
             "image": "shopify://shop_images/IMG_0142.heic",
-            "heading": "Spread Box 2 - ₱8,000.900",
+            "heading": "Spread Box 2 - ₱8,000.00",
             "heading_size": "h4",
             "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Reuben Sandwich and Mixed Classic Nibblers. Good for 4 to 6 Pax.</p>",
             "icon": "shopify://shop_images/NewWBHLogoTransparentBlack_1.webp"
@@ -230,7 +230,7 @@
             "image": "shopify://shop_images/IMG_0154.heic",
             "heading": "Spread Box 3 - ₱12,000.00",
             "heading_size": "h4",
-            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich,Italian Sandwich, Reuben Sandwich, Liege Waffles, Honey Butter Toasties, Sesame Chewies, Mixed Classic Nibblers. Good for 15 to 20 Pax.</p>",
+            "text": "<p>Deli Sandwiches and Pastries box set. Includes Grilled Cheese Sandwich, Italian Sandwich, Reuben Sandwich, Liege Waffles, Honey Butter Toasties, Sesame Chewies, Mixed Classic Nibblers. Good for 15 to 20 Pax.</p>",
             "icon": "shopify://shop_images/NewWBHLogoTransparentBlack_1.webp"
           }
         }
@@ -386,26 +386,31 @@
         "animations": "fade-in-up"
       }
     },
-    "rich_text_A667h4": {
-      "type": "rich-text",
-      "blocks": {
-        "text_47Hn8G": {
-          "type": "text",
-          "settings": {
-            "text": "<h4>Businesses We Support</h4>"
-          }
-        }
-      },
-      "block_order": [
-        "text_47Hn8G"
-      ],
-      "name": "Rich text",
+    "icon_box_dWz4XL": {
+      "type": "icon-box",
+      "name": "Featured promotion",
       "settings": {
-        "container": "container",
+        "container": "container-fluid",
         "color_scheme": "badge-hot",
+        "heading": "BUSINESS WE SUPPORT",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "item_per_row": 3,
+        "item_gap": 30,
+        "item_gap_mobile": 10,
+        "card_style": "horizontal",
+        "image_max_width": "70px",
         "content_alignment": "center",
-        "padding_top": 52,
-        "padding_bottom": 32,
+        "hover_effect": "scaling-up",
+        "enable_slider": false,
+        "show_pagination": false,
+        "show_navigation": false,
+        "use_scroll_mobile": true,
+        "use_grid_column_mb": false,
+        "padding_top": 86,
+        "padding_bottom": 0,
         "custom_class": "",
         "animations": "inherit"
       }
@@ -829,7 +834,7 @@
     "custom_liquid_QjjEqz",
     "image_with_text_rkaFDm",
     "16212276967bd2e716",
-    "rich_text_A667h4",
+    "icon_box_dWz4XL",
     "scrolling_promotion_zpFaNL",
     "collection_list_kYgLJ7",
     "1621151746c9bda56d",
