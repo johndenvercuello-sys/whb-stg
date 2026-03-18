@@ -25,7 +25,24 @@
     "url": {{ shop.url | append: page.url | json }}
   }
 </script>
+<style>
+div.cutoff.today + div + div, div.cutoff.today + div {
+    background-color: lightblue;
+}
+</style>
 
+<script>
+$(document).ready(function () {
+
+var start = new Date();
+var end = new Date();
+var time = new Date().getTime();
+
+if (time > start.setHours(00,00) && time < end.setHours(07,00)) {
+    $('.today').addClass('cutoff');
+}
+});
+</script>
 {% if request.page_type == 'index' %}
   {% assign potential_action_target = shop.url | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
