@@ -25,9 +25,9 @@
     "url": {{ shop.url | append: page.url | json }}
   }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"  defer="defer"></script>
 <style>
-div.cutoff.today + div + div, div.cutoff.today + div {
+span.cutoff.today + span + span, span.cutoff.today + span {
     background-color: lightblue;
 }
 </style>
@@ -40,7 +40,7 @@ var end = new Date();
 var time = new Date().getTime();
 
 if (time > start.setHours(00,00) && time < end.setHours(09,00)) {
-    $('.today').addClass('cutoff');
+    $('span.today').addClass('cutoff');
 }
 });
 </script>
