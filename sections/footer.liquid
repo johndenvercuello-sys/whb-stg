@@ -13,7 +13,24 @@
   %}
   {% render 'footer-design', container: section.settings.container %}
 </m-footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+div.cutoff.today + div + div, div.cutoff.today + div {
+    background-color: lightblue;
+}
+</style>
+<script>
+$(document).ready(function () {
 
+var start = new Date();
+var end = new Date();
+var time = new Date().getTime();
+
+if (time > start.setHours(00,00) && time < end.setHours(09,00)) {
+    $('.today').addClass('cutoff');
+}
+});
+</script>
 <script src="{{ 'footer.js' | asset_url }}" defer="defer"></script>
 {% schema %}
 {
