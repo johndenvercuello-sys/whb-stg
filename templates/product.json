@@ -116,6 +116,9 @@
         "cx_elevate_date_time_picker_product_delivery_date_picker_6wAdzi",
         "trust_badge_NyBMd4"
       ],
+      "custom_css": [
+        "span.cutoff.today + span + span, span.cutoff.today + span {background-color: lightblue;}"
+      ],
       "settings": {
         "container": "container",
         "layout": "layout-4",
