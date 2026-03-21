@@ -47,26 +47,6 @@
             "size_title": "Size"
           }
         },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_quantity_selector": true,
-            "show_atc_button": true,
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
-          }
-        },
-        "text_dQHA9j": {
-          "type": "text",
-          "settings": {
-            "text": "All our baked goods are made to order and baked fresh on your selected delivery day. Please double-check your chosen delivery date before placing your order. <br><br>Important Notes:<br><li>Orders must be placed by 2:00 PM, two days before your desired bake day.</li><li>Orders placed after the cutoff will be scheduled for the next available bake day.</li><li>Once paid, orders are final and cannot be cancelled or changed.</li><li><b>For Sliced Loaves, orders will be delivered on the next business day, as we allow freshly baked loaves to properly set before slicing. </b></li><li><b>Sliced loaf orders placed on a Saturday bake day, will be sent on the next Monday (W Bakehouse is closed on Sundays).</b></li><br>Thanks for supporting fresh, made-to-order baking—we’re excited to bake for you!",
-            "text_style": "body"
-          }
-        },
-        "et_urgent_cart_countdown_timer_app_block_LAQ7m8": {
-          "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-block/ffa64542-a371-40a7-8743-0946ed5c47aa",
-          "settings": {}
-        },
         "cx_elevate_date_time_picker_product_delivery_date_picker_6wAdzi": {
           "type": "shopify://apps/cx-elevate-date-time-picker/blocks/product_delivery_date_picker/3613d08c-d180-43c4-8f66-9aca9e0d28fc",
           "settings": {
@@ -95,6 +75,30 @@
             "aut-delivery-date-disable-sun": false
           }
         },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_atc_button": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "text_dQHA9j": {
+          "type": "text",
+          "settings": {
+            "text": "All our baked goods are made to order and baked fresh on your selected delivery day. Please double-check your chosen delivery date before placing your order. <br><br>Important Notes:<br><li>Orders must be placed by 2:00 PM, two days before your desired bake day.</li><li>Orders placed after the cutoff will be scheduled for the next available bake day.</li><li>Once paid, orders are final and cannot be cancelled or changed.</li><li><b>For Sliced Loaves, orders will be delivered on the next business day, as we allow freshly baked loaves to properly set before slicing. </b></li><li><b>Sliced loaf orders placed on a Saturday bake day, will be sent on the next Monday (W Bakehouse is closed on Sundays).</b></li><br>Thanks for supporting fresh, made-to-order baking—we’re excited to bake for you!",
+            "text_style": "body"
+          }
+        },
+        "bird_pickup_delivery_app_block_NjyqcU": {
+          "type": "shopify://apps/bird-pickup-delivery/blocks/app-block/6e8f5020-fc3a-4acd-a31a-fb627c0270cf",
+          "settings": {}
+        },
+        "et_urgent_cart_countdown_timer_app_block_LAQ7m8": {
+          "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-block/ffa64542-a371-40a7-8743-0946ed5c47aa",
+          "settings": {}
+        },
         "trust_badge_NyBMd4": {
           "type": "trust_badge",
           "settings": {
@@ -110,10 +114,11 @@
         "description_b4AbGR",
         "price",
         "variant_picker",
+        "cx_elevate_date_time_picker_product_delivery_date_picker_6wAdzi",
         "buy_buttons",
         "text_dQHA9j",
+        "bird_pickup_delivery_app_block_NjyqcU",
         "et_urgent_cart_countdown_timer_app_block_LAQ7m8",
-        "cx_elevate_date_time_picker_product_delivery_date_picker_6wAdzi",
         "trust_badge_NyBMd4"
       ],
       "custom_css": [
