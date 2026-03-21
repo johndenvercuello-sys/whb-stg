@@ -1,1 +1,282 @@
-{"current":{"favicon":"shopify:\/\/shop_images\/favicon.jpg","container_width":1330,"type_base_font":"roboto_condensed_n4","use_custom_font_body":true,"custom_body_font":"https:\/\/cdn.shopify.com\/s\/files\/1\/0561\/2742\/2636\/files\/Jost-Regular.ttf?v=1618297125@400\nhttps:\/\/cdn.shopify.com\/s\/files\/1\/0561\/2742\/2636\/files\/Jost-Medium.ttf?v=1618297125@500","custom_body_weight":"400","type_header_font":"montserrat_n4","use_custom_font_heading":true,"custom_heading_font":"","custom_heading_weight":"600","h1_font_size":70,"h2_font_size":50,"type_header_base_size":40,"bg_cart_wishlist_count":"#ffffff","img_overlay_opacity":20,"spacing_sections":0,"spacing_sections_mobile":0,"animations":"fade-in-up","pcard_layout":"1","pcard_alignment":"center","pcard_image_ratio":"1\/1","show_cart_button":false,"show_quickview_button":false,"show_wishlist_button":false,"select_option_button_action":"link","show_badge_soldout":false,"show_vendor":false,"uppercase_prd_name":false,"variant_option_design3":"color","product_colors":"red: #FF6961,\nyellow: #FDDA76,\nblack: #000000,\nblack band: #000000,\nblue: #8DB4D2,\ngreen: #C1E1C1,\npurple: #B19CD9,\nsilver: #EEEEEF,\nwhite: #FFFFFF,\nbrown: #836953,\nlight brown: #B5651D,\ndark turquoise: #23cddc,\norange: #FFB347,\ntan: #E9D1BF,\nviolet: #B490B0,\npink: #FFD1DC,\ngrey: #E0E0E0,\nsky: #96BDC6,\npale leaf: #CCD4BF,\nlight blue: #b1c5d4,\ndark grey: #aca69f,\nbeige: #EBE6DB,\nbeige band: #EED9C4,\ndark blue: #063e66,\ncream: #FFFFCC,\nlight pink: #FBCFCD,\nmint: #bedce3,\ndark gray: #3A3B3C,\nrosy brown: #c4a287,\nlight grey:#D3D3D3,\ncopper: #B87333,\nrose gold: #ECC5C0,\nnight blue: #151B54,\ncoral: #FF7F50,\nlight purple: #C6AEC7","filter_color1":"","filter_color3":"floral","low_inventory_threshold":1,"inventory_visibility":"always","inventory_hide_backordered":true,"show_inventory_count":"never","preorder_badge_color_scheme":"scheme-84ba45ec-5a2c-4c21-b249-5484d4013908","share_facebook":true,"social_twitter_link":"","social_facebook_link":"https:\/\/www.facebook.com\/wbakehouseph","social_pinterest_link":"","social_instagram_link":"https:\/\/www.instagram.com\/wbakehouse","enable_cart_drawer":true,"cart_drawer_show_accelerated_button":true,"discount_code_enable":true,"cart_estimate_shipping":false,"delivery_time_enable":false,"default_country_estimate_shipping":"Philippines","search_by_tag":false,"search_by_body":false,"popular_search_queries":"Cookies, Sourdough, Breads, Pastries","wishlist_page":"wishlist","product_compare_page":"product-compare","instagram_token":"EAAJudR5wHRYBOZCnpk1Xuxu4SvCD4FemeNhINqYJscd8UAZCZCIAZAReldUJ8KkxzJ2HB33LwFEeVwQmqC7Mvy7WEURb14SzP0RdTZAGF3YfxtvuFPT4ROxX9iZBqKZARiPuGKGREO0KU6YeHvAtnIbYNYldVSNa8EDJzZCKXtZCmoHdoZCqI8yAC4h8IEZBE6OzRVHxFvX3YrD2gBo9JKMbeIEG0oaLsM598mZCPAgvMfnYYUc8tixz","custom_css":".m-footer--block-title {\n  font-family: \"M-Body-Font\";\n  font-weight: 500;\n}\n.m-section__subheading,\n.m-content-box__subheading {\n  color: #c96e15;\n  font-size: 14px;\n  font-family: \"M-Body-Font\";\n  font-weight: 500;\n  letter-spacing: 1px;\n  margin-bottom: 10px;\n}\n.m-custom-collection-list .m-section__subheading {\ncolor: #FFF;\n}\n.m-custom-image-with-text .m-image-with-text__content {\n  padding: 40px;\n  background-image: url(\"https:\/\/cdn.shopify.com\/s\/files\/1\/0561\/2742\/2636\/files\/1_1d68cc71-0dfe-4d2f-b2e8-1419ebb07b41.jpg?v=1621226206\");\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n@media (min-width: 1280px) {\n  .m-custom-slideshow .m-slide__content {\n    padding-left: 100px;\n  }\n}\n@media (max-width: 767px) {\n  .m-custom-slideshow .m-slide__content .m-button--primary {\n    width: 100%;\n  }\n  .m-custom-slideshow .m-slide__subtitle img {\n    max-width: 100px;\n    margin: 0 auto 10px;\n  }\n}\n@media(max-width: 767px) {\n.m-custom-image-with-text .m-image-with-text__content {\npadding: 30px 15px 40px;\n}\n.m-custom-image-with-text .m-image-with-text__inner {\nmargin: 0 -15px;\n}\n}\n.h6, .h5 {\nfont-family: 'M-Body-Font';\n}\n.m-footer .m-newsletter-form__wrapper {\nbackground: #fff;\n}","show_variant_swatch_image":true,"use_theme_currencies":true,"theme_currencies":"USD | EUR | GBP | VND","content_for_index":[],"blocks":{"6868439170666289573":{"type":"shopify:\/\/apps\/foxkit-aio-upsell\/blocks\/foxkit-theme-helper\/13f41957-6b79-47c1-99a2-e52431f06fff","disabled":false,"settings":{"enable_ajax_atc":true}},"319724205969189013":{"type":"shopify:\/\/apps\/hulk-form-builder\/blocks\/app-embed\/b6b8dd14-356b-4725-a4ed-77232212b3c3","disabled":false,"settings":{}},"8856629154746250496":{"type":"shopify:\/\/apps\/foxify-page-builder\/blocks\/app-embed\/4e19e422-f550-4994-9ea0-84f23728223d","disabled":false,"settings":{}},"296424806852336151":{"type":"shopify:\/\/apps\/flare\/blocks\/flare-app-embed\/6aba17cb-0d38-4558-a192-544ecffccc2e","disabled":true,"settings":{}}},"color_schemes":{"default":{"settings":{"background":"#ffffff","background_secondary":"#f5f5f5","background_gradient":"","text":"#222222","subtext":"#666666","heading_text":"#222222","button":"#000000","button_label":"#ffffff","outline_button_label":"#000000","button_hover":"#222222","button_text_hover":"#ffffff","price_sale":"#e84e4e","price_regular":"#000000","form_field":"#f2f2f2","form_field_label":"#000000","tooltip":"#222222","tooltip_label":"#ffffff","border":"#eeeeee"}},"dark":{"settings":{"background":"#000000","background_secondary":"#f5f5f5","background_gradient":"","text":"#ffffff","subtext":"#c9c9c9","heading_text":"#ffffff","button":"#ffffff","button_label":"#222222","outline_button_label":"#ffffff","button_hover":"#ffffff","button_text_hover":"#222222","price_sale":"#e84e4e","price_regular":"#ffffff","form_field":"#ffffff","form_field_label":"#222222","tooltip":"#ffffff","tooltip_label":"#222222","border":"#4b4b4b"}},"footer":{"settings":{"background":"#f5f3f2","background_secondary":"#f5f5f5","background_gradient":"","text":"#000000","subtext":"#666666","heading_text":"#222222","button":"#222222","button_label":"#ffffff","outline_button_label":"#222222","button_hover":"#222222","button_text_hover":"#ffffff","price_sale":"#e84e4e","price_regular":"#000000","form_field":"#ffffff","form_field_label":"#000000","tooltip":"#222222","tooltip_label":"#ffffff","border":"#dedede"}},"badge-hot":{"settings":{"background":"#ffecd4","background_secondary":"#f5f5f5","background_gradient":"","text":"#222222","subtext":"#222222","heading_text":"#222222","button":"#000000","button_label":"#ffffff","outline_button_label":"#000000","button_hover":"#ffffff","button_text_hover":"#222222","price_sale":"#ffffff","price_regular":"#ffffff","form_field":"#ffffff","form_field_label":"#000000","tooltip":"#ffffff","tooltip_label":"#222222","border":"#dedede"}},"badge-new":{"settings":{"background":"#98d8ca","background_secondary":"#f5f5f5","background_gradient":"","text":"#ffffff","subtext":"#ffffff","heading_text":"#ffffff","button":"#ffffff","button_label":"#222222","outline_button_label":"#ffffff","button_hover":"#ffffff","button_text_hover":"#222222","price_sale":"#ffffff","price_regular":"#ffffff","form_field":"#ffffff","form_field_label":"#000000","tooltip":"#ffffff","tooltip_label":"#222222","border":"#dedede"}},"badge-sale":{"settings":{"background":"#da3f3f","background_secondary":"#f5f5f5","background_gradient":"","text":"#ffffff","subtext":"#ffffff","heading_text":"#ffffff","button":"#ffffff","button_label":"#222222","outline_button_label":"#ffffff","button_hover":"#ffffff","button_text_hover":"#222222","price_sale":"#ffffff","price_regular":"#ffffff","form_field":"#ffffff","form_field_label":"#000000","tooltip":"#ffffff","tooltip_label":"#222222","border":"#dedede"}},"scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a":{"settings":{"background":"#f9f4ef","background_secondary":"#f5f5f5","background_gradient":"","text":"#000000","subtext":"#666666","heading_text":"#000000","button":"#000000","button_label":"#ffffff","outline_button_label":"#000000","button_hover":"#222222","button_text_hover":"#ffffff","price_sale":"#e84e4e","price_regular":"#000000","form_field":"#f2f2f2","form_field_label":"#000000","tooltip":"#222222","tooltip_label":"#ffffff","border":"#eeeeee"}},"scheme-f87788c3-097a-4a2d-802c-e56f06ae2eb4":{"settings":{"background":"#6e4c2c","background_secondary":"#6e4c2c","background_gradient":"","text":"#ffffff","subtext":"#f5f5f5","heading_text":"#ffffff","button":"#ffffff","button_label":"#000000","outline_button_label":"#ffffff","button_hover":"#ffffff","button_text_hover":"#000000","price_sale":"#ffffff","price_regular":"#ffffff","form_field":"#ffffff","form_field_label":"#000000","tooltip":"#ffffff","tooltip_label":"#000000","border":"#ffffff"}},"scheme-84ba45ec-5a2c-4c21-b249-5484d4013908":{"settings":{"background":"#891d1d","background_secondary":"#f5f5f5","background_gradient":"","text":"#f2ac70","subtext":"#f2ac70","heading_text":"#ffffff","button":"#ffffff","button_label":"#ffffff","outline_button_label":"#f2ac70","button_hover":"#222222","button_text_hover":"#ffffff","price_sale":"#f2ac70","price_regular":"#ffffff","form_field":"#f2f2f2","form_field_label":"#ffffff","tooltip":"#222222","tooltip_label":"#ffffff","border":"#eeeeee"}}}},"platform_customizations":{"custom_css":[]}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "favicon": "shopify://shop_images/favicon.jpg",
+    "container_width": 1330,
+    "type_base_font": "roboto_condensed_n4",
+    "use_custom_font_body": true,
+    "custom_body_font": "https://cdn.shopify.com/s/files/1/0561/2742/2636/files/Jost-Regular.ttf?v=1618297125@400\nhttps://cdn.shopify.com/s/files/1/0561/2742/2636/files/Jost-Medium.ttf?v=1618297125@500",
+    "custom_body_weight": "400",
+    "type_header_font": "montserrat_n4",
+    "use_custom_font_heading": true,
+    "custom_heading_font": "",
+    "custom_heading_weight": "600",
+    "h1_font_size": 70,
+    "h2_font_size": 50,
+    "type_header_base_size": 40,
+    "bg_cart_wishlist_count": "#ffffff",
+    "img_overlay_opacity": 20,
+    "spacing_sections": 0,
+    "spacing_sections_mobile": 0,
+    "animations": "fade-in-up",
+    "pcard_layout": "1",
+    "pcard_alignment": "center",
+    "pcard_image_ratio": "1/1",
+    "show_cart_button": false,
+    "show_quickview_button": false,
+    "show_wishlist_button": false,
+    "select_option_button_action": "link",
+    "show_badge_soldout": false,
+    "show_vendor": false,
+    "uppercase_prd_name": false,
+    "variant_option_design3": "color",
+    "product_colors": "red: #FF6961,\nyellow: #FDDA76,\nblack: #000000,\nblack band: #000000,\nblue: #8DB4D2,\ngreen: #C1E1C1,\npurple: #B19CD9,\nsilver: #EEEEEF,\nwhite: #FFFFFF,\nbrown: #836953,\nlight brown: #B5651D,\ndark turquoise: #23cddc,\norange: #FFB347,\ntan: #E9D1BF,\nviolet: #B490B0,\npink: #FFD1DC,\ngrey: #E0E0E0,\nsky: #96BDC6,\npale leaf: #CCD4BF,\nlight blue: #b1c5d4,\ndark grey: #aca69f,\nbeige: #EBE6DB,\nbeige band: #EED9C4,\ndark blue: #063e66,\ncream: #FFFFCC,\nlight pink: #FBCFCD,\nmint: #bedce3,\ndark gray: #3A3B3C,\nrosy brown: #c4a287,\nlight grey:#D3D3D3,\ncopper: #B87333,\nrose gold: #ECC5C0,\nnight blue: #151B54,\ncoral: #FF7F50,\nlight purple: #C6AEC7",
+    "filter_color1": "",
+    "filter_color3": "floral",
+    "low_inventory_threshold": 1,
+    "inventory_visibility": "always",
+    "inventory_hide_backordered": true,
+    "show_inventory_count": "never",
+    "preorder_badge_color_scheme": "scheme-84ba45ec-5a2c-4c21-b249-5484d4013908",
+    "share_facebook": true,
+    "social_twitter_link": "",
+    "social_facebook_link": "https://www.facebook.com/wbakehouseph",
+    "social_pinterest_link": "",
+    "social_instagram_link": "https://www.instagram.com/wbakehouse",
+    "enable_cart_drawer": true,
+    "cart_drawer_show_accelerated_button": true,
+    "discount_code_enable": true,
+    "cart_estimate_shipping": false,
+    "delivery_time_enable": false,
+    "default_country_estimate_shipping": "Philippines",
+    "search_by_tag": false,
+    "search_by_body": false,
+    "popular_search_queries": "Cookies, Sourdough, Breads, Pastries",
+    "wishlist_page": "wishlist",
+    "product_compare_page": "product-compare",
+    "instagram_token": "EAAJudR5wHRYBOZCnpk1Xuxu4SvCD4FemeNhINqYJscd8UAZCZCIAZAReldUJ8KkxzJ2HB33LwFEeVwQmqC7Mvy7WEURb14SzP0RdTZAGF3YfxtvuFPT4ROxX9iZBqKZARiPuGKGREO0KU6YeHvAtnIbYNYldVSNa8EDJzZCKXtZCmoHdoZCqI8yAC4h8IEZBE6OzRVHxFvX3YrD2gBo9JKMbeIEG0oaLsM598mZCPAgvMfnYYUc8tixz",
+    "custom_css": ".m-footer--block-title {\n  font-family: \"M-Body-Font\";\n  font-weight: 500;\n}\n.m-section__subheading,\n.m-content-box__subheading {\n  color: #c96e15;\n  font-size: 14px;\n  font-family: \"M-Body-Font\";\n  font-weight: 500;\n  letter-spacing: 1px;\n  margin-bottom: 10px;\n}\n.m-custom-collection-list .m-section__subheading {\ncolor: #FFF;\n}\n.m-custom-image-with-text .m-image-with-text__content {\n  padding: 40px;\n  background-image: url(\"https://cdn.shopify.com/s/files/1/0561/2742/2636/files/1_1d68cc71-0dfe-4d2f-b2e8-1419ebb07b41.jpg?v=1621226206\");\n  background-size: cover;\n  background-repeat: no-repeat;\n}\n@media (min-width: 1280px) {\n  .m-custom-slideshow .m-slide__content {\n    padding-left: 100px;\n  }\n}\n@media (max-width: 767px) {\n  .m-custom-slideshow .m-slide__content .m-button--primary {\n    width: 100%;\n  }\n  .m-custom-slideshow .m-slide__subtitle img {\n    max-width: 100px;\n    margin: 0 auto 10px;\n  }\n}\n@media(max-width: 767px) {\n.m-custom-image-with-text .m-image-with-text__content {\npadding: 30px 15px 40px;\n}\n.m-custom-image-with-text .m-image-with-text__inner {\nmargin: 0 -15px;\n}\n}\n.h6, .h5 {\nfont-family: 'M-Body-Font';\n}\n.m-footer .m-newsletter-form__wrapper {\nbackground: #fff;\n}",
+    "show_variant_swatch_image": true,
+    "use_theme_currencies": true,
+    "theme_currencies": "USD | EUR | GBP | VND",
+    "content_for_index": [],
+    "blocks": {
+      "3099178521138006549": {
+        "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-embed/ffa64542-a371-40a7-8743-0946ed5c47aa",
+        "disabled": false,
+        "settings": {}
+      }
+    },
+    "color_schemes": {
+      "default": {
+        "settings": {
+          "background": "#ffffff",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#222222",
+          "subtext": "#666666",
+          "heading_text": "#222222",
+          "button": "#000000",
+          "button_label": "#ffffff",
+          "outline_button_label": "#000000",
+          "button_hover": "#222222",
+          "button_text_hover": "#ffffff",
+          "price_sale": "#e84e4e",
+          "price_regular": "#000000",
+          "form_field": "#f2f2f2",
+          "form_field_label": "#000000",
+          "tooltip": "#222222",
+          "tooltip_label": "#ffffff",
+          "border": "#eeeeee"
+        }
+      },
+      "dark": {
+        "settings": {
+          "background": "#000000",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "subtext": "#c9c9c9",
+          "heading_text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#222222",
+          "outline_button_label": "#ffffff",
+          "button_hover": "#ffffff",
+          "button_text_hover": "#222222",
+          "price_sale": "#e84e4e",
+          "price_regular": "#ffffff",
+          "form_field": "#ffffff",
+          "form_field_label": "#222222",
+          "tooltip": "#ffffff",
+          "tooltip_label": "#222222",
+          "border": "#4b4b4b"
+        }
+      },
+      "footer": {
+        "settings": {
+          "background": "#f5f3f2",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#000000",
+          "subtext": "#666666",
+          "heading_text": "#222222",
+          "button": "#222222",
+          "button_label": "#ffffff",
+          "outline_button_label": "#222222",
+          "button_hover": "#222222",
+          "button_text_hover": "#ffffff",
+          "price_sale": "#e84e4e",
+          "price_regular": "#000000",
+          "form_field": "#ffffff",
+          "form_field_label": "#000000",
+          "tooltip": "#222222",
+          "tooltip_label": "#ffffff",
+          "border": "#dedede"
+        }
+      },
+      "badge-hot": {
+        "settings": {
+          "background": "#ffecd4",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#222222",
+          "subtext": "#222222",
+          "heading_text": "#222222",
+          "button": "#000000",
+          "button_label": "#ffffff",
+          "outline_button_label": "#000000",
+          "button_hover": "#ffffff",
+          "button_text_hover": "#222222",
+          "price_sale": "#ffffff",
+          "price_regular": "#ffffff",
+          "form_field": "#ffffff",
+          "form_field_label": "#000000",
+          "tooltip": "#ffffff",
+          "tooltip_label": "#222222",
+          "border": "#dedede"
+        }
+      },
+      "badge-new": {
+        "settings": {
+          "background": "#98d8ca",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "subtext": "#ffffff",
+          "heading_text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#222222",
+          "outline_button_label": "#ffffff",
+          "button_hover": "#ffffff",
+          "button_text_hover": "#222222",
+          "price_sale": "#ffffff",
+          "price_regular": "#ffffff",
+          "form_field": "#ffffff",
+          "form_field_label": "#000000",
+          "tooltip": "#ffffff",
+          "tooltip_label": "#222222",
+          "border": "#dedede"
+        }
+      },
+      "badge-sale": {
+        "settings": {
+          "background": "#da3f3f",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "subtext": "#ffffff",
+          "heading_text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#222222",
+          "outline_button_label": "#ffffff",
+          "button_hover": "#ffffff",
+          "button_text_hover": "#222222",
+          "price_sale": "#ffffff",
+          "price_regular": "#ffffff",
+          "form_field": "#ffffff",
+          "form_field_label": "#000000",
+          "tooltip": "#ffffff",
+          "tooltip_label": "#222222",
+          "border": "#dedede"
+        }
+      },
+      "scheme-0de5757e-c698-4b2e-bbf4-7a1c36ebf33a": {
+        "settings": {
+          "background": "#f9f4ef",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#000000",
+          "subtext": "#666666",
+          "heading_text": "#000000",
+          "button": "#000000",
+          "button_label": "#ffffff",
+          "outline_button_label": "#000000",
+          "button_hover": "#222222",
+          "button_text_hover": "#ffffff",
+          "price_sale": "#e84e4e",
+          "price_regular": "#000000",
+          "form_field": "#f2f2f2",
+          "form_field_label": "#000000",
+          "tooltip": "#222222",
+          "tooltip_label": "#ffffff",
+          "border": "#eeeeee"
+        }
+      },
+      "scheme-f87788c3-097a-4a2d-802c-e56f06ae2eb4": {
+        "settings": {
+          "background": "#6e4c2c",
+          "background_secondary": "#6e4c2c",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "subtext": "#f5f5f5",
+          "heading_text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#000000",
+          "outline_button_label": "#ffffff",
+          "button_hover": "#ffffff",
+          "button_text_hover": "#000000",
+          "price_sale": "#ffffff",
+          "price_regular": "#ffffff",
+          "form_field": "#ffffff",
+          "form_field_label": "#000000",
+          "tooltip": "#ffffff",
+          "tooltip_label": "#000000",
+          "border": "#ffffff"
+        }
+      },
+      "scheme-84ba45ec-5a2c-4c21-b249-5484d4013908": {
+        "settings": {
+          "background": "#891d1d",
+          "background_secondary": "#f5f5f5",
+          "background_gradient": "",
+          "text": "#f2ac70",
+          "subtext": "#f2ac70",
+          "heading_text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#ffffff",
+          "outline_button_label": "#f2ac70",
+          "button_hover": "#222222",
+          "button_text_hover": "#ffffff",
+          "price_sale": "#f2ac70",
+          "price_regular": "#ffffff",
+          "form_field": "#f2f2f2",
+          "form_field_label": "#ffffff",
+          "tooltip": "#222222",
+          "tooltip_label": "#ffffff",
+          "border": "#eeeeee"
+        }
+      }
+    }
+  },
+  "platform_customizations": {
+    "custom_css": []
+  }
+}
