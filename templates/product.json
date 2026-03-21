@@ -117,7 +117,7 @@
         "trust_badge_NyBMd4"
       ],
       "custom_css": [
-        "span.cutoff.today + span + span, span.cutoff.today + span {background-color: lightblue;}"
+        "span.cutoff.today + span + span,span.cutoff.today + span {background-color: lightblue;}"
       ],
       "settings": {
         "container": "container",
@@ -459,6 +459,15 @@
     },
     "176934047849c73d21": {
       "type": "apps",
+      "blocks": {
+        "et_urgent_cart_countdown_timer_app_block_WpPpPW": {
+          "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-block/ffa64542-a371-40a7-8743-0946ed5c47aa",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "et_urgent_cart_countdown_timer_app_block_WpPpPW"
+      ],
       "settings": {
         "heading": "",
         "heading_size": "h3",
