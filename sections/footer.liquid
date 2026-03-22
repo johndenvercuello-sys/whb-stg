@@ -46,14 +46,14 @@ if (time > start.setHours(00,00) && time < end.setHours(11,00)) {
         console.error("Error adding class to divs:", error);
     }
 </script>
-<style>span.flatpickr-day.flatpickr-disabled.today + span + span, span.flatpickr-day.flatpickr-disabled.today + span {opacity:.2;cursor: not-allowed !important;pointer-events
-Specifies under what circumstances a given element can be the target element for a pointer event.
+<style>
+  span.flatpickr-day.flatpickr-disabled.today + span + span, span.flatpickr-day.flatpickr-disabled.today + span 
+  {
+    opacity:.2;
+    cursor: not-allowed !important;
+    pointer-events: none !important;}
 
-Widely available across major browsers (Baseline since January 2018)
-Learn more
-
-Don't show
-: none !important;}</style>
+</style>
 <script src="{{ 'footer.js' | asset_url }}" defer="defer"></script>
 {% schema %}
 {
