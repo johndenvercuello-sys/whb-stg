@@ -30,8 +30,8 @@ var end = new Date();
 var time = new Date().getTime();
 
    //Set the start hours and ending hours
-if (time > start.setHours(07,30) && time < end.setHours(19,30)) {
-    $('.template-product').addClass('tt');
+if (time > start.setHours(07,30) && time < end.setHours(20,30)) {
+    $('.template-product').addClass('cutofftimeon');
 }
 else {
     $('.open').hide();
@@ -40,7 +40,7 @@ else {
 });
 </script>
 <style>
-  span.flatpickr-day.flatpickr-disabled.today + span + span, span.flatpickr-day.flatpickr-disabled.today + span 
+  .cutofftimeon span.flatpickr-day.flatpickr-disabled.today + span + span, .cutofftimeon span.flatpickr-day.flatpickr-disabled.today + span 
   {
     opacity:.2;
     cursor: not-allowed !important;
