@@ -47,20 +47,20 @@
             "size_title": "Size"
           }
         },
-        "cx_elevate_date_time_picker_product_delivery_date_picker_6wAdzi": {
-          "type": "shopify://apps/cx-elevate-date-time-picker/blocks/product_delivery_date_picker/3613d08c-d180-43c4-8f66-9aca9e0d28fc",
+        "cx_elevate_date_time_picker_product_pickup_date_picker_Br3aqL": {
+          "type": "shopify://apps/cx-elevate-date-time-picker/blocks/product_pickup_date_picker/3613d08c-d180-43c4-8f66-9aca9e0d28fc",
           "settings": {
             "style_autoserve_date_picker": "black-circle",
             "calendar-border-radius": 8,
             "aut-delivery-cal-display-style": "on-input",
             "aut-delivery-cal-alignment": "center",
             "aut-delivery-date-required": true,
-            "aut-delivery-date-heading-text": "Choose Your Bake Day",
-            "aut-delivery-date-heading-color": "#000000",
-            "aut-delivery-date-subheading-text": "",
-            "aut-delivery-date-description-text": "Select a bake date from the available options",
             "padding_top": 20,
             "padding_bottom": 20,
+            "aut-delivery-date-heading-text": "Choose Your Pickup Date",
+            "aut-delivery-date-heading-color": "#000000",
+            "aut-delivery-date-subheading-text": "We’ll do our best to meet your preferred schedule",
+            "aut-delivery-date-description-text": "Select a pickup date from the available options",
             "aut-delivery-date-full-width": true,
             "aut-delivery-date-alignment": "left",
             "aut-delivery-date-info-message-style": "info",
@@ -74,10 +74,6 @@
             "aut-delivery-date-disable-sat": false,
             "aut-delivery-date-disable-sun": false
           }
-        },
-        "bird_pickup_delivery_app_block_NjyqcU": {
-          "type": "shopify://apps/bird-pickup-delivery/blocks/app-block/6e8f5020-fc3a-4acd-a31a-fb627c0270cf",
-          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -114,8 +110,7 @@
         "description_b4AbGR",
         "price",
         "variant_picker",
-        "cx_elevate_date_time_picker_product_delivery_date_picker_6wAdzi",
-        "bird_pickup_delivery_app_block_NjyqcU",
+        "cx_elevate_date_time_picker_product_pickup_date_picker_Br3aqL",
         "buy_buttons",
         "text_dQHA9j",
         "et_urgent_cart_countdown_timer_app_block_LAQ7m8",
