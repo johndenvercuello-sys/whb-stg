@@ -1,1 +1,78 @@
-{"sections":{"main":{"type":"cart-template","settings":{}},"recent-viewed-products":{"type":"recent-viewed-products","settings":{"container":"container","color_scheme":"","heading":"Recently Viewed Products","heading_size":"h3","text_align":"left","limit":8,"columns":4,"column_gap":30,"pcard_layout":"","pcard_image_ratio":"","show_vendor":false,"hide_title":false,"enable_slider":true,"show_pagination":false,"show_navigation":false,"mobile_disable_slider":false,"use_scroll_mobile":true,"item_gap_mobile":16,"padding_top":50,"padding_bottom":50,"custom_class":"","animations":"inherit"}},"176934046601f21b16":{"type":"apps","settings":{"heading":"","heading_size":"h3","subheading":"","header_alignment":"center","container":"container","background_color":"","padding_top":50,"padding_bottom":50,"custom_class":""}}},"order":["main","recent-viewed-products","176934046601f21b16"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cart-template",
+      "settings": {}
+    },
+    "recent-viewed-products": {
+      "type": "recent-viewed-products",
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "heading": "Recently Viewed Products",
+        "heading_size": "h3",
+        "text_align": "left",
+        "limit": 8,
+        "columns": 4,
+        "column_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": false,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "item_gap_mobile": 16,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "176934046601f21b16": {
+      "type": "apps",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "1774168271f7888fdd": {
+      "type": "apps",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recent-viewed-products",
+    "176934046601f21b16",
+    "1774168271f7888fdd"
+  ]
+}
