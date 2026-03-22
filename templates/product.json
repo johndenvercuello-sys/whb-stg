@@ -57,10 +57,10 @@
             "aut-delivery-date-required": true,
             "padding_top": 20,
             "padding_bottom": 20,
-            "aut-delivery-date-heading-text": "Choose Your Pickup Date",
+            "aut-delivery-date-heading-text": "Choose Your Baked Day",
             "aut-delivery-date-heading-color": "#000000",
             "aut-delivery-date-subheading-text": "We’ll do our best to meet your preferred schedule",
-            "aut-delivery-date-description-text": "Select a pickup date from the available options",
+            "aut-delivery-date-description-text": "Select a bake day date from the available options",
             "aut-delivery-date-full-width": true,
             "aut-delivery-date-alignment": "left",
             "aut-delivery-date-info-message-style": "info",
@@ -117,7 +117,8 @@
         "trust_badge_NyBMd4"
       ],
       "custom_css": [
-        "span.cutoff.today + span + span,span.cutoff.today + span {background-color: lightblue;}"
+        "span.cutoff.today + span + span,span.cutoff.today + span {background-color: lightblue;}",
+        "span.today {background: #000 !important;}"
       ],
       "settings": {
         "container": "container",
@@ -457,29 +458,6 @@
         "animations": "inherit"
       }
     },
-    "176934047849c73d21": {
-      "type": "apps",
-      "blocks": {
-        "et_urgent_cart_countdown_timer_app_block_WpPpPW": {
-          "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-block/ffa64542-a371-40a7-8743-0946ed5c47aa",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "et_urgent_cart_countdown_timer_app_block_WpPpPW"
-      ],
-      "settings": {
-        "heading": "",
-        "heading_size": "h3",
-        "subheading": "",
-        "header_alignment": "center",
-        "container": "container",
-        "background_color": "",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "custom_class": ""
-      }
-    },
     "1769341154e555825b": {
       "type": "apps",
       "settings": {
@@ -504,7 +482,6 @@
     "collapsible_tabs_JndiBV",
     "product-recommendations",
     "recent-viewed-products",
-    "176934047849c73d21",
     "1769341154e555825b"
   ]
 }
