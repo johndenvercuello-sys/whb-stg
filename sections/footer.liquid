@@ -33,6 +33,19 @@ if (time > start.setHours(00,00) && time < end.setHours(11,00)) {
 }
 });
 </script>
+<script>
+    try {
+        // Select all div elements
+        const divs = document.querySelectorAll("span.today + span");
+
+        // Add the class 'highlight' to each div
+        divs.forEach(span => {
+            span.classList.add("highlight");
+        });
+    } catch (error) {
+        console.error("Error adding class to divs:", error);
+    }
+</script>
 <style>span.flatpickr-day.flatpickr-disabled.today + span + span, span.flatpickr-day.flatpickr-disabled.today + span {background-color: lightblue;}span.flatpickr-day.flatpickr-disabled.today{text-indent:-20px;}</style>
 <script src="{{ 'footer.js' | asset_url }}" defer="defer"></script>
 {% schema %}
