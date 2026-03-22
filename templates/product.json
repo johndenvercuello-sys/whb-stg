@@ -66,13 +66,13 @@
             "aut-delivery-date-info-message-style": "info",
             "aut-delivery-date-info-message-title": "",
             "aut-delivery-date-info-message-content": "",
-            "aut-delivery-date-disable-mon": false,
+            "aut-delivery-date-disable-mon": true,
             "aut-delivery-date-disable-tues": false,
-            "aut-delivery-date-disable-wed": false,
+            "aut-delivery-date-disable-wed": true,
             "aut-delivery-date-disable-thu": false,
-            "aut-delivery-date-disable-fri": false,
+            "aut-delivery-date-disable-fri": true,
             "aut-delivery-date-disable-sat": false,
-            "aut-delivery-date-disable-sun": false
+            "aut-delivery-date-disable-sun": true
           }
         },
         "buy_buttons": {
