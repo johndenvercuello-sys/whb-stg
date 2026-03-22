@@ -21,30 +21,23 @@
 <span >wen disable</span>
 <span>thurs bake</span>
 <span>fri disable</span>
+
 <script>
-$(document).ready(function () {
+ $(document).ready(function () {
 
 var start = new Date();
 var end = new Date();
 var time = new Date().getTime();
 
-if (time > start.setHours(00,00) && time < end.setHours(11,00)) {
-    $('.today').addClass('cutoff');
+   //Set the start hours and ending hours
+if (time > start.setHours(07,30) && time < end.setHours(19,30)) {
+    $('.template-product').addClass('tt');
 }
-});
-</script>
-<script>
-    try {
-        // Select all div elements
-        const divs = document.querySelectorAll("span.today + span");
-
-        // Add the class 'highlight' to each div
-        divs.forEach(span => {
-            span.classList.add("highlight");
-        });
-    } catch (error) {
-        console.error("Error adding class to divs:", error);
+else {
+    $('.open').hide();
+    $('.closed').show();
     }
+});
 </script>
 <style>
   span.flatpickr-day.flatpickr-disabled.today + span + span, span.flatpickr-day.flatpickr-disabled.today + span 
