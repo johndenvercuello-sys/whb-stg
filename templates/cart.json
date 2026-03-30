@@ -63,6 +63,18 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_450883a_8MDjer": {
+          "type": "ai_gen_block_450883a",
+          "settings": {
+            "expiry_days": 1,
+            "check_interval": 60,
+            "notification_title": "Cart Item Expired",
+            "notification_bg_color": "#da3f3f",
+            "notification_text_color": "#ffffff",
+            "notification_border_radius": 8
+          },
+          "blocks": {}
+        },
         "ai_gen_block_b8a88a8_84mW9c": {
           "type": "ai_gen_block_b8a88a8",
           "disabled": true,
@@ -144,6 +156,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_450883a_8MDjer",
         "ai_gen_block_b8a88a8_84mW9c",
         "ai_gen_block_957e387_xU9wpp",
         "ai_gen_block_16f39d4_TLHzyw"
