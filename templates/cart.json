@@ -42,6 +42,15 @@
     },
     "176934046601f21b16": {
       "type": "apps",
+      "blocks": {
+        "et_urgent_cart_countdown_timer_app_block_aCyfwz": {
+          "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-block/ffa64542-a371-40a7-8743-0946ed5c47aa",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "et_urgent_cart_countdown_timer_app_block_aCyfwz"
+      ],
       "settings": {
         "heading": "",
         "heading_size": "h3",
