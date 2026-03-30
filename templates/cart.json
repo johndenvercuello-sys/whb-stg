@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "cart-template",
+      "disabled": true,
       "settings": {}
     },
     "17748531141d7c2c7f": {
@@ -27,8 +28,8 @@
             "quantity_header": "Quantity",
             "total_header": "Total",
             "empty_cart_message": "Your cart is empty",
-            "clear_btn_label": "Clear cart",
-            "shop_btn_label": "Add more products",
+            "clear_btn_label": "Clear Cart",
+            "shop_btn_label": "Add Products",
             "background_color": "#ffffff",
             "header_bg_color": "#f5f5f5",
             "header_text_color": "#222222",
@@ -56,6 +57,7 @@
         },
         "ai_gen_block_33e0aa2_xE8NmA": {
           "type": "ai_gen_block_33e0aa2",
+          "disabled": true,
           "settings": {
             "product_header": "Product",
             "price_header": "Price",
