@@ -63,6 +63,28 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_b8a88a8_84mW9c": {
+          "type": "ai_gen_block_b8a88a8",
+          "settings": {
+            "session_timeout": 1,
+            "warning_time": 30,
+            "show_warning": true,
+            "warning_title": "Session Expiring Soon",
+            "warning_message": "Your cart will be cleared in:",
+            "position_bottom": 20,
+            "position_right": 20,
+            "position_bottom_mobile": 20,
+            "position_right_mobile": 15,
+            "background_color": "#222222",
+            "text_color": "#ffffff",
+            "countdown_color": "#ff6b6b",
+            "border_radius": 8,
+            "title_size": 16,
+            "message_size": 14,
+            "countdown_size": 24
+          },
+          "blocks": {}
+        },
         "ai_gen_block_957e387_xU9wpp": {
           "type": "ai_gen_block_957e387",
           "disabled": true,
@@ -121,6 +143,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_b8a88a8_84mW9c",
         "ai_gen_block_957e387_xU9wpp",
         "ai_gen_block_16f39d4_TLHzyw"
       ],
