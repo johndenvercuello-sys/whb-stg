@@ -76,13 +76,13 @@
         "disabled": false,
         "settings": {}
       },
-      "3099178521138006549": {
-        "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-embed/ffa64542-a371-40a7-8743-0946ed5c47aa",
-        "disabled": false,
-        "settings": {}
-      },
       "13647798295788879894": {
         "type": "shopify://apps/cx-elevate-date-time-picker/blocks/cart_drawer/3613d08c-d180-43c4-8f66-9aca9e0d28fc",
+        "disabled": true,
+        "settings": {}
+      },
+      "3099178521138006549": {
+        "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-embed/ffa64542-a371-40a7-8743-0946ed5c47aa",
         "disabled": true,
         "settings": {}
       }
