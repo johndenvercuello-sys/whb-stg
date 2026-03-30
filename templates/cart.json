@@ -77,8 +77,39 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_502fac6_GWCRQ6": {
+          "type": "ai_gen_block_502fac6",
+          "disabled": true,
+          "settings": {
+            "alert_title": "Item Removed",
+            "alert_message": "An item has been removed from your cart.",
+            "button_text": "Continue Shopping",
+            "enable_redirect": true,
+            "redirect_url": "",
+            "auto_close_duration": 0,
+            "alert_width": 400,
+            "alert_border_radius": 8,
+            "alert_bg_color": "#ffffff",
+            "alert_text_color": "#222222",
+            "show_icon": true,
+            "icon_size": 50,
+            "icon_color": "#e84e4e",
+            "title_size": 22,
+            "message_size": 14,
+            "button_text_size": 14,
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#222222",
+            "button_hover_text_color": "#ffffff",
+            "button_border_radius": 4,
+            "overlay_color": "#000000",
+            "overlay_opacity": 50
+          },
+          "blocks": {}
+        },
         "ai_gen_block_1c20ba4_7WVeGL": {
           "type": "ai_gen_block_1c20ba4",
+          "disabled": true,
           "settings": {
             "expiry_minutes": 10,
             "notification_title": "Cart item expired",
@@ -90,6 +121,7 @@
         },
         "ai_gen_block_450883a_8MDjer": {
           "type": "ai_gen_block_450883a",
+          "disabled": true,
           "settings": {
             "expiry_days": 1,
             "check_interval": 60,
@@ -181,6 +213,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_502fac6_GWCRQ6",
         "ai_gen_block_1c20ba4_7WVeGL",
         "ai_gen_block_450883a_8MDjer",
         "ai_gen_block_b8a88a8_84mW9c",

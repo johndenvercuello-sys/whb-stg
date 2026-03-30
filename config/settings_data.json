@@ -85,6 +85,18 @@
         "type": "shopify://apps/et-urgent-cart-countdown-timer/blocks/app-embed/ffa64542-a371-40a7-8743-0946ed5c47aa",
         "disabled": true,
         "settings": {}
+      },
+      "7079518687644006178": {
+        "type": "shopify://apps/checkout-blocks/blocks/app-embed/b0024ca5-9de8-4bf0-a92f-cd0783877ae2",
+        "disabled": false,
+        "settings": {
+          "utm_id": true,
+          "utm_source": true,
+          "utm_medium": true,
+          "utm_campaign": true,
+          "utm_term": true,
+          "ref": true
+        }
       }
     },
     "color_schemes": {
