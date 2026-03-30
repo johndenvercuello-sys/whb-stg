@@ -1,6 +1,735 @@
+{% doc %}
+  @prompt
+    dynamic cart table with Product item "image and title link to item details page, size, gift options, pickup date, pickup day, countdown timer before automatically remove ", price, quantity, total price. use Montserrat font. add clear cart button and add more products button link to all collections at the bottom. add condition if item is added over 1 hour passed remove item automatically
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-table-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+  }
+
+  .ai-cart-table__wrapper-{{ ai_gen_id }} {
+    overflow-x: auto;
+  }
+
+  .ai-cart-table__table-{{ ai_gen_id }} {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+
+  .ai-cart-table__table-{{ ai_gen_id }} th {
+    text-align: left;
+    padding: 15px 10px;
+    border-bottom: 2px solid {{ block.settings.border_color }};
+    font-weight: 600;
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+  }
+
+  .ai-cart-table__table-{{ ai_gen_id }} td {
+    padding: 20px 10px;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+    vertical-align: middle;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+  }
+
+  .ai-cart-table__product-cell-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .ai-cart-table__product-image-{{ ai_gen_id }} {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .ai-cart-table__product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-cart-table__product-info-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-cart-table__product-title-{{ ai_gen_id }} {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .ai-cart-table__product-title-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+  }
+
+  .ai-cart-table__product-title-{{ ai_gen_id }} a:hover {
+    text-decoration: underline;
+  }
+
+  .ai-cart-table__product-meta-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.subtext_color }};
+    margin-top: 5px;
+  }
+
+  .ai-cart-table__countdown-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.countdown_color }};
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .ai-cart-table__quantity-input-{{ ai_gen_id }} {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .ai-cart-table__remove-btn-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    color: {{ block.settings.remove_color }};
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+  }
+
+  .ai-cart-table__remove-btn-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.remove_hover_color }};
+  }
+
+  .ai-cart-table__actions-{{ ai_gen_id }} {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .ai-cart-table__button-{{ ai_gen_id }} {
+    padding: 12px 30px;
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .ai-cart-table__button--clear-{{ ai_gen_id }} {
+    background-color: {{ block.settings.clear_button_bg }};
+    color: {{ block.settings.clear_button_text }};
+    border: 1px solid {{ block.settings.clear_button_bg }};
+  }
+
+  .ai-cart-table__button--clear-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.clear_button_hover_bg }};
+    color: {{ block.settings.clear_button_hover_text }};
+    border-color: {{ block.settings.clear_button_hover_bg }};
+  }
+
+  .ai-cart-table__button--shop-{{ ai_gen_id }} {
+    background-color: {{ block.settings.shop_button_bg }};
+    color: {{ block.settings.shop_button_text }};
+    border: 1px solid {{ block.settings.shop_button_bg }};
+  }
+
+  .ai-cart-table__button--shop-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.shop_button_hover_bg }};
+    color: {{ block.settings.shop_button_hover_text }};
+    border-color: {{ block.settings.shop_button_hover_bg }};
+  }
+
+  .ai-cart-table__empty-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 60px 20px;
+    color: {{ block.settings.subtext_color }};
+  }
+
+  .ai-cart-table__empty-{{ ai_gen_id }} h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-cart-table__table-{{ ai_gen_id }} {
+      display: block;
+    }
+
+    .ai-cart-table__table-{{ ai_gen_id }} thead {
+      display: none;
+    }
+
+    .ai-cart-table__table-{{ ai_gen_id }} tbody,
+    .ai-cart-table__table-{{ ai_gen_id }} tr,
+    .ai-cart-table__table-{{ ai_gen_id }} td {
+      display: block;
+      width: 100%;
+    }
+
+    .ai-cart-table__table-{{ ai_gen_id }} tr {
+      margin-bottom: 20px;
+      border: 1px solid {{ block.settings.border_color }};
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .ai-cart-table__table-{{ ai_gen_id }} td {
+      border: none;
+      padding: 10px 0;
+      text-align: left;
+    }
+
+    .ai-cart-table__table-{{ ai_gen_id }} td:before {
+      content: attr(data-label);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+      color: {{ block.settings.heading_color }};
+    }
+
+    .ai-cart-table__product-cell-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .ai-cart-table__actions-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-cart-table__button-{{ ai_gen_id }} {
+      width: 100%;
+      text-align: center;
+    }
+  }
+{% endstyle %}
+
+<cart-table-{{ ai_gen_id }}
+  class="ai-cart-table-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-one-hour="{{ block.settings.auto_remove_hours | times: 3600 }}"
+>
+  {% if cart.item_count > 0 %}
+    <div class="ai-cart-table__wrapper-{{ ai_gen_id }}">
+      <table class="ai-cart-table__table-{{ ai_gen_id }}">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr
+              class="ai-cart-table__row-{{ ai_gen_id }}"
+              data-item-key="{{ item.key }}"
+              data-added-at="{{ item.properties['_added_at'] | default: 'now' }}"
+            >
+              <td data-label="Product">
+                <div class="ai-cart-table__product-cell-{{ ai_gen_id }}">
+                  <div class="ai-cart-table__product-image-{{ ai_gen_id }}">
+                    {% if item.image %}
+                      <img
+                        src="{{ item.image | image_url: width: 160 }}"
+                        alt="{{ item.image.alt | escape }}"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  </div>
+                  <div class="ai-cart-table__product-info-{{ ai_gen_id }}">
+                    <div class="ai-cart-table__product-title-{{ ai_gen_id }}">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </div>
+                    <div class="ai-cart-table__product-meta-{{ ai_gen_id }}">
+                      {% if item.variant.title != 'Default Title' %}
+                        <div>Size: {{ item.variant.title }}</div>
+                      {% endif %}
+                      {% if item.properties['Gift Options'] %}
+                        <div>Gift: {{ item.properties['Gift Options'] }}</div>
+                      {% endif %}
+                      {% if item.properties['Pickup Date'] %}
+                        <div>Pickup: {{ item.properties['Pickup Date'] }}</div>
+                      {% endif %}
+                      {% if item.properties['Pickup Day'] %}
+                        <div>Day: {{ item.properties['Pickup Day'] }}</div>
+                      {% endif %}
+                    </div>
+                    <div
+                      class="ai-cart-table__countdown-{{ ai_gen_id }}"
+                      data-countdown-for="{{ item.key }}"
+                    ></div>
+                  </div>
+                </div>
+              </td>
+              <td data-label="Price">{{ item.price | money }}</td>
+              <td data-label="Quantity">
+                <input
+                  type="number"
+                  class="ai-cart-table__quantity-input-{{ ai_gen_id }}"
+                  value="{{ item.quantity }}"
+                  min="1"
+                  data-item-key="{{ item.key }}"
+                  data-quantity-input
+                >
+              </td>
+              <td data-label="Total">{{ item.line_price | money }}</td>
+              <td data-label="">
+                <button
+                  class="ai-cart-table__remove-btn-{{ ai_gen_id }}"
+                  data-remove-item="{{ item.key }}"
+                  aria-label="Remove item"
+                >
+                  ×
+                </button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ai-cart-table__actions-{{ ai_gen_id }}">
+      <button
+        class="ai-cart-table__button-{{ ai_gen_id }} ai-cart-table__button--clear-{{ ai_gen_id }}"
+        data-clear-cart
+      >
+        {{ block.settings.clear_cart_text }}
+      </button>
+      <a
+        href="/collections/all"
+        class="ai-cart-table__button-{{ ai_gen_id }} ai-cart-table__button--shop-{{ ai_gen_id }}"
+      >
+        {{ block.settings.add_more_text }}
+      </a>
+    </div>
+  {% else %}
+    <div class="ai-cart-table__empty-{{ ai_gen_id }}">
+      <h3>Your cart is empty</h3>
+      <p>Add some products to get started</p>
+      <a
+        href="/collections/all"
+        class="ai-cart-table__button-{{ ai_gen_id }} ai-cart-table__button--shop-{{ ai_gen_id }}"
+        style="margin-top: 20px;"
+      >
+        {{ block.settings.add_more_text }}
+      </a>
+    </div>
+  {% endif %}
+</cart-table-{{ ai_gen_id }}>
+
+<script>
+  (function () {
+    class CartTable{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.oneHourInSeconds = parseInt(this.dataset.oneHour) || 3600;
+        this.checkInterval = null;
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+        this.startCountdowns();
+        this.checkExpiredItems();
+      }
+
+      disconnectedCallback() {
+        if (this.checkInterval) {
+          clearInterval(this.checkInterval);
+        }
+      }
+
+      setupEventListeners() {
+        this.querySelectorAll('[data-quantity-input]').forEach((input) => {
+          input.addEventListener('change', (e) => this.updateQuantity(e));
+        });
+
+        this.querySelectorAll('[data-remove-item]').forEach((btn) => {
+          btn.addEventListener('click', (e) => this.removeItem(e));
+        });
+
+        const clearBtn = this.querySelector('[data-clear-cart]');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => this.clearCart());
+        }
+      }
+
+      startCountdowns() {
+        const countdownElements = this.querySelectorAll('[data-countdown-for]');
+        
+        countdownElements.forEach((element) => {
+          const itemKey = element.dataset.countdownFor;
+          const row = this.querySelector(`[data-item-key="${itemKey}"]`);
+          const addedAt = row.dataset.addedAt;
+          
+          if (addedAt === 'now') {
+            this.setItemAddedTime(itemKey);
+          }
+          
+          this.updateCountdown(element, itemKey);
+        });
+
+        this.checkInterval = setInterval(() => {
+          countdownElements.forEach((element) => {
+            const itemKey = element.dataset.countdownFor;
+            this.updateCountdown(element, itemKey);
+          });
+          this.checkExpiredItems();
+        }, 1000);
+      }
+
+      setItemAddedTime(itemKey) {
+        const now = Date.now();
+        fetch('/cart/update.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            updates: {},
+            attributes: { [`_item_${itemKey}_added`]: now.toString() }
+          })
+        });
+      }
+
+      updateCountdown(element, itemKey) {
+        const row = this.querySelector(`[data-item-key="${itemKey}"]`);
+        const addedAt = row.dataset.addedAt;
+        
+        if (addedAt === 'now') {
+          const addedTime = localStorage.getItem(`cart_item_${itemKey}`) || Date.now();
+          if (!localStorage.getItem(`cart_item_${itemKey}`)) {
+            localStorage.setItem(`cart_item_${itemKey}`, addedTime);
+          }
+          
+          const elapsed = Math.floor((Date.now() - parseInt(addedTime)) / 1000);
+          const remaining = this.oneHourInSeconds - elapsed;
+          
+          if (remaining > 0) {
+            const minutes = Math.floor(remaining / 60);
+            const seconds = remaining % 60;
+            element.textContent = `Removes in: ${minutes}m ${seconds}s`;
+          } else {
+            element.textContent = 'Removing...';
+          }
+        }
+      }
+
+      checkExpiredItems() {
+        const rows = this.querySelectorAll('[data-item-key]');
+        
+        rows.forEach((row) => {
+          const itemKey = row.dataset.itemKey;
+          const addedAt = row.dataset.addedAt;
+          
+          if (addedAt === 'now') {
+            const addedTime = localStorage.getItem(`cart_item_${itemKey}`);
+            if (addedTime) {
+              const elapsed = Math.floor((Date.now() - parseInt(addedTime)) / 1000);
+              
+              if (elapsed >= this.oneHourInSeconds) {
+                this.removeItemAuto(itemKey);
+              }
+            }
+          }
+        });
+      }
+
+      updateQuantity(event) {
+        const input = event.target;
+        const itemKey = input.dataset.itemKey;
+        const quantity = parseInt(input.value);
+
+        if (quantity < 1) {
+          input.value = 1;
+          return;
+        }
+
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: itemKey, quantity: quantity })
+        })
+          .then((response) => response.json())
+          .then(() => {
+            window.location.reload();
+          });
+      }
+
+      removeItem(event) {
+        const itemKey = event.target.dataset.removeItem;
+        
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: itemKey, quantity: 0 })
+        })
+          .then((response) => response.json())
+          .then(() => {
+            localStorage.removeItem(`cart_item_${itemKey}`);
+            window.location.reload();
+          });
+      }
+
+      removeItemAuto(itemKey) {
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: itemKey, quantity: 0 })
+        })
+          .then((response) => response.json())
+          .then(() => {
+            localStorage.removeItem(`cart_item_${itemKey}`);
+            window.location.reload();
+          });
+      }
+
+      clearCart() {
+        fetch('/cart/clear.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        })
+          .then((response) => response.json())
+          .then(() => {
+            const keys = Object.keys(localStorage);
+            keys.forEach((key) => {
+              if (key.startsWith('cart_item_')) {
+                localStorage.removeItem(key);
+              }
+            });
+            window.location.reload();
+          });
+      }
+    }
+
+    customElements.define('cart-table-{{ ai_gen_id }}', CartTable{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Dynamic cart table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Auto-remove settings"
+    },
+    {
+      "type": "range",
+      "id": "auto_remove_hours",
+      "label": "Auto-remove after",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "unit": "h",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Button labels"
+    },
+    {
+      "type": "text",
+      "id": "clear_cart_text",
+      "label": "Clear cart button",
+      "default": "Clear cart"
+    },
+    {
+      "type": "text",
+      "id": "add_more_text",
+      "label": "Add more products button",
+      "default": "Add more products"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#eeeeee"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown color",
+      "default": "#e84e4e"
+    },
+    {
+      "type": "color",
+      "id": "remove_color",
+      "label": "Remove button color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "remove_hover_color",
+      "label": "Remove button hover",
+      "default": "#e84e4e"
+    },
+    {
+      "type": "header",
+      "content": "Clear cart button"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_bg",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_text",
+      "label": "Text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_hover_bg",
+      "label": "Hover background",
+      "default": "#e84e4e"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_hover_text",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Shop button"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_bg",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_text",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_hover_bg",
+      "label": "Hover background",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_hover_text",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic cart table"
+    }
+  ]
+}
 {% endschema %}
