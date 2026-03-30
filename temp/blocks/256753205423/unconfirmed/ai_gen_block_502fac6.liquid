@@ -1,6 +1,476 @@
+{% doc %}
+  @prompt
+    redirect checkout page to cart page when item got remove on cart and open an alert
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-monitor-{{ ai_gen_id }} {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .ai-cart-alert-{{ ai_gen_id }} {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: {{ block.settings.alert_bg_color }};
+    color: {{ block.settings.alert_text_color }};
+    padding: 30px 40px;
+    border-radius: {{ block.settings.alert_border_radius }}px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    max-width: 90%;
+    width: {{ block.settings.alert_width }}px;
+    text-align: center;
+    z-index: 10000;
+  }
+
+  .ai-cart-alert-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .ai-cart-alert-overlay-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    z-index: 9999;
+  }
+
+  .ai-cart-alert-overlay-{{ ai_gen_id }}.active {
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    visibility: visible;
+  }
+
+  .ai-cart-alert-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto 15px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-cart-alert-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-cart-alert-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: {{ block.settings.alert_text_color }};
+  }
+
+  .ai-cart-alert-message-{{ ai_gen_id }} {
+    font-size: {{ block.settings.message_size }}px;
+    margin: 0 0 20px;
+    color: {{ block.settings.alert_text_color }};
+    opacity: 0.9;
+  }
+
+  .ai-cart-alert-button-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    padding: 12px 30px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .ai-cart-alert-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-cart-alert-{{ ai_gen_id }} {
+      padding: 25px 30px;
+      width: 90%;
+    }
+
+    .ai-cart-alert-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.9 }}px;
+    }
+
+    .ai-cart-alert-message-{{ ai_gen_id }} {
+      font-size: {{ block.settings.message_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<cart-item-monitor-{{ ai_gen_id }}
+  class="ai-cart-monitor-{{ ai_gen_id }}"
+  data-redirect-enabled="{{ block.settings.enable_redirect }}"
+  data-redirect-url="{{ block.settings.redirect_url }}"
+  data-auto-close="{{ block.settings.auto_close_duration }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-cart-alert-overlay-{{ ai_gen_id }}"></div>
+  <div class="ai-cart-alert-{{ ai_gen_id }}">
+    {% if block.settings.show_icon %}
+      <div class="ai-cart-alert-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+    {% endif %}
+    <h3 class="ai-cart-alert-title-{{ ai_gen_id }}">{{ block.settings.alert_title }}</h3>
+    <p class="ai-cart-alert-message-{{ ai_gen_id }}">{{ block.settings.alert_message }}</p>
+    <button class="ai-cart-alert-button-{{ ai_gen_id }}" type="button">
+      {{ block.settings.button_text }}
+    </button>
+  </div>
+</cart-item-monitor-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartItemMonitor{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.initialCartCount = null;
+        this.alert = this.querySelector('.ai-cart-alert-{{ ai_gen_id }}');
+        this.overlay = this.querySelector('.ai-cart-alert-overlay-{{ ai_gen_id }}');
+        this.button = this.querySelector('.ai-cart-alert-button-{{ ai_gen_id }}');
+        this.redirectEnabled = this.dataset.redirectEnabled === 'true';
+        this.redirectUrl = this.dataset.redirectUrl || '/cart';
+        this.autoCloseDuration = parseInt(this.dataset.autoClose) || 0;
+      }
+
+      connectedCallback() {
+        this.getInitialCartCount();
+        this.setupEventListeners();
+        this.observeCartChanges();
+      }
+
+      async getInitialCartCount() {
+        try {
+          const response = await fetch('/cart.js');
+          const cart = await response.json();
+          this.initialCartCount = cart.item_count;
+        } catch (error) {
+          console.error('Error fetching cart:', error);
+        }
+      }
+
+      setupEventListeners() {
+        this.button.addEventListener('click', () => {
+          this.closeAlert();
+          if (this.redirectEnabled) {
+            window.location.href = this.redirectUrl;
+          }
+        });
+
+        this.overlay.addEventListener('click', () => {
+          this.closeAlert();
+        });
+      }
+
+      observeCartChanges() {
+        document.addEventListener('cart:updated', () => {
+          this.checkCartCount();
+        });
+
+        const cartForm = document.querySelector('form[action="/cart"]');
+        if (cartForm) {
+          const observer = new MutationObserver(() => {
+            this.checkCartCount();
+          });
+
+          observer.observe(cartForm, {
+            childList: true,
+            subtree: true
+          });
+        }
+
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('[href*="/cart/change"]') || 
+              e.target.closest('[name="updates"]') ||
+              e.target.closest('.cart-item__remove') ||
+              e.target.closest('[data-cart-remove]')) {
+            setTimeout(() => {
+              this.checkCartCount();
+            }, 500);
+          }
+        });
+      }
+
+      async checkCartCount() {
+        try {
+          const response = await fetch('/cart.js');
+          const cart = await response.json();
+          const currentCount = cart.item_count;
+
+          if (this.initialCartCount !== null && currentCount < this.initialCartCount) {
+            this.showAlert();
+            this.initialCartCount = currentCount;
+          } else {
+            this.initialCartCount = currentCount;
+          }
+        } catch (error) {
+          console.error('Error checking cart:', error);
+        }
+      }
+
+      showAlert() {
+        this.alert.classList.add('active');
+        this.overlay.classList.add('active');
+
+        if (this.autoCloseDuration > 0) {
+          setTimeout(() => {
+            this.closeAlert();
+            if (this.redirectEnabled) {
+              window.location.href = this.redirectUrl;
+            }
+          }, this.autoCloseDuration * 1000);
+        }
+      }
+
+      closeAlert() {
+        this.alert.classList.remove('active');
+        this.overlay.classList.remove('active');
+      }
+    }
+
+    customElements.define('cart-item-monitor-{{ ai_gen_id }}', CartItemMonitor{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart item removal alert",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Alert content"
+    },
+    {
+      "type": "text",
+      "id": "alert_title",
+      "label": "Title",
+      "default": "Item Removed"
+    },
+    {
+      "type": "textarea",
+      "id": "alert_message",
+      "label": "Message",
+      "default": "An item has been removed from your cart."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Continue Shopping"
+    },
+    {
+      "type": "header",
+      "content": "Redirect settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_redirect",
+      "label": "Enable redirect after alert",
+      "default": false,
+      "info": "Redirect to a page when the alert button is clicked"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Redirect URL",
+      "info": "Leave empty to redirect to cart page"
+    },
+    {
+      "type": "range",
+      "id": "auto_close_duration",
+      "label": "Auto close duration",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 0,
+      "info": "Set to 0 to disable auto close"
+    },
+    {
+      "type": "header",
+      "content": "Alert style"
+    },
+    {
+      "type": "range",
+      "id": "alert_width",
+      "label": "Alert width",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "alert_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "alert_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "alert_text_color",
+      "label": "Text color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#e84e4e"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "message_size",
+      "label": "Message size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart item removal alert"
+    }
+  ]
+}
 {% endschema %}
