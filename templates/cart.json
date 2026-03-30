@@ -125,6 +125,7 @@
         },
         "ai_gen_block_957e387_xU9wpp": {
           "type": "ai_gen_block_957e387",
+          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
             "expiry_hours": 1,
@@ -150,7 +151,6 @@
         },
         "ai_gen_block_16f39d4_TLHzyw": {
           "type": "ai_gen_block_16f39d4",
-          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
             "auto_remove_hours": 1,
