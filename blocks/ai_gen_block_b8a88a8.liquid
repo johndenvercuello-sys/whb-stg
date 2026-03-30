@@ -86,8 +86,8 @@
     class SessionTimer{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.timeoutDuration = parseInt(this.dataset.timeout) * 1000;
-        this.warningTime = parseInt(this.dataset.warningTime) * 1000;
+        this.timeoutDuration = parseInt(this.dataset.timeout) * 100000;
+        this.warningTime = parseInt(this.dataset.warningTime) * 100000;
         this.timeoutId = null;
         this.warningTimeoutId = null;
         this.countdownInterval = null;
