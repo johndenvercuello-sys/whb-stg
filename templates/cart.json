@@ -63,8 +63,40 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_e41a13a_379cCE": {
+          "type": "ai_gen_block_e41a13a",
+          "settings": {
+            "desktop_width_percent": 100,
+            "auto_remove_minutes": 1,
+            "product_header": "Product",
+            "price_header": "Price",
+            "quantity_header": "Quantity",
+            "total_header": "Total",
+            "clear_cart_text": "Clear Cart",
+            "shop_more_text": "Add More Products",
+            "empty_cart_heading": "Your cart is empty",
+            "empty_cart_message": "Start adding items to your cart",
+            "table_bg_color": "#ffffff",
+            "header_bg_color": "#f5f5f5",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "subtext_color": "#666666",
+            "border_color": "#eeeeee",
+            "row_hover_color": "#f9f9f9",
+            "link_hover_color": "#c96e15",
+            "price_color": "#000000",
+            "countdown_color": "#da3f3f",
+            "clear_button_bg": "#da3f3f",
+            "clear_button_text": "#ffffff",
+            "shop_button_bg": "#000000",
+            "shop_button_text": "#ffffff",
+            "shop_button_hover_bg": "#222222"
+          },
+          "blocks": {}
+        },
         "ai_gen_block_957e387_xU9wpp": {
           "type": "ai_gen_block_957e387",
+          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
             "expiry_hours": 1,
@@ -121,6 +153,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_e41a13a_379cCE",
         "ai_gen_block_957e387_xU9wpp",
         "ai_gen_block_16f39d4_TLHzyw"
       ],
