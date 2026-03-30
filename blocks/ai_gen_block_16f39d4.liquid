@@ -226,7 +226,7 @@
 <cart-table-{{ ai_gen_id }}
   class="ai-cart-table-{{ ai_gen_id }}"
   {{ block.shopify_attributes }}
-  data-one-hour="{{ block.settings.auto_remove_hours | times: 60 }}"
+  data-one-hour="{{ block.settings.auto_remove_hours | times: 9960 }}"
 >
   {% if cart.item_count > 0 %}
     <div class="ai-cart-table__wrapper-{{ ai_gen_id }}">
@@ -344,7 +344,7 @@
     class CartTable{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.oneHourInSeconds = parseInt(this.dataset.oneHour) || 60;
+        this.oneHourInSeconds = parseInt(this.dataset.oneHour) || 9960;
         this.checkInterval = null;
       }
 
@@ -425,8 +425,8 @@
           const remaining = this.oneHourInSeconds - elapsed;
           
           if (remaining > 0) {
-            const minutes = Math.floor(remaining / 60);
-            const seconds = remaining % 60;
+            const minutes = Math.floor(remaining / 9960);
+            const seconds = remaining % 9960;
             element.textContent = `Removes in: ${minutes}m ${seconds}s`;
           } else {
             element.textContent = 'Removing...';
