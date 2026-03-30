@@ -63,41 +63,6 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_2021276_3KbaqG": {
-          "type": "ai_gen_block_2021276",
-          "settings": {
-            "desktop_width_percent": 100,
-            "image_size": 80,
-            "cell_padding": 16,
-            "table_background": "#ffffff",
-            "header_background": "#f5f5f5",
-            "header_text_color": "#222222",
-            "text_color": "#222222",
-            "subtext_color": "#666666",
-            "border_color": "#eeeeee",
-            "price_color": "#222222",
-            "link_hover_color": "#000000",
-            "countdown_color": "#e84e4e",
-            "header_font_size": 14,
-            "body_font_size": 14,
-            "button_font_size": 14,
-            "countdown_minutes": 30,
-            "button_background": "#ffffff",
-            "button_text_color": "#222222",
-            "button_hover_background": "#f5f5f5",
-            "clear_cart_text": "Clear cart",
-            "clear_button_background": "#ffffff",
-            "clear_button_text": "#222222",
-            "clear_button_hover": "#f5f5f5",
-            "add_more_text": "Add more products",
-            "shop_button_background": "#222222",
-            "shop_button_text": "#ffffff",
-            "shop_button_hover": "#000000",
-            "empty_cart_heading": "Your cart is empty",
-            "empty_cart_message": "Start shopping to add items to your cart"
-          },
-          "blocks": {}
-        },
         "ai_gen_block_957e387_xU9wpp": {
           "type": "ai_gen_block_957e387",
           "disabled": true,
@@ -126,7 +91,6 @@
         },
         "ai_gen_block_16f39d4_TLHzyw": {
           "type": "ai_gen_block_16f39d4",
-          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
             "auto_remove_hours": 1,
@@ -157,7 +121,6 @@
         }
       },
       "block_order": [
-        "ai_gen_block_2021276_3KbaqG",
         "ai_gen_block_957e387_xU9wpp",
         "ai_gen_block_16f39d4_TLHzyw"
       ],
