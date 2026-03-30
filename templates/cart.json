@@ -60,9 +60,34 @@
         "custom_class": ""
       }
     },
+    "176934046601f21b16": {
+      "type": "apps",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_1c20ba4_7WVeGL": {
+          "type": "ai_gen_block_1c20ba4",
+          "settings": {
+            "expiry_minutes": 10,
+            "notification_title": "Cart item expired",
+            "notification_bg_color": "#da3f3f",
+            "notification_text_color": "#ffffff",
+            "notification_border_radius": 8
+          },
+          "blocks": {}
+        },
         "ai_gen_block_450883a_8MDjer": {
           "type": "ai_gen_block_450883a",
           "settings": {
@@ -156,26 +181,13 @@
         }
       },
       "block_order": [
+        "ai_gen_block_1c20ba4_7WVeGL",
         "ai_gen_block_450883a_8MDjer",
         "ai_gen_block_b8a88a8_84mW9c",
         "ai_gen_block_957e387_xU9wpp",
         "ai_gen_block_16f39d4_TLHzyw"
       ],
       "settings": {}
-    },
-    "176934046601f21b16": {
-      "type": "apps",
-      "settings": {
-        "heading": "",
-        "heading_size": "h3",
-        "subheading": "",
-        "header_alignment": "center",
-        "container": "container",
-        "background_color": "",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "custom_class": ""
-      }
     },
     "recent-viewed-products": {
       "type": "recent-viewed-products",
@@ -222,8 +234,8 @@
   "order": [
     "main",
     "custom_content_Gte3K7",
-    "17748531141d7c2c7f",
     "176934046601f21b16",
+    "17748531141d7c2c7f",
     "recent-viewed-products",
     "1774168271f7888fdd"
   ]
