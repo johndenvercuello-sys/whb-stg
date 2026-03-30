@@ -13,6 +13,46 @@
       "type": "cart-template",
       "settings": {}
     },
+    "17748531141d7c2c7f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_33e0aa2_xE8NmA": {
+          "type": "ai_gen_block_33e0aa2",
+          "settings": {
+            "product_header": "Product",
+            "price_header": "Price",
+            "quantity_header": "Quantity",
+            "total_header": "Total",
+            "show_product_image": true,
+            "show_remove_column": true,
+            "image_size": 80,
+            "desktop_width_percent": 100,
+            "empty_cart_message": "Your cart is empty",
+            "background_color": "#ffffff",
+            "header_text_color": "#222222",
+            "body_text_color": "#222222",
+            "subtext_color": "#666666",
+            "price_color": "#222222",
+            "border_color": "#eeeeee",
+            "error_color": "#e84e4e",
+            "header_font_size": 14,
+            "body_font_size": 14,
+            "header_text_transform": "uppercase",
+            "padding": 20,
+            "cell_padding": 16,
+            "border_radius": 8,
+            "image_border_radius": 4,
+            "quantity_border_radius": 4,
+            "border_width": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_33e0aa2_xE8NmA"
+      ],
+      "settings": {}
+    },
     "176934046601f21b16": {
       "type": "apps",
       "blocks": {
@@ -80,6 +120,7 @@
   },
   "order": [
     "main",
+    "17748531141d7c2c7f",
     "176934046601f21b16",
     "recent-viewed-products",
     "1774168271f7888fdd"
