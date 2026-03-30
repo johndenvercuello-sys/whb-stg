@@ -1,6 +1,744 @@
+{% doc %}
+  @prompt
+    dynamic cart table with Product item "image and title link to item details page, size, gift options, pickup date, pickup day, countdown timer before automatically remove ", price, quantity, total price. use Montserrat font. add clear cart button and add more products button link to all collections at the bottom.
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .ai-cart-table-{{ ai_gen_id }} {
+    font-family: 'Montserrat', sans-serif;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .ai-cart-table-wrapper-{{ ai_gen_id }} {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+
+  .ai-cart-table-main-{{ ai_gen_id }} {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: {{ block.settings.table_background }};
+  }
+
+  .ai-cart-table-main-{{ ai_gen_id }} thead {
+    background-color: {{ block.settings.header_background }};
+  }
+
+  .ai-cart-table-main-{{ ai_gen_id }} th {
+    padding: {{ block.settings.cell_padding }}px;
+    text-align: left;
+    font-weight: 600;
+    font-size: {{ block.settings.header_font_size }}px;
+    color: {{ block.settings.header_text_color }};
+    border-bottom: 2px solid {{ block.settings.border_color }};
+  }
+
+  .ai-cart-table-main-{{ ai_gen_id }} td {
+    padding: {{ block.settings.cell_padding }}px;
+    vertical-align: middle;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.body_font_size }}px;
+  }
+
+  .ai-cart-item-product-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .ai-cart-item-image-{{ ai_gen_id }} {
+    width: {{ block.settings.image_size }}px;
+    height: {{ block.settings.image_size }}px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .ai-cart-item-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-cart-item-details-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-cart-item-title-{{ ai_gen_id }} {
+    font-weight: 600;
+    margin: 0 0 5px;
+    font-size: {{ block.settings.body_font_size }}px;
+  }
+
+  .ai-cart-item-title-{{ ai_gen_id }} a {
+    color: {{ block.settings.text_color }};
+    text-decoration: none;
+  }
+
+  .ai-cart-item-title-{{ ai_gen_id }} a:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-cart-item-meta-{{ ai_gen_id }} {
+    font-size: {{ block.settings.body_font_size | minus: 2 }}px;
+    color: {{ block.settings.subtext_color }};
+    margin: 3px 0;
+  }
+
+  .ai-cart-countdown-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: {{ block.settings.body_font_size | minus: 2 }}px;
+    color: {{ block.settings.countdown_color }};
+    font-weight: 500;
+  }
+
+  .ai-cart-countdown-timer-{{ ai_gen_id }} {
+    font-weight: 600;
+  }
+
+  .ai-cart-quantity-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 120px;
+  }
+
+  .ai-cart-quantity-btn-{{ ai_gen_id }} {
+    width: 30px;
+    height: 30px;
+    border: 1px solid {{ block.settings.border_color }};
+    background: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .ai-cart-quantity-btn-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.button_hover_background }};
+  }
+
+  .ai-cart-quantity-input-{{ ai_gen_id }} {
+    width: 50px;
+    text-align: center;
+    border: 1px solid {{ block.settings.border_color }};
+    padding: 5px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .ai-cart-price-{{ ai_gen_id }} {
+    font-weight: 600;
+    color: {{ block.settings.price_color }};
+  }
+
+  .ai-cart-actions-{{ ai_gen_id }} {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .ai-cart-btn-{{ ai_gen_id }} {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: {{ block.settings.button_font_size }}px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .ai-cart-btn-clear-{{ ai_gen_id }} {
+    background: {{ block.settings.clear_button_background }};
+    color: {{ block.settings.clear_button_text }};
+    border: 1px solid {{ block.settings.clear_button_background }};
+  }
+
+  .ai-cart-btn-clear-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.clear_button_hover }};
+    border-color: {{ block.settings.clear_button_hover }};
+  }
+
+  .ai-cart-btn-shop-{{ ai_gen_id }} {
+    background: {{ block.settings.shop_button_background }};
+    color: {{ block.settings.shop_button_text }};
+  }
+
+  .ai-cart-btn-shop-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.shop_button_hover }};
+  }
+
+  .ai-cart-empty-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 60px 20px;
+    color: {{ block.settings.subtext_color }};
+  }
+
+  .ai-cart-empty-{{ ai_gen_id }} h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: {{ block.settings.text_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-cart-table-main-{{ ai_gen_id }} {
+      font-size: 14px;
+    }
+
+    .ai-cart-table-main-{{ ai_gen_id }} th,
+    .ai-cart-table-main-{{ ai_gen_id }} td {
+      padding: 10px 5px;
+    }
+
+    .ai-cart-item-image-{{ ai_gen_id }} {
+      width: 60px;
+      height: 60px;
+    }
+
+    .ai-cart-item-product-{{ ai_gen_id }} {
+      gap: 10px;
+    }
+
+    .ai-cart-actions-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-cart-btn-{{ ai_gen_id }} {
+      width: 100%;
+      text-align: center;
+    }
+  }
+{% endstyle %}
+
+<cart-table-{{ ai_gen_id }} class="ai-cart-table-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if cart.item_count > 0 %}
+    <div class="ai-cart-table-wrapper-{{ ai_gen_id }}">
+      <table class="ai-cart-table-main-{{ ai_gen_id }}">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Size</th>
+            <th>Gift Options</th>
+            <th>Pickup Date</th>
+            <th>Pickup Day</th>
+            <th>Auto Remove</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr data-line-item="{{ forloop.index }}" data-variant-id="{{ item.variant_id }}">
+              <td>
+                <div class="ai-cart-item-product-{{ ai_gen_id }}">
+                  <div class="ai-cart-item-image-{{ ai_gen_id }}">
+                    <a href="{{ item.url }}">
+                      {% if item.image %}
+                        <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" loading="lazy">
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag }}
+                      {% endif %}
+                    </a>
+                  </div>
+                  <div class="ai-cart-item-details-{{ ai_gen_id }}">
+                    <h4 class="ai-cart-item-title-{{ ai_gen_id }}">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </h4>
+                    {% if item.variant.title != 'Default Title' %}
+                      <div class="ai-cart-item-meta-{{ ai_gen_id }}">{{ item.variant.title }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-item-meta-{{ ai_gen_id }}">
+                  {% assign size_found = false %}
+                  {% for option in item.options_with_values %}
+                    {% assign option_name_lower = option.name | downcase %}
+                    {% if option_name_lower contains 'size' %}
+                      {{ option.value }}
+                      {% assign size_found = true %}
+                    {% endif %}
+                  {% endfor %}
+                  {% unless size_found %}
+                    {% if item.properties['Size'] %}
+                      {{ item.properties['Size'] }}
+                    {% elsif item.properties['size'] %}
+                      {{ item.properties['size'] }}
+                    {% else %}
+                      -
+                    {% endif %}
+                  {% endunless %}
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-item-meta-{{ ai_gen_id }}">
+                  {% if item.properties['Gift Message'] %}
+                    {{ item.properties['Gift Message'] }}
+                  {% elsif item.properties['gift_message'] %}
+                    {{ item.properties['gift_message'] }}
+                  {% elsif item.properties['Is Gift'] %}
+                    Gift
+                  {% else %}
+                    -
+                  {% endif %}
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-item-meta-{{ ai_gen_id }}">
+                  {% if item.properties['Pickup Date'] %}
+                    {{ item.properties['Pickup Date'] }}
+                  {% elsif item.properties['pickup_date'] %}
+                    {{ item.properties['pickup_date'] }}
+                  {% else %}
+                    -
+                  {% endif %}
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-item-meta-{{ ai_gen_id }}">
+                  {% if item.properties['Pickup Day'] %}
+                    {{ item.properties['Pickup Day'] }}
+                  {% elsif item.properties['pickup_day'] %}
+                    {{ item.properties['pickup_day'] }}
+                  {% else %}
+                    -
+                  {% endif %}
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-countdown-{{ ai_gen_id }}" data-countdown-minutes="{{ block.settings.countdown_minutes }}">
+                  <span class="ai-cart-countdown-timer-{{ ai_gen_id }}">{{ block.settings.countdown_minutes }}:00</span>
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-price-{{ ai_gen_id }}">
+                  {{ item.price | money }}
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-quantity-{{ ai_gen_id }}">
+                  <button class="ai-cart-quantity-btn-{{ ai_gen_id }}" data-action="decrease" data-line="{{ forloop.index }}" aria-label="Decrease quantity">-</button>
+                  <input type="number" class="ai-cart-quantity-input-{{ ai_gen_id }}" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}" aria-label="Quantity">
+                  <button class="ai-cart-quantity-btn-{{ ai_gen_id }}" data-action="increase" data-line="{{ forloop.index }}" aria-label="Increase quantity">+</button>
+                </div>
+              </td>
+              <td>
+                <div class="ai-cart-price-{{ ai_gen_id }}">
+                  {{ item.line_price | money }}
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ai-cart-actions-{{ ai_gen_id }}">
+      <button class="ai-cart-btn-{{ ai_gen_id }} ai-cart-btn-clear-{{ ai_gen_id }}" id="clear-cart-{{ ai_gen_id }}">
+        {{ block.settings.clear_cart_text }}
+      </button>
+      <a href="/collections/all" class="ai-cart-btn-{{ ai_gen_id }} ai-cart-btn-shop-{{ ai_gen_id }}">
+        {{ block.settings.add_more_text }}
+      </a>
+    </div>
+  {% else %}
+    <div class="ai-cart-empty-{{ ai_gen_id }}">
+      <h3>{{ block.settings.empty_cart_heading }}</h3>
+      <p>{{ block.settings.empty_cart_message }}</p>
+      <a href="/collections/all" class="ai-cart-btn-{{ ai_gen_id }} ai-cart-btn-shop-{{ ai_gen_id }}" style="margin-top: 20px;">
+        {{ block.settings.add_more_text }}
+      </a>
+    </div>
+  {% endif %}
+</cart-table-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartTable{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.countdownTimers = new Map();
+      }
+
+      connectedCallback() {
+        this.setupQuantityControls();
+        this.setupClearCart();
+        this.initCountdowns();
+      }
+
+      setupQuantityControls() {
+        const quantityButtons = this.querySelectorAll('.ai-cart-quantity-btn-{{ ai_gen_id }}');
+        const quantityInputs = this.querySelectorAll('.ai-cart-quantity-input-{{ ai_gen_id }}');
+
+        quantityButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            const action = e.target.dataset.action;
+            const line = e.target.dataset.line;
+            const input = this.querySelector(`.ai-cart-quantity-input-{{ ai_gen_id }}[data-line="${line}"]`);
+            let quantity = parseInt(input.value);
+
+            if (action === 'increase') {
+              quantity++;
+            } else if (action === 'decrease') {
+              quantity = Math.max(0, quantity - 1);
+            }
+
+            this.updateCart(line, quantity);
+          });
+        });
+
+        quantityInputs.forEach(input => {
+          input.addEventListener('change', (e) => {
+            const line = e.target.dataset.line;
+            const quantity = Math.max(0, parseInt(e.target.value) || 0);
+            this.updateCart(line, quantity);
+          });
+        });
+      }
+
+      updateCart(line, quantity) {
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            line: line,
+            quantity: quantity
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          window.location.reload();
+        })
+        .catch(error => {
+          console.error('Error updating cart:', error);
+        });
+      }
+
+      setupClearCart() {
+        const clearButton = this.querySelector('#clear-cart-{{ ai_gen_id }}');
+        if (clearButton) {
+          clearButton.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear your cart?')) {
+              fetch('/cart/clear.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                window.location.reload();
+              })
+              .catch(error => {
+                console.error('Error clearing cart:', error);
+              });
+            }
+          });
+        }
+      }
+
+      initCountdowns() {
+        const countdownElements = this.querySelectorAll('.ai-cart-countdown-{{ ai_gen_id }}');
+        
+        countdownElements.forEach((element, index) => {
+          const minutes = parseInt(element.dataset.countdownMinutes) || 30;
+          const timerDisplay = element.querySelector('.ai-cart-countdown-timer-{{ ai_gen_id }}');
+          const row = element.closest('tr');
+          const line = row.dataset.lineItem;
+          
+          let timeLeft = minutes * 60;
+          
+          const timer = setInterval(() => {
+            timeLeft--;
+            
+            const mins = Math.floor(timeLeft / 60);
+            const secs = timeLeft % 60;
+            timerDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+              clearInterval(timer);
+              this.updateCart(line, 0);
+            }
+          }, 1000);
+          
+          this.countdownTimers.set(index, timer);
+        });
+      }
+
+      disconnectedCallback() {
+        this.countdownTimers.forEach(timer => clearInterval(timer));
+        this.countdownTimers.clear();
+      }
+    }
+
+    customElements.define('cart-table-{{ ai_gen_id }}', CartTable{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Dynamic cart table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Product image size",
+      "min": 60,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "cell_padding",
+      "label": "Cell padding",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "table_background",
+      "label": "Table background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "header_background",
+      "label": "Header background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#eeeeee"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown timer",
+      "default": "#e84e4e"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "label": "Body font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Countdown timer"
+    },
+    {
+      "type": "range",
+      "id": "countdown_minutes",
+      "label": "Minutes before auto remove",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "min",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Quantity controls"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Clear cart button"
+    },
+    {
+      "type": "text",
+      "id": "clear_cart_text",
+      "label": "Button text",
+      "default": "Clear cart"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_text",
+      "label": "Text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "clear_button_hover",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Add more products button"
+    },
+    {
+      "type": "text",
+      "id": "add_more_text",
+      "label": "Button text",
+      "default": "Add more products"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_background",
+      "label": "Background",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_text",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "shop_button_hover",
+      "label": "Hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Empty cart"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_heading",
+      "label": "Heading",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_message",
+      "label": "Message",
+      "default": "Start shopping to add items to your cart"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic cart table"
+    }
+  ]
+}
 {% endschema %}
