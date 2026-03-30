@@ -1,6 +1,400 @@
+{% doc %}
+  @prompt
+    Set Cart Item Expired if product in cart is 2 days old added in cart. when Cart Item Expired remove product in cart and add a notification that cart item expired
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-expiry-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-cart-expiry-notification-{{ ai_gen_id }} {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: {{ block.settings.notification_bg_color }};
+    color: {{ block.settings.notification_text_color }};
+    padding: 16px 20px;
+    border-radius: {{ block.settings.notification_border_radius }}px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    max-width: 350px;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .ai-cart-expiry-notification-{{ ai_gen_id }}.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .ai-cart-expiry-notification-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .ai-cart-expiry-notification-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .ai-cart-expiry-notification-title-{{ ai_gen_id }} {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .ai-cart-expiry-notification-message-{{ ai_gen_id }} {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-cart-expiry-notification-close-{{ ai_gen_id }} {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: {{ block.settings.notification_text_color }};
+    opacity: 0.7;
+  }
+
+  .ai-cart-expiry-notification-close-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-cart-expiry-notification-{{ ai_gen_id }} {
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      max-width: none;
+    }
+  }
+{% endstyle %}
+
+<cart-expiry-monitor-{{ ai_gen_id }}
+  class="ai-cart-expiry-{{ ai_gen_id }}"
+  data-expiry-days="{{ block.settings.expiry_days }}"
+  data-check-interval="{{ block.settings.check_interval }}"
+  {{ block.shopify_attributes }}
+>
+  <div
+    class="ai-cart-expiry-notification-{{ ai_gen_id }}"
+    id="ai-cart-expiry-notification-{{ ai_gen_id }}"
+  >
+    <button
+      class="ai-cart-expiry-notification-close-{{ ai_gen_id }}"
+      aria-label="Close notification"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="ai-cart-expiry-notification-header-{{ ai_gen_id }}">
+      <svg
+        class="ai-cart-expiry-notification-icon-{{ ai_gen_id }}"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <h3 class="ai-cart-expiry-notification-title-{{ ai_gen_id }}">
+        {{ block.settings.notification_title }}
+      </h3>
+    </div>
+    <p
+      class="ai-cart-expiry-notification-message-{{ ai_gen_id }}"
+      id="ai-cart-expiry-message-{{ ai_gen_id }}"
+    ></p>
+  </div>
+</cart-expiry-monitor-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartExpiryMonitor{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.expiryDays = parseInt(this.dataset.expiryDays) || 2;
+        this.checkInterval = parseInt(this.dataset.checkInterval) || 60;
+        this.storageKey = 'cart_item_timestamps_{{ ai_gen_id }}';
+        this.notification = this.querySelector('#ai-cart-expiry-notification-{{ ai_gen_id }}');
+        this.notificationMessage = this.querySelector('#ai-cart-expiry-message-{{ ai_gen_id }}');
+        this.closeButton = this.querySelector('.ai-cart-expiry-notification-close-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        this.initializeCartTracking();
+        this.checkExpiredItems();
+        this.startPeriodicCheck();
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.closeButton.addEventListener('click', () => {
+          this.hideNotification();
+        });
+
+        document.addEventListener('cart:updated', () => {
+          this.updateCartTimestamps();
+        });
+      }
+
+      initializeCartTracking() {
+        fetch('/cart.js')
+          .then(response => response.json())
+          .then(cart => {
+            this.updateCartTimestamps(cart);
+          })
+          .catch(error => {
+            console.error('Error fetching cart:', error);
+          });
+      }
+
+      updateCartTimestamps(cart = null) {
+        const fetchCart = cart ? Promise.resolve(cart) : fetch('/cart.js').then(r => r.json());
+
+        fetchCart.then(cartData => {
+          const timestamps = this.getStoredTimestamps();
+          const currentTime = Date.now();
+          const newTimestamps = {};
+
+          cartData.items.forEach(item => {
+            const key = item.variant_id.toString();
+            if (timestamps[key]) {
+              newTimestamps[key] = timestamps[key];
+            } else {
+              newTimestamps[key] = currentTime;
+            }
+          });
+
+          this.saveTimestamps(newTimestamps);
+        }).catch(error => {
+          console.error('Error updating cart timestamps:', error);
+        });
+      }
+
+      checkExpiredItems() {
+        fetch('/cart.js')
+          .then(response => response.json())
+          .then(cart => {
+            const timestamps = this.getStoredTimestamps();
+            const currentTime = Date.now();
+            const expiryMs = this.expiryDays * 24 * 60 * 60 * 1000;
+            const expiredItems = [];
+
+            cart.items.forEach(item => {
+              const key = item.variant_id.toString();
+              const addedTime = timestamps[key];
+
+              if (addedTime && (currentTime - addedTime) > expiryMs) {
+                expiredItems.push({
+                  variant_id: item.variant_id,
+                  title: item.product_title,
+                  variant_title: item.variant_title
+                });
+              }
+            });
+
+            if (expiredItems.length > 0) {
+              this.removeExpiredItems(expiredItems);
+            }
+          })
+          .catch(error => {
+            console.error('Error checking expired items:', error);
+          });
+      }
+
+      removeExpiredItems(expiredItems) {
+        const updates = {};
+        expiredItems.forEach(item => {
+          updates[item.variant_id] = 0;
+        });
+
+        fetch('/cart/update.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ updates: updates })
+        })
+        .then(response => response.json())
+        .then(() => {
+          this.cleanupTimestamps(expiredItems);
+          this.showNotification(expiredItems);
+          
+          if (typeof window.dispatchEvent === 'function') {
+            window.dispatchEvent(new CustomEvent('cart:updated'));
+          }
+          
+          if (window.location.pathname.includes('/cart')) {
+            window.location.reload();
+          }
+        })
+        .catch(error => {
+          console.error('Error removing expired items:', error);
+        });
+      }
+
+      cleanupTimestamps(expiredItems) {
+        const timestamps = this.getStoredTimestamps();
+        expiredItems.forEach(item => {
+          delete timestamps[item.variant_id.toString()];
+        });
+        this.saveTimestamps(timestamps);
+      }
+
+      showNotification(expiredItems) {
+        let message = '';
+        
+        if (expiredItems.length === 1) {
+          const item = expiredItems[0];
+          const fullTitle = item.variant_title && item.variant_title !== 'Default Title' 
+            ? `${item.title} - ${item.variant_title}` 
+            : item.title;
+          message = `${fullTitle} has been removed from your cart because it expired after ${this.expiryDays} days.`;
+        } else {
+          message = `${expiredItems.length} items have been removed from your cart because they expired after ${this.expiryDays} days.`;
+        }
+
+        this.notificationMessage.textContent = message;
+        this.notification.classList.add('active');
+
+        setTimeout(() => {
+          this.hideNotification();
+        }, 8000);
+      }
+
+      hideNotification() {
+        this.notification.classList.remove('active');
+      }
+
+      startPeriodicCheck() {
+        setInterval(() => {
+          this.checkExpiredItems();
+        }, this.checkInterval * 1000);
+      }
+
+      getStoredTimestamps() {
+        try {
+          const stored = localStorage.getItem(this.storageKey);
+          return stored ? JSON.parse(stored) : {};
+        } catch (error) {
+          console.error('Error reading timestamps:', error);
+          return {};
+        }
+      }
+
+      saveTimestamps(timestamps) {
+        try {
+          localStorage.setItem(this.storageKey, JSON.stringify(timestamps));
+        } catch (error) {
+          console.error('Error saving timestamps:', error);
+        }
+      }
+    }
+
+    customElements.define('cart-expiry-monitor-{{ ai_gen_id }}', CartExpiryMonitor{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart expiry monitor",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Expiry settings"
+    },
+    {
+      "type": "range",
+      "id": "expiry_days",
+      "label": "Days until expiry",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 2,
+      "info": "Cart items older than this will be removed"
+    },
+    {
+      "type": "range",
+      "id": "check_interval",
+      "label": "Check interval",
+      "min": 30,
+      "max": 300,
+      "step": 30,
+      "default": 60,
+      "unit": "sec",
+      "info": "How often to check for expired items"
+    },
+    {
+      "type": "header",
+      "content": "Notification"
+    },
+    {
+      "type": "text",
+      "id": "notification_title",
+      "label": "Notification title",
+      "default": "Cart Item Expired"
+    },
+    {
+      "type": "color",
+      "id": "notification_bg_color",
+      "label": "Background color",
+      "default": "#da3f3f"
+    },
+    {
+      "type": "color",
+      "id": "notification_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "notification_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart expiry monitor"
+    }
+  ]
+}
 {% endschema %}
