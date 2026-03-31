@@ -14,6 +14,23 @@
     "blocks_9zUQxW": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_cb5f3dd_WcahhW": {
+          "type": "ai_gen_block_cb5f3dd",
+          "settings": {
+            "idle_time": 10,
+            "checkout_url": "https://wbakehouse-app-test-5.myshopify.com/checkout",
+            "show_message": true,
+            "message_text": "Refreshing checkout in",
+            "font_size": 14,
+            "timer_font_size": 20,
+            "background_color": "#000000",
+            "text_color": "#ffffff",
+            "border_radius": 8,
+            "position_bottom": 20,
+            "position_right": 20
+          },
+          "blocks": {}
+        },
         "ai_gen_block_69770ee_AiBwe8": {
           "type": "ai_gen_block_69770ee",
           "disabled": true,
@@ -31,6 +48,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_cb5f3dd_WcahhW",
         "ai_gen_block_69770ee_AiBwe8"
       ],
       "disabled": true,
