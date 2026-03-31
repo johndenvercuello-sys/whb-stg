@@ -1,0 +1,140 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "settings": {}
+    },
+    "collection_list_bieJzE": {
+      "type": "collection-list",
+      "name": "Collection list",
+      "settings": {
+        "heading": "Event Inquiry Form",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "Fill out form below we'll get back to you soon",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--primary",
+        "header_alignment": "center",
+        "color_scheme": "",
+        "container": "container-fluid",
+        "layout": "grid",
+        "expanded": true,
+        "card_style": "standard",
+        "text_alignment": "left",
+        "hover_effect": "scaling-down",
+        "show_product_count": true,
+        "count_inline_title": true,
+        "image_rounded": false,
+        "items_per_row": 4,
+        "item_gap": 30,
+        "enable_slider": false,
+        "show_pagination": false,
+        "show_navigation": false,
+        "autorotate": false,
+        "autorotate_speed": 5,
+        "mobile_disable_slider": false,
+        "use_scroll_mobile": true,
+        "mobile_gap": 10,
+        "hidden_slide_control_mobile": false,
+        "padding_top": 50,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "1770308682b3896be0": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f131755_jR3CkY": {
+          "type": "ai_gen_block_f131755",
+          "settings": {
+            "heading": "",
+            "subheading": "",
+            "success_message": "Thank you for your inquiry! We'll contact you shortly to discuss your event.",
+            "desktop_width_percent": 80,
+            "text_alignment": "center",
+            "padding": 40,
+            "border_radius": 0,
+            "background_color": "#ffffff",
+            "heading_color": "#222222",
+            "subheading_color": "#666666",
+            "label_color": "#222222",
+            "heading_size": 40,
+            "subheading_size": 16,
+            "input_background": "#f2f2f2",
+            "input_text_color": "#000000",
+            "input_border_color": "#eeeeee",
+            "input_focus_border_color": "#000000",
+            "input_border_width": 1,
+            "input_border_radius": 5,
+            "button_text": "Submit Inquiry",
+            "button_full_width": false,
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_background": "#222222",
+            "button_hover_text_color": "#ffffff",
+            "button_font_size": 16,
+            "button_border_width": 1,
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f131755_jR3CkY"
+      ],
+      "settings": {}
+    },
+    "image_with_text_rTfdJ4": {
+      "type": "image-with-text",
+      "name": "Image with text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container",
+        "color_scheme": "",
+        "item_gap": 100,
+        "item_gap_mobile": 30,
+        "layout": "left",
+        "image_column_size": "6",
+        "image_overlap": false,
+        "show_image_reverse": false,
+        "hover_effect": false,
+        "image_animation": "none",
+        "link": "",
+        "link_2": "",
+        "second_image_offset_top": 10,
+        "title": "Image with text",
+        "sub_title": "",
+        "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "Shop Collection",
+        "button_link": "",
+        "button_style": "m-button--link",
+        "button_size": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collection_list_bieJzE",
+    "1770308682b3896be0",
+    "image_with_text_rTfdJ4"
+  ]
+}
