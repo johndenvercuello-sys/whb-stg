@@ -138,7 +138,7 @@
       "type": "custom-liquid",
       "name": "Custom liquid",
       "settings": {
-        "custom_liquid": "<embed type=\"text/html\" src=\"https://wbakehouse-app-test-5.myshopify.com/checkout\"  width=\"1300\" height=\"800\">",
+        "custom_liquid": "<embed type=\"text/html\" src=\"https://wbakehouse-app-test-5.myshopify.com/checkout\"  class=\"checkoutprev\">",
         "custom_class": ""
       }
     }
