@@ -1,6 +1,283 @@
+{% doc %}
+  @prompt
+    refresh https://wbakehouse-app-test-5.myshopify.com/checkout if idle for 10 seconds
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-checkout-refresh-{{ ai_gen_id }} {
+    display: block;
+    position: fixed;
+    bottom: {{ block.settings.position_bottom }}px;
+    right: {{ block.settings.position_right }}px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-checkout-refresh-{{ ai_gen_id }}.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ai-checkout-refresh__message-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    padding: 16px 20px;
+    border-radius: {{ block.settings.border_radius }}px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: {{ block.settings.font_size }}px;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .ai-checkout-refresh__timer-{{ ai_gen_id }} {
+    font-weight: 600;
+    margin-top: 8px;
+    font-size: {{ block.settings.timer_font_size }}px;
+  }
+{% endstyle %}
+
+<checkout-refresh-{{ ai_gen_id }}
+  class="ai-checkout-refresh-{{ ai_gen_id }}"
+  data-idle-time="{{ block.settings.idle_time }}"
+  data-checkout-url="{{ block.settings.checkout_url }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.show_message %}
+    <div class="ai-checkout-refresh__message-{{ ai_gen_id }}">
+      <div>{{ block.settings.message_text }}</div>
+      <div class="ai-checkout-refresh__timer-{{ ai_gen_id }}">
+        <span class="ai-checkout-refresh__countdown-{{ ai_gen_id }}">{{ block.settings.idle_time }}</span>s
+      </div>
+    </div>
+  {% endif %}
+</checkout-refresh-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CheckoutRefresh{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.idleTime = parseInt(this.dataset.idleTime) * 1000;
+        this.checkoutUrl = this.dataset.checkoutUrl;
+        this.idleTimer = null;
+        this.countdownTimer = null;
+        this.countdownElement = this.querySelector('.ai-checkout-refresh__countdown-{{ ai_gen_id }}');
+        this.remainingSeconds = parseInt(this.dataset.idleTime);
+      }
+
+      connectedCallback() {
+        this.resetIdleTimer();
+        this.setupEventListeners();
+      }
+
+      disconnectedCallback() {
+        this.clearTimers();
+        this.removeEventListeners();
+      }
+
+      setupEventListeners() {
+        this.events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+        this.handleActivity = this.handleActivity.bind(this);
+        
+        this.events.forEach(event => {
+          document.addEventListener(event, this.handleActivity, true);
+        });
+      }
+
+      removeEventListeners() {
+        this.events.forEach(event => {
+          document.removeEventListener(event, this.handleActivity, true);
+        });
+      }
+
+      handleActivity() {
+        this.resetIdleTimer();
+        this.hideMessage();
+      }
+
+      resetIdleTimer() {
+        this.clearTimers();
+        this.remainingSeconds = parseInt(this.dataset.idleTime);
+        
+        if (this.countdownElement) {
+          this.countdownElement.textContent = this.remainingSeconds;
+        }
+
+        this.idleTimer = setTimeout(() => {
+          this.startCountdown();
+        }, this.idleTime);
+      }
+
+      startCountdown() {
+        this.showMessage();
+        
+        this.countdownTimer = setInterval(() => {
+          this.remainingSeconds--;
+          
+          if (this.countdownElement) {
+            this.countdownElement.textContent = this.remainingSeconds;
+          }
+
+          if (this.remainingSeconds <= 0) {
+            this.refreshCheckout();
+          }
+        }, 1000);
+      }
+
+      refreshCheckout() {
+        this.clearTimers();
+        if (this.checkoutUrl) {
+          window.location.href = this.checkoutUrl;
+        } else {
+          window.location.reload();
+        }
+      }
+
+      showMessage() {
+        this.classList.add('visible');
+      }
+
+      hideMessage() {
+        this.classList.remove('visible');
+      }
+
+      clearTimers() {
+        if (this.idleTimer) {
+          clearTimeout(this.idleTimer);
+          this.idleTimer = null;
+        }
+        if (this.countdownTimer) {
+          clearInterval(this.countdownTimer);
+          this.countdownTimer = null;
+        }
+      }
+    }
+
+    customElements.define('checkout-refresh-{{ ai_gen_id }}', CheckoutRefresh{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Checkout refresh",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Refresh settings"
+    },
+    {
+      "type": "range",
+      "id": "idle_time",
+      "label": "Idle time",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "checkout_url",
+      "label": "Checkout URL",
+      "default": "https://wbakehouse-app-test-5.myshopify.com/checkout"
+    },
+    {
+      "type": "header",
+      "content": "Message"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_message",
+      "label": "Show countdown message",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "message_text",
+      "label": "Message text",
+      "default": "Refreshing checkout in"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "timer_font_size",
+      "label": "Timer font size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Position"
+    },
+    {
+      "type": "range",
+      "id": "position_bottom",
+      "label": "Bottom",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "position_right",
+      "label": "Right",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Checkout refresh"
+    }
+  ]
+}
 {% endschema %}
