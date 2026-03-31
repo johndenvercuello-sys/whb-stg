@@ -1,6 +1,264 @@
+{% doc %}
+  @prompt
+    refresh checkout page if idle for 10 seconds
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-checkout-refresh-{{ ai_gen_id }} {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-checkout-refresh-{{ ai_gen_id }}.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ai-checkout-refresh-notification-{{ ai_gen_id }} {
+    background-color: {{ block.settings.notification_bg_color }};
+    color: {{ block.settings.notification_text_color }};
+    padding: 16px 20px;
+    border-radius: {{ block.settings.border_radius }}px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: {{ block.settings.font_size }}px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 320px;
+  }
+
+  .ai-checkout-refresh-icon-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .ai-checkout-refresh-message-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-checkout-refresh-countdown-{{ ai_gen_id }} {
+    font-weight: 600;
+    color: {{ block.settings.countdown_color }};
+  }
+{% endstyle %}
+
+<checkout-auto-refresh-{{ ai_gen_id }}
+  class="ai-checkout-refresh-{{ ai_gen_id }}"
+  data-idle-time="{{ block.settings.idle_time }}"
+  data-show-notification="{{ block.settings.show_notification }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.show_notification %}
+    <div class="ai-checkout-refresh-notification-{{ ai_gen_id }}">
+      <div class="ai-checkout-refresh-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
+      </div>
+      <div class="ai-checkout-refresh-message-{{ ai_gen_id }}">
+        {{ block.settings.notification_message }}
+        <span class="ai-checkout-refresh-countdown-{{ ai_gen_id }}"></span>
+      </div>
+    </div>
+  {% endif %}
+</checkout-auto-refresh-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CheckoutAutoRefresh{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.idleTime = parseInt(this.dataset.idleTime) * 1000;
+        this.showNotification = this.dataset.showNotification === 'true';
+        this.idleTimer = null;
+        this.countdownTimer = null;
+        this.countdownSeconds = 5;
+        this.notificationElement = this.querySelector('.ai-checkout-refresh-notification-{{ ai_gen_id }}');
+        this.countdownElement = this.querySelector('.ai-checkout-refresh-countdown-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        this.resetIdleTimer();
+        this.setupEventListeners();
+      }
+
+      disconnectedCallback() {
+        this.clearTimers();
+        this.removeEventListeners();
+      }
+
+      setupEventListeners() {
+        this.events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+        this.handleActivity = this.handleActivity.bind(this);
+        
+        this.events.forEach(event => {
+          document.addEventListener(event, this.handleActivity, true);
+        });
+      }
+
+      removeEventListeners() {
+        this.events.forEach(event => {
+          document.removeEventListener(event, this.handleActivity, true);
+        });
+      }
+
+      handleActivity() {
+        this.resetIdleTimer();
+        this.hideNotification();
+      }
+
+      resetIdleTimer() {
+        this.clearTimers();
+        
+        this.idleTimer = setTimeout(() => {
+          this.onIdle();
+        }, this.idleTime);
+      }
+
+      onIdle() {
+        if (this.showNotification) {
+          this.showCountdown();
+        } else {
+          this.refreshPage();
+        }
+      }
+
+      showCountdown() {
+        this.countdownSeconds = 5;
+        this.classList.add('visible');
+        this.updateCountdown();
+        
+        this.countdownTimer = setInterval(() => {
+          this.countdownSeconds--;
+          
+          if (this.countdownSeconds <= 0) {
+            this.refreshPage();
+          } else {
+            this.updateCountdown();
+          }
+        }, 1000);
+      }
+
+      updateCountdown() {
+        if (this.countdownElement) {
+          this.countdownElement.textContent = this.countdownSeconds + 's';
+        }
+      }
+
+      hideNotification() {
+        this.classList.remove('visible');
+        if (this.countdownTimer) {
+          clearInterval(this.countdownTimer);
+          this.countdownTimer = null;
+        }
+      }
+
+      refreshPage() {
+        window.location.reload();
+      }
+
+      clearTimers() {
+        if (this.idleTimer) {
+          clearTimeout(this.idleTimer);
+          this.idleTimer = null;
+        }
+        if (this.countdownTimer) {
+          clearInterval(this.countdownTimer);
+          this.countdownTimer = null;
+        }
+      }
+    }
+
+    customElements.define('checkout-auto-refresh-{{ ai_gen_id }}', CheckoutAutoRefresh{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Checkout auto refresh",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Idle settings"
+    },
+    {
+      "type": "range",
+      "id": "idle_time",
+      "label": "Idle time",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "show_notification",
+      "label": "Show countdown notification",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Notification"
+    },
+    {
+      "type": "text",
+      "id": "notification_message",
+      "label": "Message",
+      "default": "Refreshing page in"
+    },
+    {
+      "type": "color",
+      "id": "notification_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "notification_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Checkout auto refresh"
+    }
+  ]
+}
 {% endschema %}
