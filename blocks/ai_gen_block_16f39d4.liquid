@@ -226,7 +226,7 @@
 <cart-table-{{ ai_gen_id }}
   class="ai-cart-table-{{ ai_gen_id }}"
   {{ block.shopify_attributes }}
-  data-one-hour="{{ block.settings.auto_remove_hours | times: 36000 }}"
+  data-one-hour="{{ block.settings.auto_remove_hours | times: 3600 }}"
 >
   {% if cart.item_count > 0 %}
     <div class="ai-cart-table__wrapper-{{ ai_gen_id }}">
@@ -344,7 +344,7 @@
     class CartTable{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.oneHourInSeconds = parseInt(this.dataset.oneHour) || 36000;
+        this.oneHourInSeconds = parseInt(this.dataset.oneHour) || 3600;
         this.checkInterval = null;
       }
 
