@@ -32,9 +32,9 @@
       </div>
 
       <div class="m-cart-item__info">
-        <a class="m-cart-item__title" href="{{ item.url }}" data-role="product-title">
+        
           {{ item.product.title }}
-        </a>
+        
         {%- liquid
           assign variant_options = 'template ' | split: ' '
           if item.product.has_only_default_variant != true
