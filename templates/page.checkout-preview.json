@@ -11,10 +11,12 @@
   "sections": {
     "main": {
       "type": "page",
+      "disabled": true,
       "settings": {}
     },
     "collection_list_bieJzE": {
       "type": "collection-list",
+      "disabled": true,
       "name": "Collection list",
       "settings": {
         "heading": "Event Inquiry Form",
@@ -93,10 +95,12 @@
       "block_order": [
         "ai_gen_block_f131755_jR3CkY"
       ],
+      "disabled": true,
       "settings": {}
     },
     "image_with_text_rTfdJ4": {
       "type": "image-with-text",
+      "disabled": true,
       "name": "Image with text",
       "settings": {
         "heading": "",
@@ -129,12 +133,21 @@
         "custom_class": "",
         "animations": "inherit"
       }
+    },
+    "custom_liquid_neqVAW": {
+      "type": "custom-liquid",
+      "name": "Custom liquid",
+      "settings": {
+        "custom_liquid": "<embed type=\"text/html\" src=\"https://wbakehouse-app-test-5.myshopify.com/checkout\"  width=\"1300\" height=\"800\">",
+        "custom_class": ""
+      }
     }
   },
   "order": [
     "main",
     "collection_list_bieJzE",
     "1770308682b3896be0",
-    "image_with_text_rTfdJ4"
+    "image_with_text_rTfdJ4",
+    "custom_liquid_neqVAW"
   ]
 }
