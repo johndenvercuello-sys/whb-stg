@@ -16,6 +16,7 @@
       "blocks": {
         "ai_gen_block_69770ee_AiBwe8": {
           "type": "ai_gen_block_69770ee",
+          "disabled": true,
           "settings": {
             "idle_time": 10,
             "show_notification": true,
@@ -32,6 +33,7 @@
       "block_order": [
         "ai_gen_block_69770ee_AiBwe8"
       ],
+      "disabled": true,
       "name": "Checkout auto refresh",
       "settings": {}
     },
