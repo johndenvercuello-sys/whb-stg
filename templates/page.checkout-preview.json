@@ -17,27 +17,26 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_1bbc16c_kan8nT": {
-          "type": "ai_gen_block_1bbc16c",
-          "disabled": true,
+        "ai_gen_block_6b5d4ac_Upf6gQ": {
+          "type": "ai_gen_block_6b5d4ac",
           "settings": {
+            "enable_redirect": false,
+            "countdown_seconds": 10,
             "heading": "Your cart is empty",
-            "message": "Looks like you haven't added anything to your cart yet.",
-            "button_text": "Continue shopping",
-            "redirect_seconds": 30,
-            "countdown_text": "Redirecting in",
+            "message": "Looks like you haven't added anything to your cart yet. Let's find something special for you!",
+            "countdown_text": "Redirecting to home page in",
             "countdown_suffix": "seconds",
+            "button_text": "Continue shopping",
             "desktop_width_percent": 100,
-            "background_color": "#f5f5f5",
-            "text_color": "#222222",
-            "border_radius": 8,
-            "icon_size": 80,
+            "background_color": "#f9f4ef",
+            "text_color": "#000000",
             "icon_color": "#666666",
+            "countdown_color": "#c96e15",
+            "border_radius": 8,
             "heading_size": 32,
             "message_size": 16,
             "countdown_size": 18,
-            "countdown_color": "#000000",
-            "button_size": 16,
+            "icon_size": 80,
             "button_color": "#000000",
             "button_text_color": "#ffffff",
             "button_hover_color": "#222222",
@@ -63,7 +62,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_1bbc16c_kan8nT",
+        "ai_gen_block_6b5d4ac_Upf6gQ",
         "ai_gen_block_57e2af6_gaNWba"
       ],
       "name": "Checkout auto refresh",
