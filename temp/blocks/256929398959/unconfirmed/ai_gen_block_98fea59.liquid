@@ -1,6 +1,309 @@
+{% doc %}
+  @prompt
+    check if cart count is 0 show prompt a message and redirect to home page in 10 seconds, repeat this with interval of 10 seconds if cart count is 1 or higher and hide this block,  add a schema, add auto redirect on off control on schema, add section height 100vh on schema, add custom css schema, add section z-index, position style on schema
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-guard-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: {{ block.settings.section_height }}vh;
+    position: {{ block.settings.position }};
+    z-index: {{ block.settings.z_index }};
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .ai-cart-guard-{{ ai_gen_id }}.ai-cart-guard-hidden-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-cart-guard-message-{{ ai_gen_id }} {
+    font-size: {{ block.settings.message_font_size }}px;
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+
+  .ai-cart-guard-countdown-{{ ai_gen_id }} {
+    font-size: {{ block.settings.countdown_font_size }}px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .ai-cart-guard-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_font_size }}px;
+    opacity: 0.8;
+  }
+
+  {{ block.settings.custom_css }}
+{% endstyle %}
+
+<cart-guard-{{ ai_gen_id }}
+  class="ai-cart-guard-{{ ai_gen_id }}"
+  data-auto-redirect="{{ block.settings.auto_redirect }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-cart-guard-message-{{ ai_gen_id }}">
+    {{ block.settings.message }}
+  </div>
+  <div class="ai-cart-guard-countdown-{{ ai_gen_id }}">
+    <span class="ai-cart-guard-countdown-value-{{ ai_gen_id }}">10</span>
+  </div>
+  <div class="ai-cart-guard-subtext-{{ ai_gen_id }}">
+    {{ block.settings.subtext }}
+  </div>
+</cart-guard-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartGuard{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.autoRedirect = this.dataset.autoRedirect === 'true';
+        this.countdown = 10;
+        this.intervalId = null;
+        this.checkIntervalId = null;
+      }
+
+      connectedCallback() {
+        this.countdownElement = this.querySelector('.ai-cart-guard-countdown-value-{{ ai_gen_id }}');
+        this.checkCart();
+        this.startCheckInterval();
+      }
+
+      disconnectedCallback() {
+        this.clearIntervals();
+      }
+
+      clearIntervals() {
+        if (this.intervalId) {
+          clearInterval(this.intervalId);
+          this.intervalId = null;
+        }
+        if (this.checkIntervalId) {
+          clearInterval(this.checkIntervalId);
+          this.checkIntervalId = null;
+        }
+      }
+
+      startCheckInterval() {
+        this.checkIntervalId = setInterval(() => {
+          this.checkCart();
+        }, 10000);
+      }
+
+      async checkCart() {
+        try {
+          const response = await fetch('/cart.js');
+          const cart = await response.json();
+          
+          if (cart.item_count === 0) {
+            this.showBlock();
+            if (this.autoRedirect) {
+              this.startCountdown();
+            }
+          } else {
+            this.hideBlock();
+            this.resetCountdown();
+          }
+        } catch (error) {
+          console.error('Error checking cart:', error);
+        }
+      }
+
+      showBlock() {
+        this.classList.remove('ai-cart-guard-hidden-{{ ai_gen_id }}');
+      }
+
+      hideBlock() {
+        this.classList.add('ai-cart-guard-hidden-{{ ai_gen_id }}');
+      }
+
+      startCountdown() {
+        if (this.intervalId) return;
+
+        this.intervalId = setInterval(() => {
+          this.countdown--;
+          if (this.countdownElement) {
+            this.countdownElement.textContent = this.countdown;
+          }
+
+          if (this.countdown <= 0) {
+            this.redirect();
+          }
+        }, 1000);
+      }
+
+      resetCountdown() {
+        if (this.intervalId) {
+          clearInterval(this.intervalId);
+          this.intervalId = null;
+        }
+        this.countdown = 10;
+        if (this.countdownElement) {
+          this.countdownElement.textContent = this.countdown;
+        }
+      }
+
+      redirect() {
+        this.clearIntervals();
+        window.location.href = '/';
+      }
+    }
+
+    customElements.define('cart-guard-{{ ai_gen_id }}', CartGuard{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart guard",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "message",
+      "label": "Message",
+      "default": "<p>Your cart is empty. You will be redirected to the home page.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>Redirecting in seconds...</p>"
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_redirect",
+      "label": "Enable auto redirect",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section height",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "static",
+          "label": "Static"
+        },
+        {
+          "value": "relative",
+          "label": "Relative"
+        },
+        {
+          "value": "absolute",
+          "label": "Absolute"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky"
+        }
+      ],
+      "default": "relative"
+    },
+    {
+      "type": "range",
+      "id": "z_index",
+      "label": "Z-index",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "message_font_size",
+      "label": "Message font size",
+      "min": 14,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "countdown_font_size",
+      "label": "Countdown font size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size",
+      "label": "Subtext font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Custom CSS"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart guard"
+    }
+  ],
+  "tag": null
+}
 {% endschema %}
