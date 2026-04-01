@@ -22,10 +22,10 @@
           "settings": {
             "message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
             "subtext": "<p>Redirecting in seconds...</p>",
-            "auto_redirect": false,
+            "auto_redirect": true,
             "section_height": 100,
-            "position": "relative",
-            "z_index": 1,
+            "position": "absolute",
+            "z_index": 3,
             "background_color": "#ffffff",
             "text_color": "#000000",
             "message_font_size": 24,
