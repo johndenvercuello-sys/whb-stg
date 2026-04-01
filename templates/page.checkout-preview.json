@@ -17,6 +17,30 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_41cf512_dUMpGJ": {
+          "type": "ai_gen_block_41cf512",
+          "settings": {
+            "button_text": "refresh-notification",
+            "show_delay": 10,
+            "idle_timeout": 10,
+            "auto_redirect": false,
+            "section_height": 100,
+            "section_position": "relative",
+            "section_z_index": 10,
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_bg_color": "#222222",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#222222",
+            "button_font_size": 16,
+            "button_font_weight": "500",
+            "button_border_width": 1,
+            "button_border_radius": 4,
+            "custom_css": ""
+          },
+          "blocks": {}
+        },
         "ai_gen_block_98fea59_ttC6GN": {
           "type": "ai_gen_block_98fea59",
           "settings": {
@@ -35,9 +59,24 @@
           },
           "blocks": {}
         },
+        "ai_gen_block_649341b_7dtgLc": {
+          "type": "ai_gen_block_649341b",
+          "disabled": true,
+          "settings": {
+            "enable_cart_check": false,
+            "section_height": 100,
+            "empty_cart_message": "<p>Your cart is empty. Please add items before proceeding to checkout.</p>",
+            "message_font_size": 18,
+            "countdown_font_size": 16,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "countdown_color": "#d82c0d",
+            "custom_css": "{position:absolute;}"
+          },
+          "blocks": {}
+        },
         "ai_gen_block_57e2af6_gaNWba": {
           "type": "ai_gen_block_57e2af6",
-          "disabled": true,
           "settings": {
             "button_text": "Reload this page to see the latest order summary.",
             "button_color": "#000000",
@@ -54,7 +93,9 @@
         }
       },
       "block_order": [
+        "ai_gen_block_41cf512_dUMpGJ",
         "ai_gen_block_98fea59_ttC6GN",
+        "ai_gen_block_649341b_7dtgLc",
         "ai_gen_block_57e2af6_gaNWba"
       ],
       "name": "Checkout auto refresh",
