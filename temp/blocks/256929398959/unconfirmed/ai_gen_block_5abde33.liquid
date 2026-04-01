@@ -1,6 +1,269 @@
+{% doc %}
+  @prompt
+    check if cart count is 0 unload embed and prompt a message and redirect to home page in 10 seconds repeat this with interval of 10 seconds if cart count is not 0,  add a schema, add auto redirect on off control on schema, add section height 100vh on schema, add custom css schema, add section z-index, position style on schema
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-guard-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: {{ block.settings.section_height }}vh;
+    position: {{ block.settings.section_position }};
+    z-index: {{ block.settings.section_z_index }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-cart-guard-content-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+  }
+
+  .ai-cart-guard-message-{{ ai_gen_id }} {
+    font-size: {{ block.settings.message_font_size }}px;
+    margin-bottom: 20px;
+  }
+
+  .ai-cart-guard-countdown-{{ ai_gen_id }} {
+    font-size: {{ block.settings.countdown_font_size }}px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  {{ block.settings.custom_css }}
+{% endstyle %}
+
+<cart-guard-{{ ai_gen_id }}
+  class="ai-cart-guard-{{ ai_gen_id }}"
+  data-auto-redirect="{{ block.settings.auto_redirect }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-cart-guard-content-{{ ai_gen_id }}">
+    <div class="ai-cart-guard-message-{{ ai_gen_id }}">
+      {{ block.settings.empty_cart_message }}
+    </div>
+    <div class="ai-cart-guard-countdown-{{ ai_gen_id }}">
+      <span class="ai-cart-guard-countdown-text-{{ ai_gen_id }}"></span>
+    </div>
+  </div>
+</cart-guard-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartGuard{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.autoRedirect = this.dataset.autoRedirect === 'true';
+        this.checkInterval = null;
+        this.redirectCountdown = null;
+        this.secondsRemaining = 10;
+        this.countdownElement = this.querySelector('.ai-cart-guard-countdown-text-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        this.checkCartAndRedirect();
+        this.checkInterval = setInterval(() => {
+          this.checkCartAndRedirect();
+        }, 10000);
+      }
+
+      disconnectedCallback() {
+        if (this.checkInterval) {
+          clearInterval(this.checkInterval);
+        }
+        if (this.redirectCountdown) {
+          clearInterval(this.redirectCountdown);
+        }
+      }
+
+      async checkCartAndRedirect() {
+        try {
+          const response = await fetch('/cart.js');
+          const cart = await response.json();
+          
+          if (cart.item_count === 0) {
+            if (this.autoRedirect) {
+              this.startRedirectCountdown();
+            } else {
+              this.countdownElement.textContent = '';
+            }
+          } else {
+            if (this.redirectCountdown) {
+              clearInterval(this.redirectCountdown);
+              this.redirectCountdown = null;
+            }
+            this.secondsRemaining = 10;
+            this.countdownElement.textContent = '';
+          }
+        } catch (error) {
+          console.error('Error checking cart:', error);
+        }
+      }
+
+      startRedirectCountdown() {
+        if (this.redirectCountdown) {
+          return;
+        }
+
+        this.secondsRemaining = 10;
+        this.updateCountdownDisplay();
+
+        this.redirectCountdown = setInterval(() => {
+          this.secondsRemaining--;
+          
+          if (this.secondsRemaining <= 0) {
+            clearInterval(this.redirectCountdown);
+            window.location.href = '/';
+          } else {
+            this.updateCountdownDisplay();
+          }
+        }, 1000);
+      }
+
+      updateCountdownDisplay() {
+        this.countdownElement.textContent = `Redirecting to home page in ${this.secondsRemaining} second${this.secondsRemaining !== 1 ? 's' : ''}...`;
+      }
+    }
+
+    customElements.define('cart-guard-{{ ai_gen_id }}', CartGuard{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart guard redirect",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Functionality"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_redirect",
+      "label": "Enable auto redirect",
+      "default": true,
+      "info": "Automatically redirect to home page when cart is empty"
+    },
+    {
+      "type": "header",
+      "content": "Message"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_cart_message",
+      "label": "Empty cart message",
+      "default": "<p>Your cart is empty. You will be redirected to the home page.</p>"
+    },
+    {
+      "type": "range",
+      "id": "message_font_size",
+      "label": "Message font size",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "countdown_font_size",
+      "label": "Countdown font size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section height",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "section_position",
+      "label": "Section position",
+      "options": [
+        {
+          "value": "static",
+          "label": "Static"
+        },
+        {
+          "value": "relative",
+          "label": "Relative"
+        },
+        {
+          "value": "absolute",
+          "label": "Absolute"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky"
+        }
+      ],
+      "default": "relative"
+    },
+    {
+      "type": "range",
+      "id": "section_z_index",
+      "label": "Section z-index",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Custom CSS"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Add custom CSS styles for advanced customization"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart guard redirect"
+    }
+  ]
+}
 {% endschema %}
