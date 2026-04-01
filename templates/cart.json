@@ -83,7 +83,7 @@
             "desktop_width_percent": 100,
             "padding": 30,
             "border_radius": 8,
-            "show_countdown": false,
+            "show_countdown": true,
             "countdown_duration": 10,
             "background_color": "#ffffff",
             "text_color": "#222222",
