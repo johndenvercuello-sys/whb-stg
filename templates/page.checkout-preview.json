@@ -17,10 +17,26 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_5abde33_rAzLmQ": {
+          "type": "ai_gen_block_5abde33",
+          "settings": {
+            "auto_redirect": false,
+            "empty_cart_message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
+            "message_font_size": 18,
+            "countdown_font_size": 16,
+            "section_height": 100,
+            "section_position": "absolute",
+            "section_z_index": 23,
+            "background_color": "#ffffff",
+            "text_color": "#222222",
+            "custom_css": ""
+          },
+          "blocks": {}
+        },
         "ai_gen_block_649341b_7dtgLc": {
           "type": "ai_gen_block_649341b",
           "settings": {
-            "enable_cart_check": true,
+            "enable_cart_check": false,
             "section_height": 100,
             "empty_cart_message": "<p>Your cart is empty. Please add items before proceeding to checkout.</p>",
             "message_font_size": 18,
@@ -28,34 +44,7 @@
             "background_color": "#ffffff",
             "text_color": "#000000",
             "countdown_color": "#d82c0d",
-            "custom_css": ""
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_6b5d4ac_Upf6gQ": {
-          "type": "ai_gen_block_6b5d4ac",
-          "settings": {
-            "enable_redirect": false,
-            "countdown_seconds": 10,
-            "heading": "Your cart is empty",
-            "message": "Looks like you haven't added anything to your cart yet. Let's find something special for you!",
-            "countdown_text": "Redirecting to home page in",
-            "countdown_suffix": "seconds",
-            "button_text": "Continue shopping",
-            "desktop_width_percent": 100,
-            "background_color": "#f9f4ef",
-            "text_color": "#000000",
-            "icon_color": "#666666",
-            "countdown_color": "#c96e15",
-            "border_radius": 8,
-            "heading_size": 32,
-            "message_size": 16,
-            "countdown_size": 18,
-            "icon_size": 80,
-            "button_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_hover_color": "#222222",
-            "button_border_radius": 4
+            "custom_css": "{position:absolute;}"
           },
           "blocks": {}
         },
@@ -77,8 +66,8 @@
         }
       },
       "block_order": [
+        "ai_gen_block_5abde33_rAzLmQ",
         "ai_gen_block_649341b_7dtgLc",
-        "ai_gen_block_6b5d4ac_Upf6gQ",
         "ai_gen_block_57e2af6_gaNWba"
       ],
       "name": "Checkout auto refresh",
