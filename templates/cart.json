@@ -82,7 +82,7 @@
           "settings": {
             "desktop_width_percent": 100,
             "show_table_header": true,
-            "show_countdown": false,
+            "show_countdown": true,
             "countdown_minutes": 15,
             "header_bg_color": "#f5f5f5",
             "header_text_color": "#222222",
