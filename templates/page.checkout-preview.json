@@ -17,6 +17,21 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_649341b_7dtgLc": {
+          "type": "ai_gen_block_649341b",
+          "settings": {
+            "enable_cart_check": true,
+            "section_height": 100,
+            "empty_cart_message": "<p>Your cart is empty. Please add items before proceeding to checkout.</p>",
+            "message_font_size": 18,
+            "countdown_font_size": 16,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "countdown_color": "#d82c0d",
+            "custom_css": ""
+          },
+          "blocks": {}
+        },
         "ai_gen_block_6b5d4ac_Upf6gQ": {
           "type": "ai_gen_block_6b5d4ac",
           "settings": {
@@ -62,6 +77,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_649341b_7dtgLc",
         "ai_gen_block_6b5d4ac_Upf6gQ",
         "ai_gen_block_57e2af6_gaNWba"
       ],
