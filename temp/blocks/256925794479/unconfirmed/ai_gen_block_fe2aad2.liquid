@@ -1,6 +1,198 @@
+{% doc %}
+  @prompt
+    add button that wil reload the page after 3 minutes button text is "refresh-notification"
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-refresh-button-container-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-refresh-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 2 }}px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: {{ block.settings.font_size }}px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+
+  .ai-refresh-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-refresh-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .ai-refresh-button-timer-{{ ai_gen_id }} {
+    font-size: {{ block.settings.font_size | times: 0.9 }}px;
+    opacity: 0.9;
+  }
+{% endstyle %}
+
+<refresh-button-{{ ai_gen_id }}
+  class="ai-refresh-button-container-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <button
+    type="button"
+    class="ai-refresh-button-{{ ai_gen_id }}"
+    data-refresh-button
+  >
+    <span data-button-text>{{ block.settings.button_text }}</span>
+    <span class="ai-refresh-button-timer-{{ ai_gen_id }}" data-timer style="display: none;"></span>
+  </button>
+</refresh-button-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class RefreshButton{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.button = null;
+        this.timerDisplay = null;
+        this.buttonText = null;
+        this.countdownInterval = null;
+        this.remainingSeconds = 0;
+      }
+
+      connectedCallback() {
+        this.button = this.querySelector('[data-refresh-button]');
+        this.timerDisplay = this.querySelector('[data-timer]');
+        this.buttonText = this.querySelector('[data-button-text]');
+
+        if (this.button) {
+          this.button.addEventListener('click', this.handleClick.bind(this));
+        }
+      }
+
+      disconnectedCallback() {
+        if (this.countdownInterval) {
+          clearInterval(this.countdownInterval);
+        }
+      }
+
+      handleClick() {
+        this.button.disabled = true;
+        this.remainingSeconds = 180;
+        
+        this.timerDisplay.style.display = 'inline';
+        this.updateTimerDisplay();
+
+        this.countdownInterval = setInterval(() => {
+          this.remainingSeconds--;
+          
+          if (this.remainingSeconds <= 0) {
+            clearInterval(this.countdownInterval);
+            window.location.reload();
+          } else {
+            this.updateTimerDisplay();
+          }
+        }, 1000);
+      }
+
+      updateTimerDisplay() {
+        const minutes = Math.floor(this.remainingSeconds / 60);
+        const seconds = this.remainingSeconds % 60;
+        const formattedTime = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+        this.timerDisplay.textContent = '(' + formattedTime + ')';
+      }
+    }
+
+    customElements.define('refresh-button-{{ ai_gen_id }}', RefreshButton{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Refresh button",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "refresh-notification"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Background color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Refresh button"
+    }
+  ]
+}
 {% endschema %}
