@@ -170,7 +170,7 @@
         "ai_gen_block_69770ee_BDppVd": {
           "type": "ai_gen_block_69770ee",
           "settings": {
-            "idle_time": 10,
+            "idle_time": 35,
             "show_notification": true,
             "notification_message": "Refreshing page in",
             "notification_bg_color": "#000000",
