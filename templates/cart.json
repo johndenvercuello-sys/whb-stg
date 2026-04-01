@@ -99,7 +99,7 @@
             "show_pickup_day": true,
             "pickup_day_label": "Pickup Day",
             "remove_text": "Remove",
-            "show_countdown": false,
+            "show_countdown": true,
             "countdown_minutes": 15,
             "empty_cart_heading": "Your cart is empty",
             "empty_cart_message": "Add some products to get started!",
