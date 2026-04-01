@@ -1,6 +1,367 @@
+{% doc %}
+  @prompt
+    add reload button page, button text is "refresh-notification" add a condition that it will only show with time delay of 10 to 600 seconds delay with schema, add condition if page is idle for 10 minutes reset session, add a schema, add auto redirect on off control on schema, add section height 100vh on schema, add custom css schema, add section z-index, position style on schema
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-reload-button-container-{{ ai_gen_id }} {
+    display: block;
+    position: {{ block.settings.section_position }};
+    z-index: {{ block.settings.section_z_index }};
+    height: {{ block.settings.section_height }}vh;
+    width: 100%;
+    {{ block.settings.custom_css }}
+  }
+
+  .ai-reload-button-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .ai-reload-button-{{ ai_gen_id }} {
+    padding: 15px 30px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+  }
+
+  .ai-reload-button-{{ ai_gen_id }}.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .ai-reload-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .ai-reload-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+{% endstyle %}
+
+<reload-button-{{ ai_gen_id }}
+  class="ai-reload-button-container-{{ ai_gen_id }}"
+  data-show-delay="{{ block.settings.show_delay }}"
+  data-idle-timeout="{{ block.settings.idle_timeout }}"
+  data-auto-redirect="{{ block.settings.auto_redirect }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-reload-button-wrapper-{{ ai_gen_id }}">
+    <button
+      type="button"
+      class="ai-reload-button-{{ ai_gen_id }}"
+      aria-label="Reload page"
+    >
+      {{ block.settings.button_text }}
+    </button>
+  </div>
+</reload-button-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ReloadButton{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.button = this.querySelector('.ai-reload-button-{{ ai_gen_id }}');
+        this.showDelay = parseInt(this.dataset.showDelay) * 1000;
+        this.idleTimeout = parseInt(this.dataset.idleTimeout) * 60 * 1000;
+        this.autoRedirect = this.dataset.autoRedirect === 'true';
+        this.showTimer = null;
+        this.idleTimer = null;
+        this.lastActivity = Date.now();
+      }
+
+      connectedCallback() {
+        this.setupShowTimer();
+        this.setupIdleDetection();
+        this.setupButtonClick();
+      }
+
+      setupShowTimer() {
+        this.showTimer = setTimeout(() => {
+          this.button.classList.add('visible');
+        }, this.showDelay);
+      }
+
+      setupIdleDetection() {
+        const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+        
+        activityEvents.forEach(event => {
+          document.addEventListener(event, () => {
+            this.lastActivity = Date.now();
+            this.resetIdleTimer();
+          }, true);
+        });
+
+        this.resetIdleTimer();
+      }
+
+      resetIdleTimer() {
+        if (this.idleTimer) {
+          clearTimeout(this.idleTimer);
+        }
+
+        this.idleTimer = setTimeout(() => {
+          this.handleIdleTimeout();
+        }, this.idleTimeout);
+      }
+
+      handleIdleTimeout() {
+        if (this.autoRedirect) {
+          window.location.reload();
+        } else {
+          this.button.classList.remove('visible');
+          if (this.showTimer) {
+            clearTimeout(this.showTimer);
+          }
+          this.setupShowTimer();
+        }
+      }
+
+      setupButtonClick() {
+        this.button.addEventListener('click', () => {
+          this.button.disabled = true;
+          window.location.reload();
+        });
+      }
+
+      disconnectedCallback() {
+        if (this.showTimer) {
+          clearTimeout(this.showTimer);
+        }
+        if (this.idleTimer) {
+          clearTimeout(this.idleTimer);
+        }
+      }
+    }
+
+    customElements.define('reload-button-{{ ai_gen_id }}', ReloadButton{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Reload button",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "refresh-notification"
+    },
+    {
+      "type": "range",
+      "id": "show_delay",
+      "label": "Show delay",
+      "min": 10,
+      "max": 600,
+      "step": 10,
+      "unit": "s",
+      "default": 30,
+      "info": "Time before button appears"
+    },
+    {
+      "type": "header",
+      "content": "Idle detection"
+    },
+    {
+      "type": "range",
+      "id": "idle_timeout",
+      "label": "Idle timeout",
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "unit": "min",
+      "default": 10,
+      "info": "Reset session after this period of inactivity"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_redirect",
+      "label": "Auto redirect on idle",
+      "default": false,
+      "info": "Automatically reload page when idle timeout is reached"
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section height",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "section_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "static",
+          "label": "Static"
+        },
+        {
+          "value": "relative",
+          "label": "Relative"
+        },
+        {
+          "value": "absolute",
+          "label": "Absolute"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky"
+        }
+      ],
+      "default": "relative"
+    },
+    {
+      "type": "range",
+      "id": "section_z_index",
+      "label": "Z-index",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Custom CSS"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Add custom CSS styles for the section container"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reload button"
+    }
+  ]
+}
 {% endschema %}
