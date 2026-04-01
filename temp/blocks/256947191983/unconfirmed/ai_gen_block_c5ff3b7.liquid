@@ -1,6 +1,157 @@
+{% doc %}
+  @prompt
+    Reset Session Expired to 1 to 3 days. when session expired clear cart and force page to reload. add schema
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-session-monitor-{{ ai_gen_id }} {
+    display: none;
+  }
+{% endstyle %}
+
+<session-monitor-{{ ai_gen_id }}
+  class="ai-session-monitor-{{ ai_gen_id }}"
+  data-session-days="{{ block.settings.session_expiry_days }}"
+  {{ block.shopify_attributes }}
+>
+</session-monitor-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SessionMonitor{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.sessionKey = 'ai_session_{{ ai_gen_id }}_last_activity';
+        this.sessionDays = parseInt(this.dataset.sessionDays) || 1;
+        this.checkInterval = 60000;
+      }
+
+      connectedCallback() {
+        this.initSession();
+        this.startMonitoring();
+        this.setupActivityListeners();
+      }
+
+      disconnectedCallback() {
+        if (this.intervalId) {
+          clearInterval(this.intervalId);
+        }
+        this.removeActivityListeners();
+      }
+
+      initSession() {
+        const lastActivity = localStorage.getItem(this.sessionKey);
+        
+        if (!lastActivity) {
+          this.updateLastActivity();
+        } else {
+          this.checkSessionExpiry();
+        }
+      }
+
+      updateLastActivity() {
+        const now = new Date().getTime();
+        localStorage.setItem(this.sessionKey, now.toString());
+      }
+
+      checkSessionExpiry() {
+        const lastActivity = localStorage.getItem(this.sessionKey);
+        
+        if (!lastActivity) {
+          return;
+        }
+
+        const now = new Date().getTime();
+        const lastActivityTime = parseInt(lastActivity);
+        const expiryTime = this.sessionDays * 24 * 60 * 60 * 1000;
+        const timeSinceLastActivity = now - lastActivityTime;
+
+        if (timeSinceLastActivity >= expiryTime) {
+          this.handleSessionExpiry();
+        }
+      }
+
+      handleSessionExpiry() {
+        this.clearCart();
+        localStorage.removeItem(this.sessionKey);
+        
+        setTimeout(function() {
+          window.location.reload();
+        }, 500);
+      }
+
+      clearCart() {
+        fetch('/cart/clear.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).catch(function(error) {
+          console.error('Error clearing cart:', error);
+        });
+      }
+
+      startMonitoring() {
+        const self = this;
+        this.intervalId = setInterval(function() {
+          self.checkSessionExpiry();
+        }, this.checkInterval);
+      }
+
+      setupActivityListeners() {
+        const self = this;
+        this.activityHandler = function() {
+          self.updateLastActivity();
+        };
+
+        document.addEventListener('click', this.activityHandler);
+        document.addEventListener('keypress', this.activityHandler);
+        document.addEventListener('scroll', this.activityHandler);
+        document.addEventListener('mousemove', this.activityHandler);
+      }
+
+      removeActivityListeners() {
+        if (this.activityHandler) {
+          document.removeEventListener('click', this.activityHandler);
+          document.removeEventListener('keypress', this.activityHandler);
+          document.removeEventListener('scroll', this.activityHandler);
+          document.removeEventListener('mousemove', this.activityHandler);
+        }
+      }
+    }
+
+    customElements.define('session-monitor-{{ ai_gen_id }}', SessionMonitor{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Session expiry monitor",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Session settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "This block monitors user activity and expires the session after a set number of days. When the session expires, the cart is cleared and the page reloads."
+    },
+    {
+      "type": "range",
+      "id": "session_expiry_days",
+      "label": "Session expiry",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "unit": "d",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Session expiry monitor"
+    }
+  ]
+}
 {% endschema %}
