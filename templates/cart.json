@@ -77,6 +77,42 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_8cc910d_xhg7TR": {
+          "type": "ai_gen_block_8cc910d",
+          "settings": {
+            "desktop_width_percent": 100,
+            "padding": 20,
+            "border_radius": 8,
+            "show_table_header": true,
+            "show_countdown": false,
+            "countdown_minutes": 30,
+            "background_color": "#ffffff",
+            "text_color": "#222222",
+            "subtext_color": "#666666",
+            "border_color": "#eeeeee",
+            "link_hover_color": "#000000",
+            "countdown_color": "#da3f3f",
+            "remove_color": "#da3f3f",
+            "remove_hover_color": "#b83232",
+            "header_bg_color": "#f5f5f5",
+            "header_text_color": "#222222",
+            "header_font_size": 14,
+            "clear_btn_bg": "#f5f5f5",
+            "clear_btn_text": "#222222",
+            "clear_btn_hover_bg": "#e0e0e0",
+            "clear_btn_hover_text": "#222222",
+            "shop_btn_bg": "#000000",
+            "shop_btn_text": "#ffffff",
+            "shop_btn_hover_bg": "#222222",
+            "shop_btn_hover_text": "#ffffff",
+            "checkout_btn_bg": "#000000",
+            "checkout_btn_text": "#ffffff",
+            "checkout_btn_hover_bg": "#222222",
+            "checkout_btn_hover_text": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        },
         "ai_gen_block_f7645f2_QRtXmT": {
           "type": "ai_gen_block_f7645f2",
           "settings": {
@@ -375,6 +411,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_8cc910d_xhg7TR",
         "ai_gen_block_f7645f2_QRtXmT",
         "ai_gen_block_59ce453_LPNbkK",
         "ai_gen_block_bc0fb5f_q66YDh",
