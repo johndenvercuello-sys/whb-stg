@@ -141,8 +141,8 @@
           "type": "ai_gen_block_57e2af6",
           "settings": {
             "button_text": "Reload this page to see the latest order summary.",
-            "button_color": "#e84e4e",
-            "button_hover_color": "#000000",
+            "button_color": "#000000",
+            "button_hover_color": "#3a8735",
             "button_text_color": "#ffffff",
             "font_size": 16,
             "button_padding": 16,
