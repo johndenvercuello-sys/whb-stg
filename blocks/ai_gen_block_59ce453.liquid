@@ -561,7 +561,10 @@
             quantity: 0
           })
         })
-        
+        .then(response => response.json())
+        .then(() => {
+          window.location.reload();
+        })
         .catch(error => {
           console.error('Error removing item:', error);
         });
