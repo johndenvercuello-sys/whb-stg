@@ -134,6 +134,33 @@
         "animations": "inherit"
       }
     },
+    "rich_text_9wtwnx": {
+      "type": "rich-text",
+      "blocks": {
+        "button_PqYMrY": {
+          "type": "button",
+          "settings": {
+            "button_label": "Reload this page to see the latest order summary.",
+            "button_link": "shopify://pages/checkout",
+            "button_style": "m-button--link",
+            "button_size": ""
+          }
+        }
+      },
+      "block_order": [
+        "button_PqYMrY"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "container": "container",
+        "color_scheme": "badge-sale",
+        "content_alignment": "center",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
     "custom_liquid_neqVAW": {
       "type": "custom-liquid",
       "name": "Custom liquid",
@@ -166,27 +193,11 @@
             "countdown_size": 20
           },
           "blocks": {}
-        },
-        "ai_gen_block_69770ee_BDppVd": {
-          "type": "ai_gen_block_69770ee",
-          "settings": {
-            "idle_time": 35,
-            "show_notification": true,
-            "notification_message": "Refreshing page in",
-            "notification_bg_color": "#000000",
-            "notification_text_color": "#ffffff",
-            "countdown_color": "#ffffff",
-            "font_size": 14,
-            "border_radius": 8
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_0c5cf4a_UrYhhQ",
-        "ai_gen_block_69770ee_BDppVd"
+        "ai_gen_block_0c5cf4a_UrYhhQ"
       ],
-      "disabled": true,
       "name": "Checkout auto refresh",
       "settings": {}
     }
@@ -196,6 +207,7 @@
     "collection_list_bieJzE",
     "1770308682b3896be0",
     "image_with_text_rTfdJ4",
+    "rich_text_9wtwnx",
     "custom_liquid_neqVAW",
     "blocks_DfqHA8"
   ]
