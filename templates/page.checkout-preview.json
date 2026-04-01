@@ -21,12 +21,12 @@
           "type": "ai_gen_block_41cf512",
           "disabled": true,
           "settings": {
-            "button_text": "refresh-notification",
+            "button_text": "Reload this page to see the latest order summary.",
             "show_delay": 10,
             "idle_timeout": 10,
             "auto_redirect": false,
-            "section_height": 100,
-            "section_position": "absolute",
+            "section_height": 10,
+            "section_position": "fixed",
             "section_z_index": 10,
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff",
@@ -41,8 +41,21 @@
             "custom_css": ""
           },
           "blocks": {}
-        },
-        "ai_gen_block_98fea59_ttC6GN": {
+        }
+      },
+      "block_order": [
+        "ai_gen_block_41cf512_dUMpGJ"
+      ],
+      "custom_css": [
+        "this {background-color: #000;}"
+      ],
+      "name": "Checkout auto refresh",
+      "settings": {}
+    },
+    "blocks_P63CEq": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_98fea59_4GMbr3": {
           "type": "ai_gen_block_98fea59",
           "settings": {
             "message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
@@ -60,7 +73,7 @@
           },
           "blocks": {}
         },
-        "ai_gen_block_649341b_7dtgLc": {
+        "ai_gen_block_649341b_ncQyMP": {
           "type": "ai_gen_block_649341b",
           "disabled": true,
           "settings": {
@@ -76,7 +89,7 @@
           },
           "blocks": {}
         },
-        "ai_gen_block_57e2af6_gaNWba": {
+        "ai_gen_block_57e2af6_dKkp8Y": {
           "type": "ai_gen_block_57e2af6",
           "settings": {
             "button_text": "Reload this page to see the latest order summary.",
@@ -94,10 +107,9 @@
         }
       },
       "block_order": [
-        "ai_gen_block_41cf512_dUMpGJ",
-        "ai_gen_block_98fea59_ttC6GN",
-        "ai_gen_block_649341b_7dtgLc",
-        "ai_gen_block_57e2af6_gaNWba"
+        "ai_gen_block_98fea59_4GMbr3",
+        "ai_gen_block_649341b_ncQyMP",
+        "ai_gen_block_57e2af6_dKkp8Y"
       ],
       "name": "Checkout auto refresh",
       "settings": {}
@@ -114,6 +126,7 @@
   "order": [
     "main",
     "blocks_DfqHA8",
+    "blocks_P63CEq",
     "custom_liquid_neqVAW"
   ]
 }
