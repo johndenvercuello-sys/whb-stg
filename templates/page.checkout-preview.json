@@ -168,11 +168,6 @@
           },
           "blocks": {}
         },
-        "ai_gen_block_d23345f_RP3hnG": {
-          "type": "ai_gen_block_d23345f",
-          "settings": {},
-          "blocks": {}
-        },
         "ai_gen_block_69770ee_BDppVd": {
           "type": "ai_gen_block_69770ee",
           "disabled": true,
@@ -191,7 +186,6 @@
       },
       "block_order": [
         "ai_gen_block_0c5cf4a_UrYhhQ",
-        "ai_gen_block_d23345f_RP3hnG",
         "ai_gen_block_69770ee_BDppVd"
       ],
       "name": "Checkout auto refresh",
