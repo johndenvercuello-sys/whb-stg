@@ -17,6 +17,34 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_1bbc16c_kan8nT": {
+          "type": "ai_gen_block_1bbc16c",
+          "disabled": true,
+          "settings": {
+            "heading": "Your cart is empty",
+            "message": "Looks like you haven't added anything to your cart yet.",
+            "button_text": "Continue shopping",
+            "redirect_seconds": 30,
+            "countdown_text": "Redirecting in",
+            "countdown_suffix": "seconds",
+            "desktop_width_percent": 100,
+            "background_color": "#f5f5f5",
+            "text_color": "#222222",
+            "border_radius": 8,
+            "icon_size": 80,
+            "icon_color": "#666666",
+            "heading_size": 32,
+            "message_size": 16,
+            "countdown_size": 18,
+            "countdown_color": "#000000",
+            "button_size": 16,
+            "button_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#222222",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        },
         "ai_gen_block_57e2af6_gaNWba": {
           "type": "ai_gen_block_57e2af6",
           "settings": {
@@ -32,33 +60,11 @@
             "max_delay_minutes": 10
           },
           "blocks": {}
-        },
-        "ai_gen_block_0c5cf4a_UrYhhQ": {
-          "type": "cart_empty_redirect",
-          "settings": {
-            "heading": "Your cart is empty",
-            "message": "You will be redirected to the home page shortly.",
-            "countdown_text": "Redirecting in",
-            "countdown_suffix": "seconds",
-            "redirect_url": "",
-            "countdown_seconds": 3,
-            "desktop_width_percent": 100,
-            "background_color": "#f5f5f5",
-            "text_color": "#222222",
-            "icon_color": "#666666",
-            "countdown_color": "#000000",
-            "border_radius": 8,
-            "icon_size": 80,
-            "heading_size": 28,
-            "message_size": 16,
-            "countdown_size": 20
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_57e2af6_gaNWba",
-        "ai_gen_block_0c5cf4a_UrYhhQ"
+        "ai_gen_block_1bbc16c_kan8nT",
+        "ai_gen_block_57e2af6_gaNWba"
       ],
       "name": "Checkout auto refresh",
       "settings": {}
