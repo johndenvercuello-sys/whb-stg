@@ -14,36 +14,6 @@
     "blocks_9zUQxW": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_502fac6_HAjbHK": {
-          "type": "ai_gen_block_502fac6",
-          "name": "Cart item removal alert",
-          "settings": {
-            "alert_title": "Item Removed",
-            "alert_message": "An item has been removed from your cart.",
-            "button_text": "Continue Shopping",
-            "enable_redirect": false,
-            "redirect_url": "",
-            "auto_close_duration": 0,
-            "alert_width": 400,
-            "alert_border_radius": 8,
-            "alert_bg_color": "#ffffff",
-            "alert_text_color": "#222222",
-            "show_icon": true,
-            "icon_size": 50,
-            "icon_color": "#e84e4e",
-            "title_size": 22,
-            "message_size": 14,
-            "button_text_size": 14,
-            "button_bg_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_hover_bg_color": "#222222",
-            "button_hover_text_color": "#ffffff",
-            "button_border_radius": 4,
-            "overlay_color": "#000000",
-            "overlay_opacity": 50
-          },
-          "blocks": {}
-        },
         "ai_gen_block_cb5f3dd_WcahhW": {
           "type": "ai_gen_block_cb5f3dd",
           "settings": {
@@ -78,7 +48,6 @@
         }
       },
       "block_order": [
-        "ai_gen_block_502fac6_HAjbHK",
         "ai_gen_block_cb5f3dd_WcahhW",
         "ai_gen_block_69770ee_AiBwe8"
       ],

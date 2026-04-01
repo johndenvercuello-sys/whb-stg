@@ -153,14 +153,13 @@
         },
         "ai_gen_block_502fac6_GWCRQ6": {
           "type": "ai_gen_block_502fac6",
-          "disabled": true,
           "settings": {
             "alert_title": "Item Removed",
             "alert_message": "An item has been removed from your cart.",
             "button_text": "Continue Shopping",
             "enable_redirect": true,
             "redirect_url": "",
-            "auto_close_duration": 0,
+            "auto_close_duration": 10,
             "alert_width": 400,
             "alert_border_radius": 8,
             "alert_bg_color": "#ffffff",
