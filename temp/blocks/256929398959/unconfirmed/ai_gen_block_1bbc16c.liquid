@@ -1,6 +1,338 @@
+{% doc %}
+  @prompt
+    check if no product item is added on cart then prompt a message and redirect to home page in 10 seconds add a schema
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-empty-cart-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: 60px 40px;
+    text-align: center;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-empty-cart-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto 24px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-empty-cart-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-empty-cart-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .ai-empty-cart-message-{{ ai_gen_id }} {
+    font-size: {{ block.settings.message_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px;
+    opacity: 0.8;
+  }
+
+  .ai-empty-cart-countdown-{{ ai_gen_id }} {
+    font-size: {{ block.settings.countdown_size }}px;
+    color: {{ block.settings.countdown_color }};
+    margin: 0 0 24px;
+    font-weight: 500;
+  }
+
+  .ai-empty-cart-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_size }}px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-empty-cart-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-empty-cart-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+  }
+{% endstyle %}
+
+{% if cart.item_count == 0 %}
+  <empty-cart-redirect-{{ ai_gen_id }}
+    class="ai-empty-cart-{{ ai_gen_id }}"
+    data-redirect-seconds="{{ block.settings.redirect_seconds }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="ai-empty-cart-icon-{{ ai_gen_id }}">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+      </svg>
+    </div>
+
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-empty-cart-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    {% if block.settings.message != blank %}
+      <p class="ai-empty-cart-message-{{ ai_gen_id }}">{{ block.settings.message }}</p>
+    {% endif %}
+
+    <div class="ai-empty-cart-countdown-{{ ai_gen_id }}">
+      {{ block.settings.countdown_text }} <span class="ai-countdown-number-{{ ai_gen_id }}">{{ block.settings.redirect_seconds }}</span> {{ block.settings.countdown_suffix }}
+    </div>
+
+    <a href="/" class="ai-empty-cart-button-{{ ai_gen_id }}">
+      {{ block.settings.button_text }}
+    </a>
+  </empty-cart-redirect-{{ ai_gen_id }}>
+
+  <script>
+    (function() {
+      class EmptyCartRedirect{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+          this.redirectSeconds = parseInt(this.dataset.redirectSeconds) || 10;
+          this.countdownElement = this.querySelector('.ai-countdown-number-{{ ai_gen_id }}');
+        }
+
+        connectedCallback() {
+          this.startCountdown();
+        }
+
+        startCountdown() {
+          let timeLeft = this.redirectSeconds;
+
+          const countdownInterval = setInterval(() => {
+            timeLeft--;
+            
+            if (this.countdownElement) {
+              this.countdownElement.textContent = timeLeft;
+            }
+
+            if (timeLeft <= 0) {
+              clearInterval(countdownInterval);
+              window.location.href = '/';
+            }
+          }, 1000);
+        }
+      }
+
+      customElements.define('empty-cart-redirect-{{ ai_gen_id }}', EmptyCartRedirect{{ ai_gen_id }});
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Empty cart redirect",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "message",
+      "label": "Message",
+      "default": "Looks like you haven't added anything to your cart yet."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Continue shopping"
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "range",
+      "id": "redirect_seconds",
+      "label": "Redirect time",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "s",
+      "default": 10
+    },
+    {
+      "type": "inline_richtext",
+      "id": "countdown_text",
+      "label": "Countdown text",
+      "default": "Redirecting in"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "countdown_suffix",
+      "label": "Countdown suffix",
+      "default": "seconds"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "message_size",
+      "label": "Message size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "countdown_size",
+      "label": "Countdown size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Empty cart redirect"
+    }
+  ]
+}
 {% endschema %}
