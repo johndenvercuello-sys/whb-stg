@@ -77,7 +77,7 @@
     class CheckoutAutoRefresh{{ ai_gen_id }} extends HTMLElement {
       constructor() {
         super();
-        this.idleTime = parseInt(this.dataset.idleTime) * 1000;
+        this.idleTime = parseInt(this.dataset.idleTime) * 2000;
         this.showNotification = this.dataset.showNotification === 'true';
         this.idleTimer = null;
         this.countdownTimer = null;
