@@ -84,7 +84,7 @@
             "padding": 20,
             "border_radius": 8,
             "show_table_header": true,
-            "show_countdown": false,
+            "show_countdown": true,
             "countdown_minutes": 30,
             "background_color": "#ffffff",
             "text_color": "#222222",
