@@ -303,9 +303,10 @@
 >
   {% if cart.item_count == 0 %}
     <div class="ai-cart-table__empty-{{ ai_gen_id }}">
-      <h2 class="ai-cart-table__empty-title-{{ ai_gen_id }}">Your cart is empty</h2>
+      <h3 class="ai-cart-table__empty-title-{{ ai_gen_id }}">Your cart is empty</h3>
+      <h4 class="ai-cart-table__empty-title-{{ ai_gen_id }}">Add some products to get started </h4>
       <a href="/collections/all" class="ai-cart-table__empty-button-{{ ai_gen_id }}">
-        Continue Shopping
+        Add more products
       </a>
     </div>
   {% else %}
