@@ -145,8 +145,14 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_d23345f_RP3hnG": {
+          "type": "ai_gen_block_d23345f",
+          "settings": {},
+          "blocks": {}
+        },
         "ai_gen_block_69770ee_BDppVd": {
           "type": "ai_gen_block_69770ee",
+          "disabled": true,
           "settings": {
             "idle_time": 10,
             "show_notification": true,
@@ -161,6 +167,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_d23345f_RP3hnG",
         "ai_gen_block_69770ee_BDppVd"
       ],
       "name": "Checkout auto refresh",
