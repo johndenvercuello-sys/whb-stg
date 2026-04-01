@@ -60,7 +60,7 @@
           "settings": {
             "message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
             "subtext": "<p>Redirecting in seconds...</p>",
-            "auto_redirect": false,
+            "auto_redirect": true,
             "section_height": 100,
             "position": "absolute",
             "z_index": 3,
