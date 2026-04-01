@@ -94,47 +94,6 @@
   </p>
 </empty-cart-redirect-{{ ai_gen_id }}>
 
-<script>
-  (function() {
-    class EmptyCartRedirect{{ ai_gen_id }} extends HTMLElement {
-      constructor() {
-        super();
-        this.redirectUrl = this.dataset.redirectUrl;
-        this.countdownSeconds = parseInt(this.dataset.countdownSeconds);
-        this.countdownElement = this.querySelector('.ai-countdown-number-{{ ai_gen_id }}');
-        this.currentCount = this.countdownSeconds;
-        this.intervalId = null;
-      }
-
-      connectedCallback() {
-        this.startCountdown();
-      }
-
-      startCountdown() {
-        this.intervalId = setInterval(() => {
-          this.currentCount--;
-          
-          if (this.countdownElement) {
-            this.countdownElement.textContent = this.currentCount;
-          }
-
-          if (this.currentCount <= 0) {
-            clearInterval(this.intervalId);
-            window.location.href = this.redirectUrl;
-          }
-        }, 10);
-      }
-
-      disconnectedCallback() {
-        if (this.intervalId) {
-          clearInterval(this.intervalId);
-        }
-      }
-    }
-
-    customElements.define('empty-cart-redirect-{{ ai_gen_id }}', EmptyCartRedirect{{ ai_gen_id }});
-  })();
-</script>
 
 {% schema %}
 {
