@@ -77,12 +77,48 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_59ce453_LPNbkK": {
+          "type": "ai_gen_block_59ce453",
+          "settings": {
+            "desktop_width_percent": 100,
+            "padding": 30,
+            "border_radius": 8,
+            "show_countdown": false,
+            "countdown_duration": 10,
+            "background_color": "#ffffff",
+            "text_color": "#222222",
+            "subtext_color": "#666666",
+            "header_bg_color": "#f5f5f5",
+            "header_text_color": "#222222",
+            "border_color": "#eeeeee",
+            "price_color": "#000000",
+            "link_hover_color": "#666666",
+            "remove_color": "#da3f3f",
+            "remove_hover_color": "#b33030",
+            "countdown_color": "#da3f3f",
+            "clear_btn_bg": "#f5f5f5",
+            "clear_btn_text": "#222222",
+            "clear_btn_hover_bg": "#e0e0e0",
+            "continue_btn_bg": "#000000",
+            "continue_btn_text": "#ffffff",
+            "continue_btn_hover_bg": "#333333",
+            "checkout_btn_bg": "#000000",
+            "checkout_btn_text": "#ffffff",
+            "checkout_btn_hover_bg": "#333333",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#333333",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        },
         "ai_gen_block_bc0fb5f_q66YDh": {
           "type": "ai_gen_block_bc0fb5f",
+          "disabled": true,
           "settings": {
             "desktop_width_percent": 100,
             "show_table_header": true,
-            "show_countdown": true,
+            "show_countdown": false,
             "countdown_minutes": 60,
             "header_bg_color": "#f5f5f5",
             "header_text_color": "#222222",
@@ -287,6 +323,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_59ce453_LPNbkK",
         "ai_gen_block_bc0fb5f_q66YDh",
         "ai_gen_block_cda032d_QcLaff",
         "ai_gen_block_502fac6_GWCRQ6",
