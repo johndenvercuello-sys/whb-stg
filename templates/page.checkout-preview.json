@@ -46,6 +46,7 @@
       "block_order": [
         "ai_gen_block_41cf512_dUMpGJ"
       ],
+      "disabled": true,
       "custom_css": [
         "this {background-color: #000;}"
       ],
@@ -59,8 +60,8 @@
           "type": "ai_gen_block_b8a88a8",
           "name": "Session timer",
           "settings": {
-            "session_timeout": 1,
-            "warning_time": 50,
+            "session_timeout": 60,
+            "warning_time": 10,
             "show_warning": true,
             "warning_title": "Session Expiring Soon",
             "warning_message": "Your cart will be cleared in:",
@@ -115,7 +116,7 @@
             "border_radius": 8,
             "desktop_width_percent": 100,
             "min_delay_minutes": 1,
-            "max_delay_minutes": 10
+            "max_delay_minutes": 3
           },
           "blocks": {}
         }
