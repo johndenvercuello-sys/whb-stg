@@ -22,7 +22,7 @@
           "settings": {
             "message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
             "subtext": "<p>Redirecting in seconds...</p>",
-            "auto_redirect": true,
+            "auto_redirect": false,
             "section_height": 100,
             "position": "absolute",
             "z_index": 3,
@@ -35,24 +35,9 @@
           },
           "blocks": {}
         },
-        "ai_gen_block_649341b_7dtgLc": {
-          "type": "ai_gen_block_649341b",
-          "disabled": true,
-          "settings": {
-            "enable_cart_check": false,
-            "section_height": 100,
-            "empty_cart_message": "<p>Your cart is empty. Please add items before proceeding to checkout.</p>",
-            "message_font_size": 18,
-            "countdown_font_size": 16,
-            "background_color": "#ffffff",
-            "text_color": "#000000",
-            "countdown_color": "#d82c0d",
-            "custom_css": "{position:absolute;}"
-          },
-          "blocks": {}
-        },
         "ai_gen_block_57e2af6_gaNWba": {
           "type": "ai_gen_block_57e2af6",
+          "disabled": true,
           "settings": {
             "button_text": "Reload this page to see the latest order summary.",
             "button_color": "#000000",
@@ -70,7 +55,6 @@
       },
       "block_order": [
         "ai_gen_block_98fea59_ttC6GN",
-        "ai_gen_block_649341b_7dtgLc",
         "ai_gen_block_57e2af6_gaNWba"
       ],
       "name": "Checkout auto refresh",
