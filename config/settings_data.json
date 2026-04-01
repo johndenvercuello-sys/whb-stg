@@ -11,6 +11,7 @@
   "current": {
     "favicon": "shopify://shop_images/favicon.jpg",
     "use_ajax_atc": true,
+    "show_scroll_top_button": false,
     "container_width": 1330,
     "type_base_font": "roboto_condensed_n4",
     "use_custom_font_body": true,
