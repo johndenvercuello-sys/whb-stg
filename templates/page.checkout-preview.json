@@ -55,8 +55,32 @@
     "blocks_P63CEq": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_b8a88a8_N69wMV": {
+          "type": "ai_gen_block_b8a88a8",
+          "name": "Session timer",
+          "settings": {
+            "session_timeout": 1,
+            "warning_time": 30,
+            "show_warning": true,
+            "warning_title": "Session Expiring Soon",
+            "warning_message": "Your cart will be cleared in:",
+            "position_bottom": 20,
+            "position_right": 20,
+            "position_bottom_mobile": 20,
+            "position_right_mobile": 15,
+            "background_color": "#222222",
+            "text_color": "#ffffff",
+            "countdown_color": "#ff6b6b",
+            "border_radius": 8,
+            "title_size": 16,
+            "message_size": 14,
+            "countdown_size": 24
+          },
+          "blocks": {}
+        },
         "ai_gen_block_98fea59_4GMbr3": {
           "type": "ai_gen_block_98fea59",
+          "disabled": true,
           "settings": {
             "message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
             "subtext": "<p>Redirecting in seconds...</p>",
@@ -91,6 +115,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_b8a88a8_N69wMV",
         "ai_gen_block_98fea59_4GMbr3",
         "ai_gen_block_57e2af6_dKkp8Y"
       ],
