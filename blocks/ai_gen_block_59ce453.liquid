@@ -28,7 +28,14 @@
 
   .ai-cart-table__empty-title-{{ ai_gen_id }} {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-cart-table__empty-description-{{ ai_gen_id }} {
+    font-size: 17px;
+    font-weight: 400;
     margin-bottom: 20px;
     color: {{ block.settings.text_color }};
   }
@@ -304,7 +311,7 @@
   {% if cart.item_count == 0 %}
     <div class="ai-cart-table__empty-{{ ai_gen_id }}">
       <h3 class="ai-cart-table__empty-title-{{ ai_gen_id }}">Your cart is empty</h3>
-      <h4 class="ai-cart-table__empty-title-{{ ai_gen_id }}">Add some products to get started </h4>
+      <p class="ai-cart-table__empty-description-{{ ai_gen_id }}">Add some products to get started </p>
       <a href="/collections/all" class="ai-cart-table__empty-button-{{ ai_gen_id }}">
         Add more products
       </a>
