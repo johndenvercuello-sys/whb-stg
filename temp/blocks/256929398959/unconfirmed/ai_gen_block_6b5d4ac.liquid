@@ -1,6 +1,361 @@
+{% doc %}
+  @prompt
+    check if cart count is 0 unload embed and prompt a message and redirect to home page in 10 seconds add a schema, add on off control on schema
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-empty-cart-redirect-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: 40px;
+    text-align: center;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    margin: 0 auto;
+  }
+
+  .ai-empty-cart-redirect__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto 20px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-empty-cart-redirect__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .ai-empty-cart-redirect__message-{{ ai_gen_id }} {
+    font-size: {{ block.settings.message_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 24px;
+    line-height: 1.5;
+  }
+
+  .ai-empty-cart-redirect__countdown-{{ ai_gen_id }} {
+    font-size: {{ block.settings.countdown_size }}px;
+    color: {{ block.settings.countdown_color }};
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-empty-cart-redirect__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-empty-cart-redirect__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_text_color }};
+  }
+
+  .ai-empty-cart-redirect--hidden-{{ ai_gen_id }} {
+    display: none;
+  }
+{% endstyle %}
+
+<empty-cart-redirect-{{ ai_gen_id }}
+  class="ai-empty-cart-redirect-{{ ai_gen_id }} {% if cart.item_count > 0 %}ai-empty-cart-redirect--hidden-{{ ai_gen_id }}{% endif %}"
+  data-enabled="{{ block.settings.enable_redirect }}"
+  data-countdown="{{ block.settings.countdown_seconds }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-empty-cart-redirect__icon-{{ ai_gen_id }}">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+  </div>
+
+  <h2 class="ai-empty-cart-redirect__heading-{{ ai_gen_id }}">
+    {{ block.settings.heading }}
+  </h2>
+
+  <p class="ai-empty-cart-redirect__message-{{ ai_gen_id }}">
+    {{ block.settings.message }}
+  </p>
+
+  {% if block.settings.enable_redirect %}
+    <p class="ai-empty-cart-redirect__countdown-{{ ai_gen_id }}">
+      {{ block.settings.countdown_text }} <span data-countdown-timer>{{ block.settings.countdown_seconds }}</span> {{ block.settings.countdown_suffix }}
+    </p>
+  {% endif %}
+
+  <a href="/" class="ai-empty-cart-redirect__button-{{ ai_gen_id }}">
+    {{ block.settings.button_text }}
+  </a>
+</empty-cart-redirect-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class EmptyCartRedirect{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.cartCount = {{ cart.item_count }};
+        this.enabled = this.dataset.enabled === 'true';
+        this.countdownSeconds = parseInt(this.dataset.countdown) || 10;
+        this.countdownTimer = null;
+        this.currentCount = this.countdownSeconds;
+      }
+
+      connectedCallback() {
+        if (this.cartCount === 0 && this.enabled) {
+          this.startCountdown();
+        }
+
+        document.addEventListener('cart:updated', (event) => {
+          this.handleCartUpdate(event);
+        });
+      }
+
+      handleCartUpdate(event) {
+        const newCartCount = event.detail && event.detail.cart ? event.detail.cart.item_count : 0;
+        
+        if (newCartCount === 0 && this.enabled) {
+          this.classList.remove('ai-empty-cart-redirect--hidden-{{ ai_gen_id }}');
+          this.currentCount = this.countdownSeconds;
+          this.startCountdown();
+        } else if (newCartCount > 0) {
+          this.classList.add('ai-empty-cart-redirect--hidden-{{ ai_gen_id }}');
+          this.stopCountdown();
+        }
+      }
+
+      startCountdown() {
+        const timerElement = this.querySelector('[data-countdown-timer]');
+        if (!timerElement) return;
+
+        this.stopCountdown();
+
+        this.countdownTimer = setInterval(() => {
+          this.currentCount--;
+          timerElement.textContent = this.currentCount;
+
+          if (this.currentCount <= 0) {
+            this.stopCountdown();
+            window.location.href = '/';
+          }
+        }, 1000);
+      }
+
+      stopCountdown() {
+        if (this.countdownTimer) {
+          clearInterval(this.countdownTimer);
+          this.countdownTimer = null;
+        }
+      }
+
+      disconnectedCallback() {
+        this.stopCountdown();
+      }
+    }
+
+    customElements.define('empty-cart-redirect-{{ ai_gen_id }}', EmptyCartRedirect{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Empty cart redirect",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Functionality"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_redirect",
+      "label": "Enable auto redirect",
+      "default": true,
+      "info": "Automatically redirect to home page when cart is empty"
+    },
+    {
+      "type": "range",
+      "id": "countdown_seconds",
+      "label": "Countdown duration",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "s",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "textarea",
+      "id": "message",
+      "label": "Message",
+      "default": "Looks like you haven't added anything to your cart yet. Let's find something special for you!"
+    },
+    {
+      "type": "text",
+      "id": "countdown_text",
+      "label": "Countdown text",
+      "default": "Redirecting to home page in"
+    },
+    {
+      "type": "text",
+      "id": "countdown_suffix",
+      "label": "Countdown suffix",
+      "default": "seconds"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Continue shopping"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f9f4ef"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown color",
+      "default": "#c96e15"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "message_size",
+      "label": "Message size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "countdown_size",
+      "label": "Countdown size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Empty cart redirect"
+    }
+  ]
+}
 {% endschema %}
