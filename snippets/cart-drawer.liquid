@@ -201,7 +201,7 @@
               <a href="/checkout" class="m-button m-button--primary ">Check out</a>
             </div>
           <a class="m-cart-drawer__link-to-cart m-button m-button--link" href="/checkout">
-            <!-- <a class="m-cart-drawer__link-to-cart m-button m-button--link" href="{{ routes.cart_url }}"> -->
+            <!-- <a class="m-cart-drawer__link-to-cart m-button m-button--link" href="{{ routes.cart_url }}"> 
             {{ 'cart.general.viewcart' | t }}
           </a>
           <button
@@ -214,7 +214,7 @@
             {% endif %}
           >
             <span>{{ 'cart.general.checkout' | t }}</span>
-          </button>
+          </button>-->
           {%- if settings.cart_drawer_show_accelerated_button and additional_checkout_buttons -%}
             <div class="additional-checkout-buttons m:w-full">
               {{ content_for_additional_checkout_buttons }}
