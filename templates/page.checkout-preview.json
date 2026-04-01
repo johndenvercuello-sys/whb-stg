@@ -146,7 +146,7 @@
       "type": "_blocks",
       "blocks": {
         "ai_gen_block_0c5cf4a_UrYhhQ": {
-          "type": "ai_gen_block_0c5cf4a",
+          "type": "cart_empty_redirect",
           "settings": {
             "heading": "Your cart is empty",
             "message": "You will be redirected to the home page shortly.",
