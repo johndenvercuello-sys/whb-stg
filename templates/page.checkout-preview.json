@@ -134,46 +134,26 @@
         "animations": "inherit"
       }
     },
-    "rich_text_9wtwnx": {
-      "type": "rich-text",
-      "blocks": {
-        "button_PqYMrY": {
-          "type": "button",
-          "settings": {
-            "button_label": "Reload this page to see the latest order summary.",
-            "button_link": "shopify://pages/checkout",
-            "button_style": "m-button--link",
-            "button_size": ""
-          }
-        }
-      },
-      "block_order": [
-        "button_PqYMrY"
-      ],
-      "name": "Rich text",
-      "settings": {
-        "container": "container",
-        "color_scheme": "badge-sale",
-        "content_alignment": "center",
-        "padding_top": 16,
-        "padding_bottom": 16,
-        "custom_class": "",
-        "animations": "inherit"
-      }
-    },
-    "custom_liquid_neqVAW": {
-      "type": "custom-liquid",
-      "name": "Custom liquid",
-      "settings": {
-        "custom_liquid": "<embed type=\"text/html\" src=\"https://wbakehouse-app-test-5.myshopify.com/checkout\"  class=\"checkoutprev\">",
-        "custom_class": ""
-      }
-    },
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_fe2aad2_f7WP9i": {
+          "type": "ai_gen_block_fe2aad2",
+          "settings": {
+            "button_text": "Reload this page to see the latest order summary.",
+            "button_color": "#000000",
+            "button_hover_color": "#bbbbbb",
+            "button_text_color": "#ffffff",
+            "font_size": 16,
+            "button_padding": 12,
+            "border_radius": 8,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        },
         "ai_gen_block_0c5cf4a_UrYhhQ": {
           "type": "cart_empty_redirect",
+          "disabled": true,
           "settings": {
             "heading": "Your cart is empty",
             "message": "You will be redirected to the home page shortly.",
@@ -196,10 +176,19 @@
         }
       },
       "block_order": [
+        "ai_gen_block_fe2aad2_f7WP9i",
         "ai_gen_block_0c5cf4a_UrYhhQ"
       ],
       "name": "Checkout auto refresh",
       "settings": {}
+    },
+    "custom_liquid_neqVAW": {
+      "type": "custom-liquid",
+      "name": "Custom liquid",
+      "settings": {
+        "custom_liquid": "<embed type=\"text/html\" src=\"https://wbakehouse-app-test-5.myshopify.com/checkout\"  class=\"checkoutprev\">",
+        "custom_class": ""
+      }
     }
   },
   "order": [
@@ -207,8 +196,7 @@
     "collection_list_bieJzE",
     "1770308682b3896be0",
     "image_with_text_rTfdJ4",
-    "rich_text_9wtwnx",
-    "custom_liquid_neqVAW",
-    "blocks_DfqHA8"
+    "blocks_DfqHA8",
+    "custom_liquid_neqVAW"
   ]
 }
