@@ -1,6 +1,217 @@
+{% doc %}
+  @prompt
+    add button that wil reload the page, button text is "refresh-notification" add a condition that it will only show with time delay of 2 to 10 minutes delay with schema
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-refresh-notification-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-refresh-notification__container-{{ ai_gen_id }} {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-refresh-notification__container-{{ ai_gen_id }}.visible {
+    display: block;
+    opacity: 1;
+  }
+
+  .ai-refresh-notification__button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.button_padding }}px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: {{ block.settings.font_size }}px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-refresh-notification__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+{% endstyle %}
+
+<refresh-notification-{{ ai_gen_id }}
+  class="ai-refresh-notification-{{ ai_gen_id }}"
+  data-min-delay="{{ block.settings.min_delay_minutes }}"
+  data-max-delay="{{ block.settings.max_delay_minutes }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-refresh-notification__container-{{ ai_gen_id }}">
+    <button
+      type="button"
+      class="ai-refresh-notification__button-{{ ai_gen_id }}"
+      aria-label="Refresh page"
+    >
+      {{ block.settings.button_text }}
+    </button>
+  </div>
+</refresh-notification-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class RefreshNotification{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.container = null;
+        this.button = null;
+        this.timeoutId = null;
+      }
+
+      connectedCallback() {
+        this.container = this.querySelector('.ai-refresh-notification__container-{{ ai_gen_id }}');
+        this.button = this.querySelector('.ai-refresh-notification__button-{{ ai_gen_id }}');
+        
+        if (!this.container || !this.button) return;
+
+        const minDelay = parseInt(this.dataset.minDelay) || 2;
+        const maxDelay = parseInt(this.dataset.maxDelay) || 10;
+        
+        const randomDelay = Math.floor(Math.random() * (maxDelay - minDelay + 1) + minDelay);
+        const delayMs = randomDelay * 60 * 1000;
+
+        this.timeoutId = setTimeout(() => {
+          this.showNotification();
+        }, delayMs);
+
+        this.button.addEventListener('click', () => {
+          this.refreshPage();
+        });
+      }
+
+      showNotification() {
+        if (this.container) {
+          this.container.classList.add('visible');
+        }
+      }
+
+      refreshPage() {
+        window.location.reload();
+      }
+
+      disconnectedCallback() {
+        if (this.timeoutId) {
+          clearTimeout(this.timeoutId);
+        }
+      }
+    }
+
+    customElements.define('refresh-notification-{{ ai_gen_id }}', RefreshNotification{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Refresh notification",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "refresh-notification"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Background color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Timing"
+    },
+    {
+      "type": "range",
+      "id": "min_delay_minutes",
+      "label": "Minimum delay",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "min",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "max_delay_minutes",
+      "label": "Maximum delay",
+      "min": 2,
+      "max": 15,
+      "step": 1,
+      "unit": "min",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Refresh notification"
+    }
+  ]
+}
 {% endschema %}
