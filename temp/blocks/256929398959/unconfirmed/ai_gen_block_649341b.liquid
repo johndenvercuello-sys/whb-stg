@@ -1,6 +1,251 @@
+{% doc %}
+  @prompt
+    check if cart count is 0 unload embed and prompt a message and redirect to home page in 10 seconds repeat this with interval of 10 seconds if cart count is not 0,  add a schema, add on off control on schema, add section height 100vh on schema, add custom css schema
+    
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% if block.settings.enable_cart_check %}
+  {% style %}
+    .ai-cart-guard-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: {{ block.settings.section_height }}vh;
+      background-color: {{ block.settings.background_color }};
+      padding: 40px 20px;
+    }
+
+    .ai-cart-guard__message-{{ ai_gen_id }} {
+      text-align: center;
+      color: {{ block.settings.text_color }};
+      font-size: {{ block.settings.message_font_size }}px;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .ai-cart-guard__countdown-{{ ai_gen_id }} {
+      font-size: {{ block.settings.countdown_font_size }}px;
+      color: {{ block.settings.countdown_color }};
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .ai-cart-guard__hidden-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    {{ block.settings.custom_css }}
+  {% endstyle %}
+
+  <cart-guard-{{ ai_gen_id }}
+    class="ai-cart-guard-{{ ai_gen_id }}"
+    data-cart-count="{{ cart.item_count }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="ai-cart-guard__message-{{ ai_gen_id }} ai-cart-guard__hidden-{{ ai_gen_id }}">
+      {{ block.settings.empty_cart_message }}
+      <div class="ai-cart-guard__countdown-{{ ai_gen_id }}">
+        Redirecting to homepage in <span class="ai-cart-guard__seconds-{{ ai_gen_id }}">10</span> seconds...
+      </div>
+    </div>
+  </cart-guard-{{ ai_gen_id }}>
+
+  <script>
+    (function() {
+      class CartGuard{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+          this.checkInterval = null;
+          this.redirectTimeout = null;
+          this.countdownInterval = null;
+          this.secondsRemaining = 10;
+        }
+
+        connectedCallback() {
+          this.initialCartCount = parseInt(this.dataset.cartCount, 10);
+          this.messageElement = this.querySelector('.ai-cart-guard__message-{{ ai_gen_id }}');
+          this.secondsElement = this.querySelector('.ai-cart-guard__seconds-{{ ai_gen_id }}');
+          
+          this.startChecking();
+        }
+
+        disconnectedCallback() {
+          this.cleanup();
+        }
+
+        cleanup() {
+          if (this.checkInterval) {
+            clearInterval(this.checkInterval);
+          }
+          if (this.redirectTimeout) {
+            clearTimeout(this.redirectTimeout);
+          }
+          if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+          }
+        }
+
+        async checkCart() {
+          try {
+            const response = await fetch('/cart.js');
+            const cart = await response.json();
+            
+            if (cart.item_count === 0) {
+              this.handleEmptyCart();
+            } else {
+              this.handleNonEmptyCart();
+            }
+          } catch (error) {
+            console.error('Error checking cart:', error);
+          }
+        }
+
+        handleEmptyCart() {
+          this.messageElement.classList.remove('ai-cart-guard__hidden-{{ ai_gen_id }}');
+          
+          if (!this.redirectTimeout) {
+            this.secondsRemaining = 10;
+            this.updateCountdown();
+            
+            this.countdownInterval = setInterval(() => {
+              this.secondsRemaining--;
+              this.updateCountdown();
+              
+              if (this.secondsRemaining <= 0) {
+                clearInterval(this.countdownInterval);
+              }
+            }, 1000);
+            
+            this.redirectTimeout = setTimeout(() => {
+              window.location.href = '/';
+            }, 10000);
+          }
+        }
+
+        handleNonEmptyCart() {
+          this.messageElement.classList.add('ai-cart-guard__hidden-{{ ai_gen_id }}');
+          
+          if (this.redirectTimeout) {
+            clearTimeout(this.redirectTimeout);
+            this.redirectTimeout = null;
+          }
+          if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+            this.countdownInterval = null;
+          }
+          this.secondsRemaining = 10;
+        }
+
+        updateCountdown() {
+          if (this.secondsElement) {
+            this.secondsElement.textContent = this.secondsRemaining;
+          }
+        }
+
+        startChecking() {
+          this.checkCart();
+          
+          this.checkInterval = setInterval(() => {
+            this.checkCart();
+          }, 10000);
+        }
+      }
+
+      customElements.define('cart-guard-{{ ai_gen_id }}', CartGuard{{ ai_gen_id }});
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart guard",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_cart_check",
+      "label": "Enable cart check",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section height",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Message"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_cart_message",
+      "label": "Empty cart message",
+      "default": "<p>Your cart is empty. Please add items before proceeding to checkout.</p>"
+    },
+    {
+      "type": "range",
+      "id": "message_font_size",
+      "label": "Message font size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "countdown_font_size",
+      "label": "Countdown font size",
+      "min": 12,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown",
+      "default": "#d82c0d"
+    },
+    {
+      "type": "header",
+      "content": "Custom CSS"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart guard"
+    }
+  ]
+}
 {% endschema %}
