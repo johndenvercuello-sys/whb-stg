@@ -77,21 +77,6 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_564dde0_P4pEUt": {
-          "type": "ai_gen_block_564dde0",
-          "settings": {
-            "button_text": "Go to checkout",
-            "button_color": "#000000",
-            "button_hover_color": "#222222",
-            "button_text_color": "#ffffff",
-            "font_size": 16,
-            "font_weight": "500",
-            "button_padding": 12,
-            "border_radius": 4,
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        },
         "ai_gen_block_bc0fb5f_q66YDh": {
           "type": "ai_gen_block_bc0fb5f",
           "settings": {
@@ -303,7 +288,6 @@
         }
       },
       "block_order": [
-        "ai_gen_block_564dde0_P4pEUt",
         "ai_gen_block_bc0fb5f_q66YDh",
         "ai_gen_block_cda032d_QcLaff",
         "ai_gen_block_502fac6_GWCRQ6",
