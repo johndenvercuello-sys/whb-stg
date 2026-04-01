@@ -17,24 +17,27 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_5abde33_rAzLmQ": {
-          "type": "ai_gen_block_5abde33",
+        "ai_gen_block_98fea59_ttC6GN": {
+          "type": "ai_gen_block_98fea59",
           "settings": {
+            "message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
+            "subtext": "<p>Redirecting in seconds...</p>",
             "auto_redirect": false,
-            "empty_cart_message": "<p>Your cart is empty. You will be redirected to the home page.</p>",
-            "message_font_size": 18,
-            "countdown_font_size": 16,
             "section_height": 100,
-            "section_position": "absolute",
-            "section_z_index": 23,
+            "position": "relative",
+            "z_index": 1,
             "background_color": "#ffffff",
-            "text_color": "#222222",
+            "text_color": "#000000",
+            "message_font_size": 24,
+            "countdown_font_size": 48,
+            "subtext_font_size": 16,
             "custom_css": ""
           },
           "blocks": {}
         },
         "ai_gen_block_649341b_7dtgLc": {
           "type": "ai_gen_block_649341b",
+          "disabled": true,
           "settings": {
             "enable_cart_check": false,
             "section_height": 100,
@@ -66,7 +69,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_5abde33_rAzLmQ",
+        "ai_gen_block_98fea59_ttC6GN",
         "ai_gen_block_649341b_7dtgLc",
         "ai_gen_block_57e2af6_gaNWba"
       ],
