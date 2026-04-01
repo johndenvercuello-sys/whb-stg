@@ -13,11 +13,7 @@
 
 <div class="ai-cart-redirect-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   {% if cart.item_count == 0 %}
-    <script>
-      (function() {
-        window.location.href = '{{ routes.root_url }}';
-      })();
-    </script>
+    
   {% endif %}
 </div>
 
