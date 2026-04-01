@@ -264,7 +264,7 @@
   }
 {% endstyle %}
 
-<cart-table-{{ ai_gen_id }} class="ai-cart-table-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+<cart-table-{{ ai_gen_id }} class="ai-cart-table-{{ ai_gen_id }}" {{ block.shopify_attributes }} style="max-width:1300px;margin:0 auto;">
   <div class="ai-cart-table-wrapper-{{ ai_gen_id }}">
     {% if cart.item_count == 0 %}
       <div class="ai-cart-empty-{{ ai_gen_id }}">
