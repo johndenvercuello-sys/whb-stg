@@ -137,8 +137,25 @@
     "blocks_DfqHA8": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_57e2af6_gaNWba": {
+          "type": "ai_gen_block_57e2af6",
+          "settings": {
+            "button_text": "Reload this page to see the latest order summary.",
+            "button_color": "#e84e4e",
+            "button_hover_color": "#000000",
+            "button_text_color": "#ffffff",
+            "font_size": 16,
+            "button_padding": 16,
+            "border_radius": 8,
+            "desktop_width_percent": 100,
+            "min_delay_minutes": 1,
+            "max_delay_minutes": 10
+          },
+          "blocks": {}
+        },
         "ai_gen_block_fe2aad2_f7WP9i": {
           "type": "ai_gen_block_fe2aad2",
+          "disabled": true,
           "settings": {
             "button_text": "Reload this page to see the latest order summary.",
             "button_color": "#000000",
@@ -146,7 +163,7 @@
             "button_text_color": "#ffffff",
             "font_size": 16,
             "button_padding": 12,
-            "border_radius": 8,
+            "border_radius": 0,
             "desktop_width_percent": 100
           },
           "blocks": {}
@@ -176,6 +193,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_57e2af6_gaNWba",
         "ai_gen_block_fe2aad2_f7WP9i",
         "ai_gen_block_0c5cf4a_UrYhhQ"
       ],
