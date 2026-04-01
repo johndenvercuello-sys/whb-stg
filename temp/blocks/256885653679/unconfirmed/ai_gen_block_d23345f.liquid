@@ -1,0 +1,40 @@
+{% doc %}
+  @prompt
+    check if no product item is added on cart then redirect to home page
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-redirect-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+{% endstyle %}
+
+<div class="ai-cart-redirect-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if cart.item_count == 0 %}
+    <script>
+      (function() {
+        window.location.href = '{{ routes.root_url }}';
+      })();
+    </script>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Cart redirect",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "This block automatically redirects to the home page when the cart is empty."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart redirect"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}
