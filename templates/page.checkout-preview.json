@@ -19,6 +19,7 @@
       "blocks": {
         "ai_gen_block_41cf512_dUMpGJ": {
           "type": "ai_gen_block_41cf512",
+          "disabled": true,
           "settings": {
             "button_text": "refresh-notification",
             "show_delay": 10,
