@@ -1,0 +1,281 @@
+{% doc %}
+  @prompt
+    Overall total of added product in cart, add schema
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-cart-total-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-cart-total__label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.label_font_size }}px;
+    color: {{ block.settings.label_color }};
+    margin-bottom: {{ block.settings.spacing }}px;
+    font-weight: {{ block.settings.label_font_weight }};
+  }
+
+  .ai-cart-total__amount-{{ ai_gen_id }} {
+    font-size: {{ block.settings.amount_font_size }}px;
+    color: {{ block.settings.amount_color }};
+    font-weight: {{ block.settings.amount_font_weight }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-cart-total-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<cart-total-{{ ai_gen_id }}
+  class="ai-cart-total-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.show_label %}
+    <div class="ai-cart-total__label-{{ ai_gen_id }}">
+      {{ block.settings.label_text }}
+    </div>
+  {% endif %}
+  <div class="ai-cart-total__amount-{{ ai_gen_id }}">
+    {{ cart.total_price | money_with_currency }}
+  </div>
+</cart-total-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CartTotal{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.updateTotal();
+        document.addEventListener('cart:updated', this.updateTotal.bind(this));
+      }
+
+      updateTotal() {
+        fetch('/cart.js')
+          .then(response => response.json())
+          .then(cart => {
+            const amountElement = this.querySelector('.ai-cart-total__amount-{{ ai_gen_id }}');
+            if (amountElement) {
+              const formattedPrice = this.formatMoney(cart.total_price);
+              amountElement.textContent = formattedPrice;
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching cart:', error);
+          });
+      }
+
+      formatMoney(cents) {
+        const amount = (cents / 100).toFixed(2);
+        const currencyCode = '{{ cart.currency.iso_code }}';
+        const currencySymbol = '{{ cart.currency.symbol }}';
+        return currencySymbol + amount + ' ' + currencyCode;
+      }
+    }
+
+    customElements.define('cart-total-{{ ai_gen_id }}', CartTotal{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cart total",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label",
+      "label": "Show label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label text",
+      "default": "Total"
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "label_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Amount style"
+    },
+    {
+      "type": "range",
+      "id": "amount_font_size",
+      "label": "Font size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "amount_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "amount_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing between label and amount",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart total"
+    }
+  ]
+}
+{% endschema %}

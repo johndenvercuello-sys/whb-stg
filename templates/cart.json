@@ -77,6 +77,26 @@
     "17748531141d7c2c7f": {
       "type": "_blocks",
       "blocks": {
+        "ai_gen_block_77d7523_aK8edh": {
+          "type": "ai_gen_block_77d7523",
+          "settings": {
+            "show_label": true,
+            "label_text": "Total",
+            "label_font_size": 16,
+            "label_font_weight": "400",
+            "label_color": "#666666",
+            "amount_font_size": 32,
+            "amount_font_weight": "700",
+            "amount_color": "#000000",
+            "text_alignment": "center",
+            "spacing": 8,
+            "padding": 20,
+            "desktop_width_percent": 100,
+            "background_color": "#f5f5f5",
+            "border_radius": 8
+          },
+          "blocks": {}
+        },
         "ai_gen_block_fb351aa_qQYLz4": {
           "type": "ai_gen_block_fb351aa",
           "settings": {
@@ -300,6 +320,7 @@
         }
       },
       "block_order": [
+        "ai_gen_block_77d7523_aK8edh",
         "ai_gen_block_fb351aa_qQYLz4",
         "ai_gen_block_bc0fb5f_q66YDh",
         "ai_gen_block_cda032d_QcLaff",
