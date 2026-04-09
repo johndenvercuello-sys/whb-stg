@@ -187,7 +187,7 @@
             "clear_text_hover_color": "#ffffff",
             "clear_border_hover_color": "#000000",
             "add_more_button_text": "Add More Products",
-            "add_more_link": "",
+            "add_more_link": "shopify://collections",
             "add_more_bg_color": "#ffffff",
             "add_more_text_color": "#000000",
             "add_more_border_color": "#000000",
