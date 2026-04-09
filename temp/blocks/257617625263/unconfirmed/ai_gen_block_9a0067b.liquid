@@ -1,6 +1,343 @@
+{% doc %}
+  @prompt
+    Overall total of added product in cart, add schema settings. add condition hide  block if cart is empty. block max-width is 1300px, block align center.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% if cart.item_count > 0 %}
+  {% style %}
+    .ai-cart-total-{{ ai_gen_id }} {
+      display: block;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+      background-color: {{ block.settings.background_color }};
+      border-radius: {{ block.settings.border_radius }}px;
+      text-align: {{ block.settings.text_alignment }};
+    }
+
+    .ai-cart-total__wrapper-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      gap: {{ block.settings.spacing }}px;
+    }
+
+    .ai-cart-total__label-{{ ai_gen_id }} {
+      color: {{ block.settings.label_color }};
+      font-size: {{ block.settings.label_size }}px;
+      font-weight: {{ block.settings.label_weight }};
+      margin: 0;
+    }
+
+    .ai-cart-total__amount-{{ ai_gen_id }} {
+      color: {{ block.settings.amount_color }};
+      font-size: {{ block.settings.amount_size }}px;
+      font-weight: {{ block.settings.amount_weight }};
+      margin: 0;
+    }
+
+    @media screen and (max-width: 749px) {
+      .ai-cart-total-{{ ai_gen_id }} {
+        padding: {{ block.settings.padding_vertical_mobile }}px {{ block.settings.padding_horizontal_mobile }}px;
+      }
+
+      .ai-cart-total__label-{{ ai_gen_id }} {
+        font-size: {{ block.settings.label_size_mobile }}px;
+      }
+
+      .ai-cart-total__amount-{{ ai_gen_id }} {
+        font-size: {{ block.settings.amount_size_mobile }}px;
+      }
+    }
+  {% endstyle %}
+
+  <cart-total-{{ ai_gen_id }}
+    class="ai-cart-total-{{ ai_gen_id }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="ai-cart-total__wrapper-{{ ai_gen_id }}">
+      {% if block.settings.show_label %}
+        <div class="ai-cart-total__label-{{ ai_gen_id }}">
+          {{ block.settings.label_text }}
+        </div>
+      {% endif %}
+      <div class="ai-cart-total__amount-{{ ai_gen_id }}">
+        {{ cart.total_price | money_with_currency }}
+      </div>
+    </div>
+  </cart-total-{{ ai_gen_id }}>
+
+  <script>
+    (function() {
+      class CartTotal{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+        }
+
+        connectedCallback() {
+          this.updateTotal();
+          document.addEventListener('cart:updated', () => this.updateTotal());
+        }
+
+        updateTotal() {
+          fetch('/cart.js')
+            .then(response => response.json())
+            .then(cart => {
+              const amountElement = this.querySelector('.ai-cart-total__amount-{{ ai_gen_id }}');
+              if (amountElement && cart.total_price !== undefined) {
+                const formattedPrice = this.formatMoney(cart.total_price);
+                amountElement.textContent = formattedPrice;
+              }
+            });
+        }
+
+        formatMoney(cents) {
+          const amount = cents / 100;
+          return new Intl.NumberFormat('{{ cart.currency.iso_code }}', {
+            style: 'currency',
+            currency: '{{ cart.currency.iso_code }}'
+          }).format(amount);
+        }
+      }
+
+      customElements.define('cart-total-{{ ai_gen_id }}', CartTotal{{ ai_gen_id }});
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart total",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label",
+      "label": "Show label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label text",
+      "default": "Total"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing between elements",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "label_size_mobile",
+      "label": "Font size on mobile",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "label_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Amount style"
+    },
+    {
+      "type": "range",
+      "id": "amount_size",
+      "label": "Font size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "amount_size_mobile",
+      "label": "Font size on mobile",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "amount_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "amount_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Vertical padding on mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Horizontal padding on mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart total"
+    }
+  ]
+}
 {% endschema %}
