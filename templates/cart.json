@@ -87,7 +87,7 @@
             "product_header_text": "Product",
             "price_header_text": "Price",
             "quantity_header_text": "Quantity",
-            "total_header_text": "Total",
+            "total_header_text": "Sub Total",
             "image_size": 100,
             "image_border_radius": 8,
             "show_size": true,
